@@ -1,6 +1,6 @@
 {
   "global": {
-    "pageTitle": "RS React Redux Base"
+    "pageTitle": "Target-Web"
   },
   "home": {
     "welcomeMsg": "Welcome to React Redux Base",
@@ -22,8 +22,12 @@
     }
   },
   "login": {
-    "title": "Log in",
-    "dontHaveAccountMsg": "Don't have an account? Sign up",
+    "page-title": "TARGET MVD",
+    "title": "SIGN IN",
+    "subtitle": "Find people near you & Connect",
+    "description": "Create a target wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.",
+    "dontHaveAccountMsg": "SIGN UP",
+    "facebook": "CONNECT WITH FACEBOOK",
     "labels": {
       "email": "Email",
       "password": "Password"

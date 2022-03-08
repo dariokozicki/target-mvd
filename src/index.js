@@ -10,6 +10,7 @@ import store from 'state/store';
 import App from './App';
 import locales from './locales';
 import './index.css';
+import '../node_modules/primeflex/primeflex.css';
 
 // Internationalization setup
 const usersLocale = navigator.language.split('-')[0];

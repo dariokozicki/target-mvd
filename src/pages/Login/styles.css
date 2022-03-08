@@ -1,0 +1,74 @@
+.video-container {
+    width: 50vw;
+    height: 100vh;
+
+    background: #2FBCF7;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.login-container {
+    width: 50vw;
+    height: 100vh;
+
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.screen-container {
+    display: flex; 
+    width: 100vw;
+    height: 100vh;
+}
+
+.play-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+.play:hover {
+    cursor: pointer;
+}
+
+.form-login {
+    align-items: center;
+    color: var(--color-black);
+    display: flex;
+    justify-content: center;
+}
+
+.smilies {
+    max-height: 150px;
+    margin-top: 4rem;
+}
+
+.title {
+    font-family: sans-serif;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: 3px;
+    font-weight: bolder;
+}
+
+.description { 
+    width: 321px;
+    font-family: OpenSans, sans-serif;
+    font-size: 14px;
+    line-height: 26px;
+    text-align: center;
+}
