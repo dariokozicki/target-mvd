@@ -9,7 +9,7 @@ import useAuth from 'hooks/useAuth';
 import routes from 'routes';
 import { setUser } from 'state/slices/authSlice';
 import { getLoggedInUser } from 'utils/auth';
-
+import Hamburger from 'components/navigation/Hamburger';
 import 'styles/variables.css';
 
 function App() {
@@ -32,6 +32,7 @@ function App() {
         <title>{t('global.pageTitle')}</title>
       </Helmet>
       <BrowserRouter>
+        <Hamburger />
         <Switch>
           {routes.map(route => (
             <RouteFromPath key={`route-${route.path}`} {...route} authenticated={authenticated} />

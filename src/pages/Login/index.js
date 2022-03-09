@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { api } from 'services/api';
 import { useLoginMutation } from 'services/auth/auth';
 import { setLoggedInUser } from 'utils/auth';
+import VideoContainer from './VideoContainer';
 import useAuth from 'hooks/useAuth';
 import useTranslation from 'hooks/useTranslation';
 import routesPaths from 'routes/routesPaths';
@@ -102,14 +103,7 @@ const Login = () => {
           {t('login.dontHaveAccountMsg')}
         </Link>
       </div>
-      <div id="video" className="video-container">
-        <div className="play-container">
-          <img src="/play.png" alt="play" className="play clickable" />
-          <img src="/i6.png" alt="phone" className="phone" />
-        </div>
-        <img src="/appstore_button.png" alt="appstore" />
-        <img src="/Social.png" alt="appstore" />
-      </div>
+      <VideoContainer />
     </div>
   );
 };

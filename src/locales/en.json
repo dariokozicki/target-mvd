@@ -37,5 +37,9 @@
       "emailMsg": "Must provide an email",
       "passwordMsg": "Must provide a password"
     }
+  },
+  "menu": {
+    "contact": "CONTACT",
+    "about": "ABOUT"
   }
 }
