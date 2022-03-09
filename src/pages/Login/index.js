@@ -59,11 +59,13 @@ const Login = () => {
       <div id="login" className="login-container">
         <img src="/smilies.png" alt="smilies" className="smilies" />
         <div className="title">{t('login.page-title')}</div>
-        <h4>{t('login.subtitle')}</h4>
+        <h4 className="subtitle">{t('login.subtitle')}</h4>
         <p className="description">{t('login.description')}</p>
         <div className="form-login">
           <form onSubmit={handleSubmit(onSubmit)} noValidate>
-            <label htmlFor="email">{t('login.labels.email')}</label>
+            <div className="form-label">
+              <label htmlFor="email">{t('login.labels.email')}</label>
+            </div>
             <Input
               register={register}
               type="email"
@@ -71,8 +73,9 @@ const Login = () => {
               error={errors.email}
               handleFocus={handleFocus}
             />
-
-            <label htmlFor="password">{t('login.labels.password')}</label>
+            <div className="form-label">
+              <label htmlFor="password">{t('login.labels.password')}</label>
+            </div>
             <Input
               register={register}
               type="password"
@@ -87,14 +90,21 @@ const Login = () => {
               <Button type="submit" disabled={isLoading}>
                 {t('login.title')}
               </Button>
-              <Link to={routesPaths.signup}>{t('login.dontHaveAccountMsg')}</Link>
+            </div>
+            <div className="clickable form-label">{t('login.forgot')}</div>
+            <h4 className="clickable facebook">{t('login.facebook')}</h4>
+            <div className="form-label">
+              <div className="separator" />
             </div>
           </form>
         </div>
+        <Link to={routesPaths.signup} className="link-to clickable">
+          {t('login.dontHaveAccountMsg')}
+        </Link>
       </div>
       <div id="video" className="video-container">
         <div className="play-container">
-          <img src="/play.png" alt="play" className="play" />
+          <img src="/play.png" alt="play" className="play clickable" />
           <img src="/i6.png" alt="phone" className="phone" />
         </div>
         <img src="/appstore_button.png" alt="appstore" />
