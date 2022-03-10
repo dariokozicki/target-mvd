@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { api } from 'services/api';
 import { useLoginMutation } from 'services/auth/auth';
 import { setLoggedInUser } from 'utils/auth';
-import VideoContainer from './VideoContainer';
+import VideoContainer from 'components/login/VideoContainer';
 import useAuth from 'hooks/useAuth';
 import useTranslation from 'hooks/useTranslation';
 import routesPaths from 'routes/routesPaths';
@@ -93,7 +93,9 @@ const Login = () => {
               </Button>
             </div>
             <div className="clickable form-label">{t('login.forgot')}</div>
-            <h4 className="clickable facebook">{t('login.facebook')}</h4>
+            <div className="clickable form-label">
+              <h4 className="facebook">{t('login.facebook')}</h4>
+            </div>
             <div className="form-label">
               <div className="separator" />
             </div>
