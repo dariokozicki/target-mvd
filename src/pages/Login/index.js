@@ -16,7 +16,7 @@ import routesPaths from 'routes/routesPaths';
 import Input from 'components/form/Input';
 import Button from 'components/common/Button';
 import './styles.css';
-import '../../styles/form.css';
+import 'styles/form.css';
 
 const Login = () => {
   const t = useTranslation();
@@ -60,7 +60,7 @@ const Login = () => {
       <div id="login" className="login-container">
         <img src="/smilies.png" alt="smilies" className="smilies" />
         <div className="title">{t('login.page-title')}</div>
-        <h4 className="subtitle">{t('login.subtitle')}</h4>
+        <div className="subtitle">{t('login.subtitle')}</div>
         <p className="description">{t('login.description')}</p>
         <div className="form-login">
           <form onSubmit={handleSubmit(onSubmit)} noValidate>

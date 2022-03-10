@@ -11,5 +11,6 @@
   --font-size-error: 11px;
   --font-size-button: 18px;
 
-  --menu-item-color: #232323;
+  --color-menu-item: #232323;
+  --color-main-secondary: #2fbcf7;
 }

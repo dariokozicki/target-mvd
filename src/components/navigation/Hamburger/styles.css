@@ -1,4 +1,4 @@
-#menuToggle {
+.hamburger-container {
   display: inline;
   position: absolute;
   top: 25px;
@@ -10,18 +10,18 @@
   user-select: none;
 }
 
-#menuToggle a {
+.hamburger-container a {
   text-decoration: none;
-  color: var(--menu-item-color);
+  color: var(--color-menu-item);
   font-weight: normal;
   transition: color 0.3s ease;
 }
 
-#menuToggle a:hover {
+.hamburger-container a:hover {
   font-weight: bolder;
 }
 
-#menuToggle input {
+.hamburger-container input {
   display: block;
   width: 40px;
   height: 32px;
@@ -40,7 +40,7 @@
 /*
  * Just a quick hamburger
  */
-#menuToggle span {
+.hamburger-line {
   display: block;
   width: 33px;
   height: 4px;
@@ -58,11 +58,11 @@
     background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
 }
 
-#menuToggle span:first-child {
+.hamburger-container .hamburger-line:first-child {
   transform-origin: 0% 0%;
 }
 
-#menuToggle span:nth-last-child(2) {
+.hamburger-container .hamburger-line:nth-last-child(2) {
   transform-origin: 0% 100%;
 }
 
@@ -70,16 +70,16 @@
  * Transform all the slices of hamburger
  * into a crossmark.
  */
-#menuToggle input:checked ~ span {
+.hamburger-container input:checked ~ .hamburger-line {
   opacity: 1;
   transform: rotate(45deg) translate(-2px, -1px);
-  background: var(--menu-item-color);
+  background: var(--color-menu-item);
 }
 
 /*
  * But let's hide the middle one.
  */
-#menuToggle input:checked ~ span:nth-last-child(3) {
+.hamburger-container input:checked ~ .hamburger-line:nth-last-child(3) {
   opacity: 0;
   transform: rotate(0deg) scale(0.2, 0.2);
 }
@@ -87,7 +87,7 @@
 /*
  * Ohyeah and the last one should go the other direction
  */
-#menuToggle input:checked ~ span:nth-last-child(2) {
+.hamburger-container input:checked ~ .hamburger-line:nth-last-child(2) {
   transform: rotate(-45deg) translate(0, -1px);
 }
 
@@ -95,7 +95,7 @@
  * Make this absolute positioned
  * at the top left of the screen
  */
-#menu {
+.menu {
   position: absolute;
   width: 300px;
   margin: -100px 0 0 -50px;
@@ -111,7 +111,7 @@
   transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
 
-#menu li {
+.menu .menu-item {
   padding: 2px 0;
   font-size: 16px;
 }
@@ -119,7 +119,7 @@
 /*
  * And let's slide it in from the left
  */
-#menuToggle input:checked ~ ul {
+.hamburger-container input:checked ~ ul {
   transform: none;
 }
 
