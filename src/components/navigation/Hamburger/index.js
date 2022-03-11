@@ -15,10 +15,10 @@ const Hamburger = () => {
       <div className="hamburger-line" />
       <div className="hamburger-line" />
       <ul className="menu">
-        <Link to={routesPaths.about}>
+        <Link to={routesPaths.about} className="hamburger-item">
           <li className="menu-item">{t('menu.about')}</li>
         </Link>
-        <Link to={routesPaths.contact}>
+        <Link to={routesPaths.contact} className="hamburger-item">
           <li className="menu-item">{t('menu.contact')}</li>
         </Link>
       </ul>
