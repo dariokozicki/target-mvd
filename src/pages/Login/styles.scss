@@ -1,35 +1,49 @@
-.login-container {
-  width: 50vw;
-  height: 100vh;
-
-  background: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+@import 'styles/variables';
+@import 'styles/mixins';
 
 .screen-container {
-  display: flex;
+  @include flex();
   width: 100vw;
   height: 100vh;
-}
 
-.clickable {
-  opacity: 1;
-  transition: 0.3s;
-}
+  .login-container {
+    @include flex(column, center, center);
+    width: 50vw;
+    height: 100vh;
 
-.clickable:hover {
-  cursor: pointer;
-  opacity: 0.6;
-}
+    background: white;
 
-.form-login {
-  align-items: center;
-  color: var(--color-black);
-  display: flex;
-  justify-content: center;
-  max-width: 216.77px;
+    .form-login {
+      @include flex();
+      color: $color-black;
+      max-width: 216.77px;
+    }
+
+    .title {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 20px;
+      line-height: 23px;
+      letter-spacing: 3px;
+      font-weight: bolder;
+      margin: 2rem 0 2rem 0;
+    }
+
+    .subtitle {
+      margin: 0;
+      font-size: 18px;
+      line-height: 32px;
+      font-weight: 500;
+    }
+
+    .description {
+      width: 321px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      line-height: 26px;
+      text-align: center;
+      margin: 0.5rem 0 3rem 0;
+    }
+  }
 }
 
 .smilies {
@@ -37,35 +51,9 @@
   margin-top: 4rem;
 }
 
-.title {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 20px;
-  line-height: 23px;
-  letter-spacing: 3px;
-  font-weight: bolder;
-  margin: 2rem 0 2rem 0;
-}
-
-.subtitle {
-  margin: 0;
-  font-size: 18px;
-  line-height: 32px;
-  font-weight: 500;
-}
-
-.description {
-  width: 321px;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  line-height: 26px;
-  text-align: center;
-  margin: 0.5rem 0 3rem 0;
-}
-
 .form-label {
+  @include flex();
   width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 .separator {
@@ -77,8 +65,4 @@
 .link-to {
   text-decoration: none;
   color: inherit;
-}
-
-.facebook {
-  margin-bottom: 0.5rem;
 }

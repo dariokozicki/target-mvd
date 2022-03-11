@@ -1,0 +1,11 @@
+@import 'styles/variables';
+
+.clickable {
+  opacity: 1;
+  transition: 0.3s;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.6;
+  }
+}

@@ -1,16 +1,17 @@
+@import 'styles/variables';
+
 .Input {
   margin: 0.3rem 0 0.8rem;
-}
 
-.Input input {
-  border-radius: 5px;
-  border: 1px solid var(--color-black);
-  box-sizing: border-box;
-  font-size: 16px;
-  padding: 0.8rem;
-  width: 100%;
-}
-
-.Input input.error {
-  border: 1px solid var(--color-red);
+  input {
+    border-radius: 5px;
+    border: 1px solid $color-black;
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 0.8rem;
+    width: 100%;
+    &.error {
+      border: 1px solid $color-red;
+    }
+  }
 }

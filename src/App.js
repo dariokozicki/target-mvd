@@ -10,7 +10,7 @@ import routes from 'routes';
 import { setUser } from 'state/slices/authSlice';
 import { getLoggedInUser } from 'utils/auth';
 import Hamburger from 'components/navigation/Hamburger';
-import 'styles/variables.scss';
+import 'App.scss';
 
 function App() {
   const t = useTranslation();
