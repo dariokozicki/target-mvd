@@ -1,13 +1,9 @@
 .hamburger-container {
-  display: inline;
   position: absolute;
   top: 25px;
   left: 25px;
 
   z-index: 1;
-
-  -webkit-user-select: none;
-  user-select: none;
 }
 
 .hamburger-container .hamburger-item {
