@@ -4,7 +4,7 @@ import VideoContainer from 'components/login/VideoContainer';
 import useTranslation from 'hooks/useTranslation';
 import routesPaths from 'routes/routesPaths';
 import LoginForm from 'components/login/LoginForm';
-import './styles.css';
+import './styles.scss';
 
 const Login = () => {
   const t = useTranslation();

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import routesPaths from 'routes/routesPaths';
 import useTranslation from 'hooks/useTranslation';
 
-import './styles.css';
+import './styles.scss';
 
 const Hamburger = () => {
   const t = useTranslation();
