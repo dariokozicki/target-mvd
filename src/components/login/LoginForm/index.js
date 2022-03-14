@@ -14,7 +14,7 @@ import useTranslation from 'hooks/useTranslation';
 import routesPaths from 'routes/routesPaths';
 import Input from 'components/form/Input';
 import Button from 'components/common/Button';
-import 'styles/form.scss';
+import './styles.scss';
 
 const LoginForm = () => {
   const t = useTranslation();

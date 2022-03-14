@@ -8,12 +8,16 @@
     "logoutBtn": "Logout"
   },
   "signup": {
-    "title": "Sign up",
+    "title": "SIGN UP",
     "alreadyHaveAccount": "Already have an account? Log in",
     "labels": {
-      "email": "Email",
-      "password": "Password",
-      "passwordConfirmation": "Confirm password"
+      "name": "NAME",
+      "email": "EMAIL",
+      "password": "PASSWORD",
+      "passwordConfirmation": "CONFIRM PASSWORD",
+      "passwordPlaceholder": "MIN. 6 CHARACTERS LONG",
+      "gender": "GENDER",
+      "genderSelect": "SELECT YOUR GENDER"
     },
     "errors": {
       "emailMsg": "Must provide an email",
