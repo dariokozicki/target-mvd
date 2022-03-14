@@ -10,7 +10,6 @@ import routes from 'routes';
 import { setUser } from 'state/slices/authSlice';
 import { getLoggedInUser } from 'utils/auth';
 import Hamburger from 'components/navigation/Hamburger';
-import LandingScreen from 'components/landing/LandingScreen';
 import 'App.scss';
 
 function App() {
@@ -34,13 +33,11 @@ function App() {
       </Helmet>
       <BrowserRouter>
         <Hamburger />
-        <LandingScreen>
-          <Switch>
-            {routes.map(route => (
-              <RouteFromPath key={`route-${route.path}`} {...route} authenticated={authenticated} />
-            ))}
-          </Switch>
-        </LandingScreen>
+        <Switch>
+          {routes.map(route => (
+            <RouteFromPath key={`route-${route.path}`} {...route} authenticated={authenticated} />
+          ))}
+        </Switch>
       </BrowserRouter>
     </>
   );
