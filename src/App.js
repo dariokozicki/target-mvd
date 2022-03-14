@@ -9,8 +9,8 @@ import useAuth from 'hooks/useAuth';
 import routes from 'routes';
 import { setUser } from 'state/slices/authSlice';
 import { getLoggedInUser } from 'utils/auth';
-
-import 'styles/variables.css';
+import Hamburger from 'components/navigation/Hamburger';
+import 'App.scss';
 
 function App() {
   const t = useTranslation();
@@ -32,6 +32,7 @@ function App() {
         <title>{t('global.pageTitle')}</title>
       </Helmet>
       <BrowserRouter>
+        <Hamburger />
         <Switch>
           {routes.map(route => (
             <RouteFromPath key={`route-${route.path}`} {...route} authenticated={authenticated} />

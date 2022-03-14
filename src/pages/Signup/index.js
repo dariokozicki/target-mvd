@@ -15,7 +15,7 @@ import { useSignupMutation } from 'services/auth/auth';
 import { setLoggedInUser } from 'utils/auth';
 import { PASSWORD_REGEX } from 'constants/constants';
 
-import '../../styles/form.css';
+import '../../styles/form.scss';
 
 const Signup = () => {
   const t = useTranslation();

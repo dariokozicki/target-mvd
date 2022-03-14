@@ -4,7 +4,7 @@ import { useLogoutMutation } from 'services/auth/auth';
 
 import logo from 'assets/logo.svg';
 
-import './styles.css';
+import './styles.scss';
 
 const Home = () => {
   const t = useTranslation();

@@ -1,9 +1,11 @@
+@import 'styles/variables';
+
 .button {
-  background-color: var(--color-black);
+  background-color: $color-black;
   border: none;
   border-radius: 5px;
-  color: var(--color-white);
-  font-size: var(--font-size-button);
+  color: $color-white;
+  font-size: $font-size-button;
   font-weight: bold;
   margin: 0.3rem 0;
   padding: 0.8rem;
@@ -11,11 +13,11 @@
 }
 
 .button:hover {
-  background-color: var(--color-light-black);
+  background-color: $color-light-black;
   cursor: pointer;
 }
 
 .button:disabled {
-  background-color: var(--color-light-grey);
+  background-color: $color-light-grey;
   cursor: unset;
 }

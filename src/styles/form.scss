@@ -1,23 +1,25 @@
+@import 'styles/variables';
+
 .form {
   align-items: center;
-  background-color: var(--color-light-grey);
-  color: var(--color-black);
+  background-color: $color-light-grey;
+  color: $color-black;
   display: flex;
   justify-content: center;
   height: 100vh;
 }
 
 .form form {
-  background-color: var(--color-white);
+  background-color: $color-white;
   border-radius: 5px;
-  box-shadow: var(--box-shadow);
+  box-shadow: $box-shadow;
   max-width: 20rem;
   padding: 2.5rem 3rem;
   width: 100%;
 }
 
 .form label {
-  font-size: var(--font-size);
+  font-size: $font-size;
 }
 
 .form .button-container {
@@ -27,8 +29,8 @@
 }
 
 .form a {
-  color: var(--color-light-blue);
-  font-size: var(--font-size);
+  color: $color-light-blue;
+  font-size: $font-size;
   margin-top: 0.8rem;
   text-decoration: none;
 }
@@ -38,8 +40,8 @@
 }
 
 .form .error-message {
-  color: var(--color-red);
+  color: $color-red;
   display: block;
   margin-top: 0.3rem;
-  font-size: var(--font-size-error);
+  font-size: $font-size-error;
 }
