@@ -1,4 +1,5 @@
 import VideoContainer from '../VideoContainer';
+import { node } from 'prop-types';
 import './styles.scss';
 
 const LandingScreen = ({ children }) => {
@@ -8,6 +9,10 @@ const LandingScreen = ({ children }) => {
       <VideoContainer />
     </div>
   );
+};
+
+LandingScreen.propTypes = {
+  children: node.isRequired,
 };
 
 export default LandingScreen;

@@ -3,7 +3,7 @@ import cn from 'classnames';
 import './styles.scss';
 
 const Input = ({ register, type = 'text', name, error, handleFocus, placeholder }) => (
-  <div className="Input">
+  <div className="input">
     <input
       className={cn({ error })}
       type={type}

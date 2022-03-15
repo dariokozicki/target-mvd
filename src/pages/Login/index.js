@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import useTranslation from 'hooks/useTranslation';
 import routesPaths from 'routes/routesPaths';
 import LoginForm from 'components/login/LoginForm';
-import Smilies from 'components/common/Smilies';
 import LandingScreen from 'components/landing/LandingScreen';
 import './styles.scss';
 
@@ -13,7 +12,7 @@ const Login = () => {
   return (
     <>
       <LandingScreen>
-        <Smilies />
+        <img src="/smilies.png" alt="smilies" className="smilies" />;
         <div className="title">{t('login.page-title')}</div>
         <div className="subtitle">{t('login.subtitle')}</div>
         <p className="description">{t('login.description')}</p>

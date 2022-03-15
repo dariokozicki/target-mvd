@@ -2,9 +2,8 @@ import useTranslation from 'hooks/useTranslation';
 import routesPaths from 'routes/routesPaths';
 import SignupForm from 'components/signup/SignupForm';
 import { Link } from 'react-router-dom';
-import '../../styles/form.scss';
-import './styles.scss';
 import LandingScreen from 'components/landing/LandingScreen';
+import './styles.scss';
 
 const Signup = () => {
   const t = useTranslation();

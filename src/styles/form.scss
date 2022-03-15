@@ -2,11 +2,9 @@
 @import 'styles/mixins';
 
 .form {
-  align-items: center;
+  @include flex();
   background-color: $color-light-grey;
   color: $color-black;
-  display: flex;
-  justify-content: center;
   height: 100vh;
 
   form {
@@ -23,9 +21,7 @@
   }
 
   .button-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include flex(column);
   }
 
   a {
@@ -53,7 +49,7 @@
 
 .separator {
   width: 75%;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid $color-black;
   margin-bottom: 1rem;
   margin-top: 1rem;
 }

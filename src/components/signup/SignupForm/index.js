@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Redirect, useHistory } from 'react-router-dom';
 import { z } from 'zod';
-
 import Input from 'components/form/Input';
 import Button from 'components/common/Button';
 import routesPaths from 'routes/routesPaths';
@@ -14,8 +13,8 @@ import { api } from 'services/api';
 import { useSignupMutation } from 'services/auth/auth';
 import { setLoggedInUser } from 'utils/auth';
 import { PASSWORD_REGEX } from 'constants/constants';
-import './styles.scss';
 import Select from 'components/form/Select';
+import './styles.scss';
 
 const SignupForm = () => {
   const t = useTranslation();
