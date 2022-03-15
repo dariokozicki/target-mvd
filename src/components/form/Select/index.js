@@ -9,8 +9,8 @@ const Select = ({ name, options, placeholder, register, handleFocus }) => {
             {placeholder}
           </option>
         )}
-        {options.map(opt => (
-          <option value={opt}>{opt}</option>
+        {options.map((opt, index) => (
+          <option key={`select-option-${index}`} value={opt}>{opt}</option>
         ))}
       </select>
     </div>
