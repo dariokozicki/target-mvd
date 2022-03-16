@@ -21,7 +21,7 @@ const SignupForm = () => {
   return (
     <div className="signup">
       <form onSubmit={onSubmit} noValidate>
-        <div className="form-label">
+        <div className="form-label uppercase">
           <label htmlFor="name">{t('signup.labels.name')}</label>
         </div>
         <Input
@@ -31,7 +31,7 @@ const SignupForm = () => {
           error={errors.name}
           handleFocus={handleFocus}
         />
-        <div className="form-label">
+        <div className="form-label uppercase">
           <label htmlFor="email">{t('signup.labels.email')}</label>
         </div>
         <Input
@@ -41,7 +41,7 @@ const SignupForm = () => {
           error={errors.email}
           handleFocus={handleFocus}
         />
-        <div className="form-label">
+        <div className="form-label uppercase">
           <label htmlFor="password">{t('signup.labels.password')}</label>
         </div>
         <Input
@@ -52,7 +52,7 @@ const SignupForm = () => {
           handleFocus={handleFocus}
           placeholder={t('signup.labels.passwordPlaceholder')}
         />
-        <div className="form-label">
+        <div className="form-label uppercase">
           <label htmlFor="password">{t('signup.labels.passwordConfirmation')}</label>
         </div>
         <Input
@@ -62,7 +62,7 @@ const SignupForm = () => {
           error={errors.passwordConfirmation}
           handleFocus={handleFocus}
         />
-        <div className="form-label">
+        <div className="form-label uppercase">
           <label htmlFor="gender">{t('signup.labels.gender')}</label>
         </div>
         <Select
@@ -78,9 +78,9 @@ const SignupForm = () => {
           <p className="error-message">{error.data.errors?.full_messages[0]}</p>
         )}
 
-        <div className="button-container">
+        <div className="button-container uppercase">
           <Button type="submit" disabled={isLoading}>
-            {t('signup.title')}
+            {t('signup.title').toUpperCase()}
           </Button>
         </div>
         <div className="form-label">

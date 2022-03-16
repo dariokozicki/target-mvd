@@ -8,16 +8,16 @@
     "logoutBtn": "Logout"
   },
   "signup": {
-    "title": "SIGN UP",
+    "title": "Sign up",
     "alreadyHaveAccount": "Already have an account? Log in",
     "labels": {
-      "name": "NAME",
-      "email": "EMAIL",
-      "password": "PASSWORD",
-      "passwordConfirmation": "CONFIRM PASSWORD",
-      "passwordPlaceholder": "MIN. 6 CHARACTERS LONG",
-      "gender": "GENDER",
-      "genderSelect": "SELECT YOUR GENDER"
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "passwordConfirmation": "Confirm Password",
+      "passwordPlaceholder": "Min. 6 characters long",
+      "gender": "Gender",
+      "genderSelect": "Select your gender"
     },
     "errors": {
       "emailMsg": "Must provide an email",
@@ -27,16 +27,16 @@
     }
   },
   "login": {
-    "page-title": "TARGET MVD",
-    "title": "SIGN IN",
+    "page-title": "Target MVD",
+    "title": "Sign in",
     "subtitle": "Find people near you & Connect",
     "description": "Create a target wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.",
-    "dontHaveAccountMsg": "SIGN UP",
-    "facebook": "CONNECT WITH FACEBOOK",
+    "dontHaveAccountMsg": "Sign up",
+    "facebook": "Connect with facebook",
     "forgot": "Forgot your password?",
     "labels": {
-      "email": "EMAIL",
-      "password": "PASSWORD"
+      "email": "Email",
+      "password": "Password"
     },
     "errors": {
       "emailMsg": "Must provide an email",
@@ -44,7 +44,7 @@
     }
   },
   "menu": {
-    "contact": "CONTACT",
-    "about": "ABOUT"
+    "contact": "Contact",
+    "about": "About"
   }
 }

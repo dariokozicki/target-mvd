@@ -13,7 +13,7 @@ const Signup = () => {
       <LandingScreen>
         <div className="title">{t('signup.title')}</div>
         <SignupForm />
-        <Link to={routesPaths.login} className="link-to clickable">
+        <Link to={routesPaths.login} className="link-to clickable uppercase">
           {t('login.title')}
         </Link>
       </LandingScreen>
