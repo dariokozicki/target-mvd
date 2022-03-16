@@ -22,7 +22,8 @@
     "errors": {
       "emailMsg": "Must provide an email",
       "passwordMsg": "Password must have at least 8 characters, a letter and a number",
-      "passwordConfirmationMsg": "Passwords must match"
+      "passwordConfirmationMsg": "Passwords must match",
+      "genderMsg": "Must specify gender"
     }
   },
   "login": {
