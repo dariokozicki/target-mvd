@@ -34,6 +34,7 @@
     "dontHaveAccountMsg": "Sign up",
     "facebook": "Connect with facebook",
     "forgot": "Forgot your password?",
+    "connecting": "Connecting...",
     "labels": {
       "email": "Email",
       "password": "Password"
