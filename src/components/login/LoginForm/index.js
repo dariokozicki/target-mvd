@@ -1,6 +1,6 @@
 import React from 'react';
 import { useCallback, useEffect } from 'react';
-
+import FacebookLoginButton from 'components/login/FacebookLoginButton';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -85,9 +85,7 @@ const LoginForm = () => {
           </Button>
         </div>
         <div className="clickable form-label">{t('login.forgot')}</div>
-        <div className="clickable form-label uppercase">
-          <h4 className="facebook">{t('login.facebook')}</h4>
-        </div>
+        <FacebookLoginButton />
         <div className="form-label uppercase">
           <div className="separator" />
         </div>

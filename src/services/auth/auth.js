@@ -23,6 +23,13 @@ const authApi = api.injectEndpoints({
         method: 'DELETE',
       }),
     }),
+    facebook: builder.mutation({
+      query: user => ({
+        url: endpoints.SIGN_FACEBOOK,
+        method: 'POST',
+        body: { access_token: user.accessToken },
+      }),
+    }),
   }),
   overrideExisting: true,
 });
@@ -31,10 +38,12 @@ export const {
   useSignupMutation,
   useLoginMutation,
   useLogoutMutation,
+  useFacebookMutation,
   endpoints: {
     signup: { matchFulfilled: signupFulfilled },
     login: { matchFulfilled: loginFulfilled },
     logout: { matchFulfilled: logoutFulfilled },
+    facebook: { matchFulfilled: facebookFulfilled },
   },
 } = authApi;
 
