@@ -14,7 +14,7 @@ import useTranslation from 'hooks/useTranslation';
 import routesPaths from 'routes/routesPaths';
 import Input from 'components/form/Input';
 import Button from 'components/common/Button';
-import 'styles/form.scss';
+import './styles.scss';
 
 const LoginForm = () => {
   const t = useTranslation();
@@ -56,7 +56,7 @@ const LoginForm = () => {
   return (
     <div className="form-login">
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <div className="form-label">
+        <div className="form-label uppercase">
           <label htmlFor="email">{t('login.labels.email')}</label>
         </div>
         <Input
@@ -66,7 +66,7 @@ const LoginForm = () => {
           error={errors.email}
           handleFocus={handleFocus}
         />
-        <div className="form-label">
+        <div className="form-label uppercase">
           <label htmlFor="password">{t('login.labels.password')}</label>
         </div>
         <Input
@@ -81,14 +81,14 @@ const LoginForm = () => {
 
         <div className="button-container">
           <Button type="submit" disabled={isLoading}>
-            {t('login.title')}
+            {t('login.title').toUpperCase()}
           </Button>
         </div>
         <div className="clickable form-label">{t('login.forgot')}</div>
-        <div className="clickable form-label">
+        <div className="clickable form-label uppercase">
           <h4 className="facebook">{t('login.facebook')}</h4>
         </div>
-        <div className="form-label">
+        <div className="form-label uppercase">
           <div className="separator" />
         </div>
       </form>

@@ -3,21 +3,20 @@
 .button {
   background-color: $color-black;
   border: none;
-  border-radius: 5px;
   color: $color-white;
   font-size: $font-size-button;
   font-weight: bold;
   margin: 0.3rem 0;
   padding: 0.8rem;
   width: 100%;
-}
-
-.button:hover {
-  background-color: $color-light-black;
-  cursor: pointer;
-}
-
-.button:disabled {
-  background-color: $color-light-grey;
-  cursor: unset;
+  box-shadow: $box-shadow;
+  transition: 0.2s ease;
+  &:hover {
+    background-color: $color-light-black;
+    cursor: pointer;
+  }
+  &:disabled {
+    background-color: $color-light-grey;
+    cursor: unset;
+  }
 }
