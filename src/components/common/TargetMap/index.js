@@ -40,5 +40,5 @@ const TargetMap = ({ position, targets, google, topics, onMapClicked }) => {
 };
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyChxjCcItIqY79aBtH5L5sZ_8aqrWMys_w',
+  apiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
 })(TargetMap);
