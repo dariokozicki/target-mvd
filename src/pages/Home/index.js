@@ -1,26 +1,31 @@
-import Button from 'components/common/Button';
-import useTranslation from 'hooks/useTranslation';
-import { useLogoutMutation } from 'services/auth/auth';
-
-import logo from 'assets/logo.svg';
-
+import TargetMap from 'components/common/TargetMap';
+import { useState, useEffect } from 'react';
+import { useGetTargetsMutation } from 'services/model/targets';
+import useTargets from 'hooks/useTargets';
 import './styles.scss';
+import Intro from 'components/common/Intro';
+import useTopics from 'hooks/useTopics';
+import { useGetTopicsMutation } from 'services/model/topics';
 
 const Home = () => {
-  const t = useTranslation();
-  const [logout, { isLoading }] = useLogoutMutation();
+  const [position, setPosition] = useState(null);
+  const { targets } = useTargets();
+  const [getTargets] = useGetTargetsMutation();
+  const { topics } = useTopics();
+  const [getTopics] = useGetTopicsMutation();
 
-  const handleLogout = () => logout().then(() => localStorage.removeItem('user'));
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(setPosition);
+    getTargets();
+    getTopics();
+  }, [getTargets, getTopics]);
 
   return (
     <div className="home">
-      <img src={logo} className="home__logo" alt={t('home.logoAltMsg')} />
-      <h1>{t('home.welcomeMsg')}</h1>
-      <div className="home__logout">
-        <Button handleClick={handleLogout} disabled={isLoading}>
-          {t('home.logoutBtn')}
-        </Button>
+      <div className="menu">
+        <Intro />
       </div>
+      {position && <TargetMap position={position} targets={targets} topics={topics} />}
     </div>
   );
 };

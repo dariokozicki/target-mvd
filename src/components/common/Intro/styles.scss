@@ -1,0 +1,20 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+
+.intro {
+  @include flex(column);
+}
+
+.welcome {
+  font-family: $font-family;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 3px;
+  color: $color-black;
+  display: inline;
+}
+
+.target {
+  font-weight: bold;
+  text-transform: uppercase;
+}

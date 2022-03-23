@@ -3,9 +3,9 @@
     "pageTitle": "Target-Web"
   },
   "home": {
-    "welcomeMsg": "Welcome to React Redux Base",
-    "logoAltMsg": "React logo",
-    "logoutBtn": "Logout"
+    "welcomeMsg": "Welcome to ",
+    "logoutBtn": "Logout",
+    "target": "Target"
   },
   "signup": {
     "title": "Sign up",

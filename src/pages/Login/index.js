@@ -4,7 +4,6 @@ import useTranslation from 'hooks/useTranslation';
 import routesPaths from 'routes/routesPaths';
 import LoginForm from 'components/login/LoginForm';
 import LandingScreen from 'components/landing/LandingScreen';
-import './styles.scss';
 
 const Login = () => {
   const t = useTranslation();
