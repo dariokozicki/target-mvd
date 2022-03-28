@@ -1,26 +1,18 @@
-import Button from 'components/common/Button';
-import useTranslation from 'hooks/useTranslation';
-import { useLogoutMutation } from 'services/auth/auth';
-
-import logo from 'assets/logo.svg';
-
+import Intro from 'components/common/Intro';
+import TargetMap from 'components/common/TargetMap';
+import { useSelector } from 'react-redux';
+import { selectTargets } from 'services/model/targets';
 import './styles.scss';
 
 const Home = () => {
-  const t = useTranslation();
-  const [logout, { isLoading }] = useLogoutMutation();
-
-  const handleLogout = () => logout().then(() => localStorage.removeItem('user'));
+  const { position } = useSelector(selectTargets);
 
   return (
     <div className="home">
-      <img src={logo} className="home__logo" alt={t('home.logoAltMsg')} />
-      <h1>{t('home.welcomeMsg')}</h1>
-      <div className="home__logout">
-        <Button handleClick={handleLogout} disabled={isLoading}>
-          {t('home.logoutBtn')}
-        </Button>
+      <div className="menu">
+        <Intro />
       </div>
+      {position && <TargetMap position={position} />}
     </div>
   );
 };
