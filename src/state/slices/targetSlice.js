@@ -10,6 +10,7 @@ const initialState = {
     topic: null,
     title: null,
   },
+  position: null,
 };
 
 const targetSlice = createSlice({
@@ -22,6 +23,9 @@ const targetSlice = createSlice({
     setCreationTarget(state, { payload: { creation } }) {
       state.creation = creation;
     },
+    setPosition(state, { payload }) {
+      state.position = payload;
+    },
   },
   extraReducers: builder => {
     builder.addMatcher(isAnyOf(getTargetsFulfilled), (state, { payload: { targets } }) => {
@@ -30,6 +34,6 @@ const targetSlice = createSlice({
   },
 });
 
-export const { setTargets, setCreationTarget } = targetSlice.actions;
+export const { setTargets, setPosition, setCreationTarget } = targetSlice.actions;
 
 export default targetSlice.reducer;

@@ -1,7 +1,7 @@
 import endpoints from 'constants/endpoints';
 import { api } from 'services/api';
 
-const authApi = api.injectEndpoints({
+const targetsApi = api.injectEndpoints({
   endpoints: builder => ({
     getTargets: builder.mutation({
       query: () => ({
@@ -35,7 +35,7 @@ export const {
     createTarget: { matchFulfilled: createTargetFulfilled },
     destroyTarget: { matchFulfilled: destroyTargetFulfilled },
   },
-} = authApi;
+} = targetsApi;
 
 export const selectTargets = state => {
   return state.target;

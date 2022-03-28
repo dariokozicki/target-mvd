@@ -1,7 +1,7 @@
 import endpoints from 'constants/endpoints';
 import { api } from 'services/api';
 
-const authApi = api.injectEndpoints({
+const conversationsApi = api.injectEndpoints({
   endpoints: builder => ({
     getConversations: builder.mutation({
       query: () => ({
@@ -31,6 +31,6 @@ export const {
   useGetMessagesMutation,
   getConversations: { matchFulfilled: getConversationsFulfilled },
   getMessages: { matchFulfilled: getMessagesFulfilled },
-} = authApi;
+} = conversationsApi;
 
 export const selectConversations = state => state.conversations;
