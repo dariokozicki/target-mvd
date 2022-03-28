@@ -26,12 +26,11 @@ const TargetMap = ({ position, targets, google, topics, onMapClicked }) => {
           url: '/current-position-marker.png',
         }}
       />
-      {targets.map(target => (
+      {targets.map(({ lat, lng, target: { topic_id } }) => (
         <Marker
-          position={{ lat: target.lat, lng: target.lng }}
+          position={{ lat, lng }}
           icon={{
-            url: topics.map(topic => topic.topic).find(topic => topic.id === target.target.topic_id)
-              .icon,
+            url: topics.map(topic => topic.topic).find(topic => topic.id === topic_id).icon,
           }}
         />
       ))}

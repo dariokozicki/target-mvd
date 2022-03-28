@@ -10,7 +10,7 @@ const Intro = () => {
         <div className="welcome">{t('home.welcomeMsg')}</div>
         <div className="welcome target">{t('home.target')}</div>
       </div>
-      <div className="subtitle">{t('login.subtitle')}</div>
+      <div className="subtitle">{t('home.subtitle')}</div>
     </div>
   );
 };

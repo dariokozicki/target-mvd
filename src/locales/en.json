@@ -5,7 +5,8 @@
   "home": {
     "welcomeMsg": "Welcome to ",
     "logoutBtn": "Logout",
-    "target": "Target"
+    "target": "Target",
+    "subtitle": "Find people near you & Connect"
   },
   "signup": {
     "title": "Sign up",
