@@ -3,6 +3,13 @@ import { getTargetsFulfilled } from 'services/model/targets';
 
 const initialState = {
   targets: [],
+  creation: {
+    lat: null,
+    lng: null,
+    radius: null,
+    topic: null,
+    title: null,
+  },
 };
 
 const targetSlice = createSlice({
@@ -12,6 +19,9 @@ const targetSlice = createSlice({
     setTargets(state, { payload: { targets } }) {
       state.targets = targets;
     },
+    setCreationTarget(state, { payload: { creation } }) {
+      state.creation = creation;
+    },
   },
   extraReducers: builder => {
     builder.addMatcher(isAnyOf(getTargetsFulfilled), (state, { payload: { targets } }) => {
@@ -20,6 +30,6 @@ const targetSlice = createSlice({
   },
 });
 
-export const { setTargets } = targetSlice.actions;
+export const { setTargets, setCreationTarget } = targetSlice.actions;
 
 export default targetSlice.reducer;

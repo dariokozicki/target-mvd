@@ -3,10 +3,11 @@ import { useSelector } from 'react-redux';
 import { selectTargets } from 'services/model/targets';
 
 const useTargets = () => {
-  const { targets } = useSelector(selectTargets);
+  const { targets, creation } = useSelector(selectTargets);
 
   return {
     targets,
+    creation,
   };
 };
 
