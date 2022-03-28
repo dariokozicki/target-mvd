@@ -1,11 +1,11 @@
-import TargetMap from 'components/common/TargetMap';
-import { useState, useEffect } from 'react';
-import { useGetTargetsMutation } from 'services/model/targets';
-import useTargets from 'hooks/useTargets';
-import './styles.scss';
 import Intro from 'components/common/Intro';
+import TargetMap from 'components/common/TargetMap';
+import useTargets from 'hooks/useTargets';
 import useTopics from 'hooks/useTopics';
+import { useEffect, useState } from 'react';
+import { useGetTargetsMutation } from 'services/model/targets';
 import { useGetTopicsMutation } from 'services/model/topics';
+import './styles.scss';
 
 const Home = () => {
   const [position, setPosition] = useState(null);
