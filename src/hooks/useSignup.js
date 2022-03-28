@@ -1,5 +1,5 @@
 import { useEffect, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { api } from 'services/api';
@@ -8,15 +8,14 @@ import routesPaths from 'routes/routesPaths';
 import { z } from 'zod';
 import { PASSWORD_REGEX } from 'constants/constants';
 import useTranslation from './useTranslation';
-import useAuth from './useAuth';
-import { useSignupMutation } from 'services/auth/auth';
+import { selectAuth, useSignupMutation } from 'services/auth/auth';
 import { useForm } from 'react-hook-form';
 
 export const useSignup = ({ genders }) => {
   const t = useTranslation();
   const dispatch = useDispatch();
   const { push } = useHistory();
-  const { user, authenticated } = useAuth();
+  const { user, authenticated } = useSelector(selectAuth);
   const [signup, { isLoading, isSuccess, error }] = useSignupMutation();
 
   const schema = z

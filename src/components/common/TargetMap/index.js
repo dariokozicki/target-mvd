@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { selectTargets, useGetTargetsMutation } from 'services/model/targets';
+import { selectTopics, useGetTopicsMutation } from 'services/model/topics';
+import { useSelector } from 'react-redux';
 import './styles.scss';
 
 const mapStyles = {
@@ -7,15 +10,25 @@ const mapStyles = {
   height: '100%',
 };
 
-const TargetMap = ({ position, targets, google, topics, onMapClicked }) => {
+const TargetMap = ({ position, google, onMapClicked }) => {
+  const { targets } = useSelector(selectTargets);
+  const [getTargets] = useGetTargetsMutation();
+  const { topics } = useSelector(selectTopics);
+  const [getTopics] = useGetTopicsMutation();
+
+  useEffect(() => {
+    getTargets();
+    getTopics();
+  }, [getTargets, getTopics]);
+
   return (
     <Map
       zoom={14}
       google={google}
       style={mapStyles}
       initialCenter={{
-        lat: position?.coords?.latitude,
-        lng: position?.coords?.longitude,
+        lat: position.lat,
+        lng: position.lng,
       }}
       onClick={onMapClicked}
     >

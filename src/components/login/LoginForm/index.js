@@ -1,19 +1,16 @@
-import React from 'react';
-import { useCallback, useEffect } from 'react';
-
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { Redirect, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { api } from 'services/api';
-import { useLoginMutation } from 'services/auth/auth';
-import { setLoggedInUser } from 'utils/auth';
-import useAuth from 'hooks/useAuth';
-import useTranslation from 'hooks/useTranslation';
-import routesPaths from 'routes/routesPaths';
-import Input from 'components/form/Input';
 import Button from 'components/common/Button';
+import Input from 'components/form/Input';
+import useTranslation from 'hooks/useTranslation';
+import React, { useCallback, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, useHistory } from 'react-router-dom';
+import routesPaths from 'routes/routesPaths';
+import { api } from 'services/api';
+import { selectAuth, useLoginMutation } from 'services/auth/auth';
+import { setLoggedInUser } from 'utils/auth';
+import { z } from 'zod';
 import './styles.scss';
 
 const LoginForm = () => {
@@ -21,7 +18,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const { push } = useHistory();
   const [login, { isLoading, isSuccess, error }] = useLoginMutation();
-  const { authenticated, user } = useAuth();
+  const { authenticated, user } = useSelector(selectAuth);
 
   const schema = z.object({
     email: z.string().email({ message: t('login.errors.emailMsg') }),

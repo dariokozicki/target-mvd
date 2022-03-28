@@ -3,6 +3,7 @@ import { getTargetsFulfilled } from 'services/model/targets';
 
 const initialState = {
   targets: [],
+  position: null,
 };
 
 const targetSlice = createSlice({
@@ -12,6 +13,9 @@ const targetSlice = createSlice({
     setTargets(state, { payload: { targets } }) {
       state.targets = targets;
     },
+    setPosition(state, { payload }) {
+      state.position = payload;
+    },
   },
   extraReducers: builder => {
     builder.addMatcher(isAnyOf(getTargetsFulfilled), (state, { payload: { targets } }) => {
@@ -20,6 +24,6 @@ const targetSlice = createSlice({
   },
 });
 
-export const { setTargets } = targetSlice.actions;
+export const { setTargets, setPosition } = targetSlice.actions;
 
 export default targetSlice.reducer;
