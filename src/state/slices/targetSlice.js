@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { getTargetsFulfilled } from 'services/model/targets';
+import { createTargetFulfilled, getTargetsFulfilled } from 'services/model/targets';
 
 const initialState = {
   targets: [],
@@ -27,6 +27,9 @@ const targetSlice = createSlice({
   extraReducers: builder => {
     builder.addMatcher(isAnyOf(getTargetsFulfilled), (state, { payload: { targets } }) => {
       state.targets = targets;
+    });
+    builder.addMatcher(isAnyOf(createTargetFulfilled), state => {
+      state.creation = {};
     });
   },
 });

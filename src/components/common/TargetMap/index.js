@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Map, GoogleApiWrapper, Marker, Circle } from 'google-maps-react';
-import { selectTargets, useGetTargetsMutation } from 'services/model/targets';
-import { selectTopics, useGetTopicsMutation } from 'services/model/topics';
+import { selectTargets, useGetTargetsQuery } from 'services/model/targets';
+import { useGetTopicsQuery } from 'services/model/topics';
 import { useDispatch, useSelector } from 'react-redux';
 import { fillCreationTarget } from 'state/slices/targetSlice';
 import useTranslation from 'hooks/useTranslation';
@@ -18,25 +18,19 @@ const radiusColor = '#FF0000';
 
 const TargetMap = ({ google }) => {
   const t = useTranslation();
-  const { targets, creation } = useSelector(selectTargets);
-  const [getTargets] = useGetTargetsMutation();
-  const { topics } = useSelector(selectTopics);
-  const [getTopics] = useGetTopicsMutation();
+  const { creation } = useSelector(selectTargets);
+  const { data: targets } = useGetTargetsQuery();
+  const { data: topics } = useGetTopicsQuery();
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    getTargets();
-    getTopics();
-  }, [getTargets, getTopics]);
 
   const onMapClicked = (_, __, { latLng }) => {
     dispatch(fillCreationTarget({ lat: latLng.lat(), lng: latLng.lng(), radius: 200 }));
     dispatch(setHomeTab(tabsEnum.create));
   };
 
-  const getTopicUrl = topicId =>
-    topics.map(topic => topic.topic).find(topic => topic.id === topicId)?.icon ||
-    '/empty-target.png';
+  const getTopicById = id => topics.topics.map(topic => topic.topic).find(topic => topic.id === id);
+
+  const getTopicUrl = topic => topic?.icon || '/empty-target.png';
 
   return (
     <Map
@@ -78,14 +72,23 @@ const TargetMap = ({ google }) => {
           fillOpacity={0.2}
         />
       )}
-      {targets.map(({ lat, lng, target: { topic_id } }) => (
-        <Marker
-          position={{ lat, lng }}
-          icon={{
-            url: getTopicUrl(topic_id),
-          }}
-        />
-      ))}
+      {targets &&
+        topics &&
+        targets.targets.map(({ target: { id, lat, lng, topic_id } }) => {
+          const topic = getTopicById(topic_id);
+          return (
+            <Marker
+              title={topic?.title}
+              key={id}
+              position={{ lat, lng }}
+              icon={{
+                url: getTopicUrl(topic),
+                anchor: new google.maps.Point(16, 16),
+                scaledSize: new google.maps.Size(32, 32),
+              }}
+            />
+          );
+        })}
     </Map>
   );
 };

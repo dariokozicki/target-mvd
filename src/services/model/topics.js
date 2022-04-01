@@ -3,7 +3,7 @@ import { api } from 'services/api';
 
 const topicsApi = api.injectEndpoints({
   endpoints: builder => ({
-    getTopics: builder.mutation({
+    getTopics: builder.query({
       query: () => ({
         url: endpoints.TOPICS,
         method: 'GET',
@@ -14,7 +14,7 @@ const topicsApi = api.injectEndpoints({
 });
 
 export const {
-  useGetTopicsMutation,
+  useGetTopicsQuery,
   endpoints: {
     getTopics: { matchFulfilled: getTopicsFulfilled },
   },
