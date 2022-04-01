@@ -55,22 +55,22 @@ const TargetMap = ({ google }) => {
           scaledSize: new google.maps.Size(32, 42),
         }}
       />
-      {creation && (
+      {creation.target && (
         <Marker
-          position={{ lat: creation.lat, lng: creation.lng }}
+          position={{ lat: creation.target.lat, lng: creation.target.lng }}
           name={t('target.creation')}
           icon={{
-            url: getTopicUrl(creation.topic),
+            url: getTopicUrl(creation.target.topic),
             anchor: new google.maps.Point(16, 16),
             scaledSize: new google.maps.Size(32, 32),
           }}
         />
       )}
-      {creation?.radius && (
+      {creation.target?.radius && (
         <Circle
-          center={{ lat: creation.lat, lng: creation.lng }}
+          center={{ lat: creation.target.lat, lng: creation.target.lng }}
           onClick={onMapClicked}
-          radius={creation.radius}
+          radius={creation.target.radius}
           strokeColor="transparent"
           strokeOpacity={0}
           strokeWeight={5}

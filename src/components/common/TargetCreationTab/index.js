@@ -54,14 +54,14 @@ const TargetCreationTab = () => {
         <img src="./target-create-icon.png" alt="target-create-icon" />
         <div className="create-subtitle">{t('creationTab.subtitle')}</div>
         <InputNumber
-          value={creation.radius || 0}
+          value={creation.target.radius || 0}
           onChange={e => setField('radius', e.value)}
           min={0}
           max={5000}
           suffix=" m"
         />
         <InputText
-          value={creation.title || ''}
+          value={creation.target.title || ''}
           onChange={e => setField('title', e.target.value)}
           placeholder={t('creationTab.targetTitleDescription')}
         />
@@ -70,7 +70,7 @@ const TargetCreationTab = () => {
           placeholder={t('creationTab.topicDescription')}
           itemTemplate={topicOptionTemplate}
           optionLabel="label"
-          value={creation.topic}
+          value={creation.target.topic}
           onChange={e => setField('topic', e.target.value)}
           valueTemplate={topicValueTemplate}
         />
