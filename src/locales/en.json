@@ -47,5 +47,23 @@
   "menu": {
     "contact": "Contact",
     "about": "About"
+  },
+  "target": {
+    "position": "Your position",
+    "creation": "New target"
+  },
+  "creationTab": {
+    "title": "Create Target",
+    "subtitle": "Create new Target",
+    "length": "Specify area length",
+    "targetTitle": "Target Title",
+    "topic": "Select a topic",
+    "targetTitleDescription": "Choose a title for your target",
+    "topicDescription": "What do you want to talk about?",
+    "save": "Save target",
+    "errors": {
+      "targetTitle": "The target title must contain at least 3 characters",
+      "radius": "The radius must be greater than 0m"
+    }
   }
 }

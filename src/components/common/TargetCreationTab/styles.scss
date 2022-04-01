@@ -1,0 +1,42 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+
+.create-title {
+  width: 100%;
+  @include flex();
+}
+
+.create-subtitle {
+  font-family: $font-family;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
+  letter-spacing: 1.65px;
+  font-weight: bold;
+  color: $color-black;
+  text-transform: uppercase;
+}
+
+.create-target {
+  @include flex(column, flex-start);
+  margin-top: 1rem;
+  gap: 1rem;
+  height: 100%;
+  width: 100%;
+}
+
+.create-target-form {
+  width: 80%;
+}
+
+.topic-item {
+  @include flex(row, flex-start);
+  gap: 1rem;
+  .icon {
+    @include flex();
+    width: 1rem;
+    .img {
+      max-height: 1rem;
+    }
+  }
+}

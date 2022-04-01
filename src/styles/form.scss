@@ -64,7 +64,7 @@
 }
 
 .title {
-  font-family: 'Open Sans', sans-serif;
+  font-family: $font-family;
   text-transform: uppercase;
   font-size: 20px;
   line-height: 23px;
@@ -82,7 +82,7 @@
 
 .description {
   width: 321px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: $font-family;
   font-size: 14px;
   line-height: 26px;
   text-align: center;
@@ -92,4 +92,18 @@
 .smilies {
   max-height: 150px;
   margin-top: 4rem;
+}
+
+.header {
+  width: 100%;
+  height: $header-spacing;
+  background-color: $color-main-secondary;
+  @include flex(row, flex-start);
+  font-family: $font-family;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 3px;
+  color: $color-white;
+  font-weight: bold;
+  text-transform: uppercase;
 }

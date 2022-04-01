@@ -3,13 +3,7 @@ import { getTargetsFulfilled } from 'services/model/targets';
 
 const initialState = {
   targets: [],
-  creation: {
-    lat: null,
-    lng: null,
-    radius: null,
-    topic: null,
-    title: null,
-  },
+  creation: null,
   position: null,
 };
 
@@ -20,8 +14,11 @@ const targetSlice = createSlice({
     setTargets(state, { payload: { targets } }) {
       state.targets = targets;
     },
-    setCreationTarget(state, { payload: { creation } }) {
-      state.creation = creation;
+    fillCreationTarget(state, { payload }) {
+      state.creation = { ...state.creation, ...payload };
+    },
+    resetCreationTarget(state) {
+      state.creation = null;
     },
     setPosition(state, { payload }) {
       state.position = payload;
@@ -34,6 +31,7 @@ const targetSlice = createSlice({
   },
 });
 
-export const { setTargets, setPosition, setCreationTarget } = targetSlice.actions;
+export const { setTargets, setPosition, fillCreationTarget, resetCreationTarget } =
+  targetSlice.actions;
 
 export default targetSlice.reducer;

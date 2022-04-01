@@ -4,9 +4,14 @@ import routesPaths from 'routes/routesPaths';
 import useTranslation from 'hooks/useTranslation';
 
 import './styles.scss';
+import { useSelector } from 'react-redux';
+import { selectTab } from 'state/slices/tabSlice';
 
 const Hamburger = () => {
   const t = useTranslation();
+  const { showMenu } = useSelector(selectTab);
+
+  if (!showMenu) return null;
 
   return (
     <div className="hamburger-container">
