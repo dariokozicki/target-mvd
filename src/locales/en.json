@@ -1,6 +1,7 @@
 {
   "global": {
-    "pageTitle": "Target-Web"
+    "pageTitle": "Target-Web",
+    "loading": "Loading..."
   },
   "home": {
     "welcomeMsg": "Welcome to ",
@@ -63,7 +64,13 @@
     "save": "Save target",
     "errors": {
       "targetTitle": "The target title must contain at least 3 characters",
-      "radius": "The radius must be greater than 0m"
+      "radius": "The radius must be greater than 0m",
+      "label": "An error ocurred",
+      "created": "Could not create the target."
+    },
+    "success": {
+      "label": "Success!",
+      "created": "The target was created."
     }
   }
 }

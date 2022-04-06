@@ -15,14 +15,15 @@
   font-weight: bold;
   color: $color-black;
   text-transform: uppercase;
+  margin-top: 1rem;
 }
 
 .create-target {
-  @include flex(column, flex-start);
+  @include flex(column, space-between);
   margin-top: 1rem;
   gap: 1rem;
   height: 100%;
-  width: 100%;
+  width: 90%;
 }
 
 .create-target-form {
@@ -39,4 +40,9 @@
       max-height: 1rem;
     }
   }
+}
+
+.smilies-small {
+  max-height: 30px;
+  margin-top: 0.5rem;
 }

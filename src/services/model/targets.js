@@ -34,7 +34,7 @@ export const {
   useDestroyTargetMutation,
   endpoints: {
     getTargets: { matchFulfilled: getTargetsFulfilled },
-    createTarget: { matchFulfilled: createTargetFulfilled },
+    createTarget: { matchFulfilled: createTargetFulfilled, matchRejected: createTargetRejected },
     destroyTarget: { matchFulfilled: destroyTargetFulfilled },
   },
 } = targetsApi;
