@@ -26,16 +26,17 @@
     &-form {
       width: 80%;
     }
-    .topic-item {
-      @include flex(row, flex-start);
-      gap: 1rem;
-      .icon {
-        @include flex();
-        width: 1rem;
-        .img {
-          max-height: 1rem;
-        }
-      }
+  }
+}
+
+.topic-item {
+  @include flex(row, flex-start);
+  gap: 1rem;
+  .icon {
+    @include flex();
+    width: 1rem;
+    .img {
+      max-height: 1rem;
     }
   }
 }
