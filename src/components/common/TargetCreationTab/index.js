@@ -46,7 +46,7 @@ const TargetCreationTab = () => {
       return;
     }
     createTarget(creation);
-  }, [creation, createTarget]);
+  }, [creation, createTarget, dispatch, t, targets]);
 
   const setField = (field, value) => dispatch(fillCreationTarget({ [field]: value }));
 
