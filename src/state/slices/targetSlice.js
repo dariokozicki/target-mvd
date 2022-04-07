@@ -2,7 +2,6 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { getTargetsFulfilled } from 'services/model/targets';
 
 const initialState = {
-  targets: [],
   creation: {},
   position: null,
 };

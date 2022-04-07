@@ -1,13 +1,13 @@
+import { Circle, GoogleApiWrapper, Map, Marker } from 'google-maps-react';
+import useTranslation from 'hooks/useTranslation';
 import React from 'react';
-import { Map, GoogleApiWrapper, Marker, Circle } from 'google-maps-react';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectTargets, useGetTargetsQuery } from 'services/model/targets';
 import { useGetTopicsQuery } from 'services/model/topics';
-import { useDispatch, useSelector } from 'react-redux';
-import { fillCreationTarget } from 'state/slices/targetSlice';
-import useTranslation from 'hooks/useTranslation';
-import './styles.scss';
 import { setHomeTab } from 'state/slices/tabSlice';
+import { fillCreationTarget } from 'state/slices/targetSlice';
 import { tabsEnum } from '../Tabs';
+import './styles.scss';
 
 const mapStyles = {
   width: '100%',

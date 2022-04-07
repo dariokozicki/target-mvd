@@ -1,18 +1,18 @@
 import useTranslation from 'hooks/useTranslation';
-import { useDispatch, useSelector } from 'react-redux';
-import { useGetTopicsQuery } from 'services/model/topics';
-import { setHomeTab } from 'state/slices/tabSlice';
-import { resetCreationTarget, fillCreationTarget } from 'state/slices/targetSlice';
-import { InputText } from 'primereact/inputtext';
-import { InputNumber } from 'primereact/inputnumber';
-import Back from '../Back';
-import { Dropdown } from 'primereact/dropdown';
-import { tabsEnum } from '../Tabs';
 import { Button } from 'primereact/button';
+import { Dropdown } from 'primereact/dropdown';
+import { InputNumber } from 'primereact/inputnumber';
+import { InputText } from 'primereact/inputtext';
+import { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { error, success } from 'react-toastify-redux';
 import { selectTargets, useCreateTargetMutation } from 'services/model/targets';
+import { useGetTopicsQuery } from 'services/model/topics';
+import { setHomeTab, setShowMenu } from 'state/slices/tabSlice';
+import { fillCreationTarget, resetCreationTarget } from 'state/slices/targetSlice';
+import Back from '../Back';
 import Loader from '../Loader';
-import { useEffect, useCallback } from 'react';
-import { success, error } from 'react-toastify-redux';
+import { tabsEnum } from '../Tabs';
 import './styles.scss';
 
 const TargetCreationTab = () => {
@@ -25,12 +25,16 @@ const TargetCreationTab = () => {
   const onBack = useCallback(() => {
     dispatch(resetCreationTarget());
     dispatch(setHomeTab(tabsEnum.intro));
+    dispatch(setShowMenu(true));
   }, [dispatch]);
 
   useEffect(() => {
-    if (isSuccess || createError) {
-      if (isSuccess) dispatch(success(t('creationTab.success.created')));
-      else dispatch(error(t('creationTab.errors.created')));
+    if (isSuccess) {
+      dispatch(success(t('creationTab.success.created')));
+      onBack();
+    }
+    if (createError) {
+      dispatch(error(t('creationTab.errors.created')));
       onBack();
     }
   }, [isSuccess, createError, onBack, t, dispatch]);

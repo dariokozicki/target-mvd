@@ -1,10 +1,9 @@
+import { toastsReducer } from 'react-toastify-redux';
 import { combineReducers } from 'redux';
-
 import { api } from 'services/api';
 import authReducer from './slices/authSlice';
-import targetReducer from './slices/targetSlice';
 import tabReducer from './slices/tabSlice';
-import { toastsReducer } from 'react-toastify-redux';
+import targetReducer from './slices/targetSlice';
 
 const rootReducer = combineReducers({
   [api.reducerPath]: api.reducer,

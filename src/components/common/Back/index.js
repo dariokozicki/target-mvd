@@ -1,15 +1,17 @@
 import { PrimeIcons } from 'primereact/api';
-import './styles.scss';
+
 const Back = ({ onBack }) => {
+  const handleKeyDown = ({ key }) => key === 'Enter' && onBack();
+
   return (
     <div
       className="clickable"
       onClick={onBack}
-      onKeyDown={e => e.key === 'Enter' && onBack()}
+      onKeyDown={handleKeyDown}
       role="button"
       tabIndex={0}
     >
-      <i className={[PrimeIcons.ANGLE_LEFT, 'button-back'].join(' ')}></i>
+      <i className={[PrimeIcons.ANGLE_LEFT, 'text-4xl'].join(' ')}></i>
     </div>
   );
 };
