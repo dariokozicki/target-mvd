@@ -1,18 +1,16 @@
-import Intro from 'components/common/Intro';
+import { selectTab } from 'state/slices/tabSlice';
+import { tabs } from 'components/common/Tabs';
 import TargetMap from 'components/common/TargetMap';
 import { useSelector } from 'react-redux';
-import { selectTargets } from 'services/model/targets';
 import './styles.scss';
 
 const Home = () => {
-  const { position } = useSelector(selectTargets);
+  const { homeTab } = useSelector(selectTab);
 
   return (
     <div className="home">
-      <div className="menu">
-        <Intro />
-      </div>
-      {position && <TargetMap position={position} />}
+      <div className="menu">{tabs[homeTab]}</div>
+      <TargetMap />
     </div>
   );
 };

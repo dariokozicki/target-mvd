@@ -1,20 +1,22 @@
 import endpoints from 'constants/endpoints';
-import { api } from 'services/api';
+import { api, tagTypes } from 'services/api';
 
 const targetsApi = api.injectEndpoints({
   endpoints: builder => ({
-    getTargets: builder.mutation({
+    getTargets: builder.query({
       query: () => ({
         url: endpoints.TARGETS,
         method: 'GET',
       }),
+      providesTags: [tagTypes.TARGETS],
     }),
     createTarget: builder.mutation({
-      query: target => ({
+      query: creation => ({
         url: endpoints.TARGETS,
         method: 'POST',
-        body: { target },
+        body: creation,
       }),
+      invalidatesTags: [tagTypes.TARGETS],
     }),
     destroyTarget: builder.mutation({
       query: targetId => ({
@@ -27,12 +29,12 @@ const targetsApi = api.injectEndpoints({
 });
 
 export const {
-  useGetTargetsMutation,
+  useGetTargetsQuery,
   useCreateTargetMutation,
   useDestroyTargetMutation,
   endpoints: {
     getTargets: { matchFulfilled: getTargetsFulfilled },
-    createTarget: { matchFulfilled: createTargetFulfilled },
+    createTarget: { matchFulfilled: createTargetFulfilled, matchRejected: createTargetRejected },
     destroyTarget: { matchFulfilled: destroyTargetFulfilled },
   },
 } = targetsApi;

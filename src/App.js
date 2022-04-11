@@ -11,6 +11,8 @@ import { setUser } from 'state/slices/authSlice';
 import { getLoggedInUser } from 'utils/auth';
 import { selectTargets } from 'services/model/targets';
 import { setPosition } from 'state/slices/targetSlice';
+import { ToastContainer } from 'react-toastify-redux';
+
 import 'App.scss';
 
 function App() {
@@ -39,6 +41,7 @@ function App() {
       <Helmet>
         <title>{t('global.pageTitle')}</title>
       </Helmet>
+      <ToastContainer />
       <BrowserRouter>
         <Hamburger />
         <Switch>

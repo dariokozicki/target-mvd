@@ -1,7 +1,7 @@
 import useTranslation from 'hooks/useTranslation';
 import './styles.scss';
 
-const Intro = () => {
+const IntroTab = () => {
   const t = useTranslation();
   return (
     <div className="intro">
@@ -15,4 +15,4 @@ const Intro = () => {
   );
 };
 
-export default Intro;
+export default IntroTab;

@@ -2,7 +2,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { getTargetsFulfilled } from 'services/model/targets';
 
 const initialState = {
-  targets: [],
+  creation: {},
   position: null,
 };
 
@@ -12,6 +12,12 @@ const targetSlice = createSlice({
   reducers: {
     setTargets(state, { payload: { targets } }) {
       state.targets = targets;
+    },
+    fillCreationTarget(state, { payload }) {
+      state.creation.target = { ...state.creation.target, ...payload };
+    },
+    resetCreationTarget(state) {
+      state.creation = {};
     },
     setPosition(state, { payload }) {
       state.position = payload;
@@ -24,6 +30,7 @@ const targetSlice = createSlice({
   },
 });
 
-export const { setTargets, setPosition } = targetSlice.actions;
+export const { setTargets, setPosition, fillCreationTarget, resetCreationTarget } =
+  targetSlice.actions;
 
 export default targetSlice.reducer;

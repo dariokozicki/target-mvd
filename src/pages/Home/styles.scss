@@ -6,8 +6,8 @@
   width: 100vw;
   height: 100vh;
   .menu {
-    @include flex(column, center, center);
-    width: 20vw;
+    @include flex(column, flex-start, center);
+    width: 23vw;
     height: 100vh;
     background: $color-white;
   }

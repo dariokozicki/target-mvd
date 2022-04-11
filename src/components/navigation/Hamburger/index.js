@@ -1,12 +1,16 @@
+import useTranslation from 'hooks/useTranslation';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import routesPaths from 'routes/routesPaths';
-import useTranslation from 'hooks/useTranslation';
-
+import { selectTab } from 'state/slices/tabSlice';
 import './styles.scss';
 
 const Hamburger = () => {
   const t = useTranslation();
+  const { showMenu } = useSelector(selectTab);
+
+  if (!showMenu) return null;
 
   return (
     <div className="hamburger-container">
