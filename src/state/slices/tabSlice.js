@@ -3,7 +3,6 @@ import { tabsEnum } from 'components/common/Tabs';
 
 const initialState = {
   homeTab: tabsEnum.intro,
-  showMenu: true,
 };
 
 const tabSlice = createSlice({
@@ -12,15 +11,11 @@ const tabSlice = createSlice({
   reducers: {
     setHomeTab(state, { payload }) {
       state.homeTab = payload;
-      state.showMenu = false;
-    },
-    setShowMenu(state, { payload }) {
-      state.showMenu = payload;
     },
   },
 });
 
-export const { setHomeTab, setShowMenu } = tabSlice.actions;
+export const { setHomeTab } = tabSlice.actions;
 
 export const selectTab = state => state.tab;
 
