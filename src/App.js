@@ -1,4 +1,3 @@
-import Hamburger from 'components/navigation/Hamburger';
 import RouteFromPath from 'components/routes/RouteFromPath';
 import useTranslation from 'hooks/useTranslation';
 import { useEffect } from 'react';
@@ -43,7 +42,6 @@ function App() {
       </Helmet>
       <ToastContainer />
       <BrowserRouter>
-        <Hamburger />
         <Switch>
           {routes.map(route => (
             <RouteFromPath key={`route-${route.path}`} {...route} authenticated={authenticated} />

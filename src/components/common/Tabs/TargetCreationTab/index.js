@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { error, success } from 'react-toastify-redux';
 import { selectTargets, useCreateTargetMutation, useGetTargetsQuery } from 'services/model/targets';
 import { useGetTopicsQuery } from 'services/model/topics';
-import { setHomeTab, setShowMenu } from 'state/slices/tabSlice';
+import { setHomeTab } from 'state/slices/tabSlice';
 import { fillCreationTarget, resetCreationTarget } from 'state/slices/targetSlice';
 import { tabsEnum } from '..';
 import Loader from '../../Loader';
@@ -26,7 +26,6 @@ const TargetCreationTab = () => {
   const onBack = useCallback(() => {
     dispatch(resetCreationTarget());
     dispatch(setHomeTab(tabsEnum.profile));
-    dispatch(setShowMenu(true));
   }, [dispatch]);
 
   useEffect(() => {

@@ -1,16 +1,19 @@
+import { tabsEnum } from 'components/common/Tabs';
 import useTranslation from 'hooks/useTranslation';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import routesPaths from 'routes/routesPaths';
-import { selectTab } from 'state/slices/tabSlice';
+import { setHomeTab } from 'state/slices/tabSlice';
 import './styles.scss';
 
-const Hamburger = () => {
+const Hamburger = ({ tab = false }) => {
   const t = useTranslation();
-  const { showMenu } = useSelector(selectTab);
+  const dispatch = useDispatch();
 
-  if (!showMenu) return null;
+  const handleAboutTab = useCallback(() => {
+    dispatch(setHomeTab(tabsEnum.about));
+  }, [dispatch]);
 
   return (
     <div className="hamburger-container">
@@ -18,10 +21,22 @@ const Hamburger = () => {
       <div className="hamburger-line" />
       <div className="hamburger-line" />
       <div className="hamburger-line" />
-      <ul className="menu">
-        <Link to={routesPaths.about} className="hamburger-item">
-          <li className="menu-item">{t('menu.about')}</li>
-        </Link>
+      <ul className="h-menu">
+        {tab ? (
+          <div
+            className="hamburger-item clickable"
+            onClick={handleAboutTab}
+            onKeyDown={handleAboutTab}
+            role="button"
+            tabIndex={0}
+          >
+            {t('menu.about')}
+          </div>
+        ) : (
+          <Link to={routesPaths.about} className="hamburger-item">
+            <li className="menu-item">{t('menu.about')}</li>
+          </Link>
+        )}
         <Link to={routesPaths.contact} className="hamburger-item">
           <li className="menu-item">{t('menu.contact')}</li>
         </Link>
