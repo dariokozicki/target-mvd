@@ -96,6 +96,7 @@
     "targetTitle": "Target Title",
     "topic": "Topic",
     "delete": "Delete",
-    "save": "Save"
+    "save": "Save",
+    "deleteSuccess": "Target was deleted successfully."
   }
 }
