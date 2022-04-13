@@ -19,5 +19,3 @@ export const {
     getTopics: { matchFulfilled: getTopicsFulfilled },
   },
 } = topicsApi;
-
-export const selectTopics = state => state.topic;

@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   creation: {},
   position: null,
+  selected: null,
 };
 
 const targetSlice = createSlice({
@@ -18,9 +19,13 @@ const targetSlice = createSlice({
     setPosition(state, { payload }) {
       state.position = payload;
     },
+    setSelected(state, { payload }) {
+      state.selected = payload;
+    },
   },
 });
 
-export const { setPosition, fillCreationTarget, resetCreationTarget } = targetSlice.actions;
+export const { setPosition, fillCreationTarget, resetCreationTarget, setSelected } =
+  targetSlice.actions;
 
 export default targetSlice.reducer;

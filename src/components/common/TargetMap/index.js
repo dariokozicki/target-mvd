@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectTargets, useGetTargetsQuery } from 'services/model/targets';
 import { useGetTopicsQuery } from 'services/model/topics';
 import { setHomeTab } from 'state/slices/tabSlice';
-import { fillCreationTarget } from 'state/slices/targetSlice';
+import { fillCreationTarget, resetCreationTarget, setSelected } from 'state/slices/targetSlice';
 import { tabsEnum } from '../Tabs';
 import './styles.scss';
 
@@ -24,13 +24,24 @@ const TargetMap = ({ google }) => {
   const dispatch = useDispatch();
 
   const onMapClicked = (_, __, { latLng }) => {
-    dispatch(fillCreationTarget({ lat: latLng.lat(), lng: latLng.lng(), radius: 200 }));
-    dispatch(setHomeTab(tabsEnum.create));
+    if (creation?.target) {
+      dispatch(setHomeTab(tabsEnum.profile));
+      dispatch(resetCreationTarget());
+    } else {
+      dispatch(fillCreationTarget({ lat: latLng.lat(), lng: latLng.lng(), radius: 200 }));
+      dispatch(setHomeTab(tabsEnum.create));
+    }
   };
 
   const getTopicById = id => topics.topics.map(topic => topic.topic).find(topic => topic.id === id);
 
   const getTopicUrl = topic => topic?.icon || '/empty-target.png';
+
+  const onTargetClicked = target => {
+    dispatch(setSelected(target));
+    dispatch(setHomeTab(tabsEnum.editTarget));
+    dispatch(resetCreationTarget());
+  };
 
   return (
     <Map
@@ -74,7 +85,8 @@ const TargetMap = ({ google }) => {
       )}
       {targets &&
         topics &&
-        targets.targets.map(({ target: { id, lat, lng, topic_id } }) => {
+        targets.targets.map(({ target }) => {
+          const { id, lat, lng, topic_id } = target;
           const topic = getTopicById(topic_id);
           return (
             <Marker
@@ -86,6 +98,7 @@ const TargetMap = ({ google }) => {
                 anchor: new google.maps.Point(16, 16),
                 scaledSize: new google.maps.Size(32, 32),
               }}
+              onClick={() => onTargetClicked(target)}
             />
           );
         })}

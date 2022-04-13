@@ -1,14 +1,13 @@
 import Back from 'components/common/Back';
+import TopicDropdown from 'components/common/TopicDropdown';
 import useTranslation from 'hooks/useTranslation';
 import { Button } from 'primereact/button';
-import { Dropdown } from 'primereact/dropdown';
 import { InputNumber } from 'primereact/inputnumber';
 import { InputText } from 'primereact/inputtext';
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { error, success } from 'react-toastify-redux';
 import { selectTargets, useCreateTargetMutation, useGetTargetsQuery } from 'services/model/targets';
-import { useGetTopicsQuery } from 'services/model/topics';
 import { setHomeTab } from 'state/slices/tabSlice';
 import { fillCreationTarget, resetCreationTarget } from 'state/slices/targetSlice';
 import { tabsEnum } from '..';
@@ -17,7 +16,6 @@ import './styles.scss';
 
 const TargetCreationTab = () => {
   const dispatch = useDispatch();
-  const { data: topics } = useGetTopicsQuery();
   const { creation } = useSelector(selectTargets);
   const { data: targets } = useGetTargetsQuery();
   const [createTarget, { isLoading, isSuccess, error: createError }] = useCreateTargetMutation();
@@ -48,25 +46,6 @@ const TargetCreationTab = () => {
   }, [creation, createTarget, dispatch, t, targets]);
 
   const setField = (field, value) => dispatch(fillCreationTarget({ [field]: value }));
-
-  const topicOptionTemplate = topic => {
-    if (!topic) return null;
-    return (
-      <div className="topic-item">
-        <div className="icon">
-          <img src={topic.topic.icon} alt={topic.topic.label} className="img" />
-        </div>
-        <div>{topic.topic.label}</div>
-      </div>
-    );
-  };
-
-  const topicValueTemplate = (topic, props) => {
-    if (!topic) {
-      return <span>{props.placeholder}</span>;
-    }
-    return topicOptionTemplate(topic);
-  };
 
   return (
     <>
@@ -111,15 +90,9 @@ const TargetCreationTab = () => {
               <label htmlFor="topic" className="uppercase">
                 {t('creationTab.topic')}
               </label>
-              <Dropdown
-                options={topics?.topics}
-                placeholder={t('creationTab.topicDescription')}
-                itemTemplate={topicOptionTemplate}
-                optionLabel="label"
-                value={topics?.topics?.find(({ topic }) => topic.id === creation.target.topic_id)}
+              <TopicDropdown
                 onChange={e => setField('topic_id', e.target.value.topic.id)}
-                valueTemplate={topicValueTemplate}
-                className="w-100"
+                topicId={creation?.target?.topic_id}
               />
             </div>
           </div>
