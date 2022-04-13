@@ -79,15 +79,15 @@ const TargetEditTab = () => {
             </div>
             <div className="savedelete-container col-12">
               <Button
+                label={t('edit.delete')}
+                className="p-button-danger uppercase"
+                onClick={onDelete}
+              />
+              <Button
                 disabled={!selected?.title || !selected?.topic_id || !selected?.radius}
                 label={t('edit.save')}
                 className="p-button-secondary uppercase"
                 onClick={onSave}
-              />
-              <Button
-                label={t('edit.delete')}
-                className="p-button-danger uppercase"
-                onClick={onDelete}
               />
             </div>
           </div>
