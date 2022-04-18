@@ -4,12 +4,14 @@ import useTranslation from 'hooks/useTranslation';
 import routesPaths from 'routes/routesPaths';
 import LoginForm from 'components/login/LoginForm';
 import LandingScreen from 'components/landing/LandingScreen';
+import Hamburger from 'components/navigation/Hamburger';
 
 const Login = () => {
   const t = useTranslation();
 
   return (
     <>
+      <Hamburger />
       <LandingScreen>
         <img src="/smilies.png" alt="smilies" className="smilies" />
         <div className="title">{t('login.page-title')}</div>

@@ -1,3 +1,4 @@
+import Hamburger from 'components/navigation/Hamburger';
 import useTranslation from 'hooks/useTranslation';
 import { useSelector } from 'react-redux';
 import { selectAuth, useLogoutMutation } from 'services/auth/auth';
@@ -20,6 +21,7 @@ const TargetProfileTab = () => {
 
   return (
     <>
+      <Hamburger tab />
       <div className="header">
         <div className="create-title">{t('profile.title')}</div>
       </div>
