@@ -66,7 +66,8 @@
       "targetTitle": "The target title must contain at least 3 characters",
       "radius": "The radius must be greater than 0m",
       "label": "An error ocurred",
-      "created": "Could not create the target."
+      "created": "Could not create the target.",
+      "maxTargets": "Max amount of targets reached."
     },
     "success": {
       "label": "Success!",

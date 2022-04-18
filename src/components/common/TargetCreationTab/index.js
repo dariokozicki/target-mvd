@@ -6,7 +6,7 @@ import { InputText } from 'primereact/inputtext';
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { error, success } from 'react-toastify-redux';
-import { selectTargets, useCreateTargetMutation } from 'services/model/targets';
+import { selectTargets, useCreateTargetMutation, useGetTargetsQuery } from 'services/model/targets';
 import { useGetTopicsQuery } from 'services/model/topics';
 import { setHomeTab, setShowMenu } from 'state/slices/tabSlice';
 import { fillCreationTarget, resetCreationTarget } from 'state/slices/targetSlice';
@@ -19,6 +19,7 @@ const TargetCreationTab = () => {
   const dispatch = useDispatch();
   const { data: topics } = useGetTopicsQuery();
   const { creation } = useSelector(selectTargets);
+  const { data: targets } = useGetTargetsQuery();
   const [createTarget, { isLoading, isSuccess, error: createError }] = useCreateTargetMutation();
   const t = useTranslation();
 
@@ -40,8 +41,12 @@ const TargetCreationTab = () => {
   }, [isSuccess, createError, onBack, t, dispatch]);
 
   const onCreate = useCallback(() => {
+    if (targets && targets.targets.length === 10) {
+      dispatch(error(t('creationTab.errors.maxTargets')));
+      return;
+    }
     createTarget(creation);
-  }, [creation, createTarget]);
+  }, [creation, createTarget, dispatch, t, targets]);
 
   const setField = (field, value) => dispatch(fillCreationTarget({ [field]: value }));
 
