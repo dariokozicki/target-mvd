@@ -1,3 +1,4 @@
+import Back from 'components/common/Back';
 import useTranslation from 'hooks/useTranslation';
 import { Button } from 'primereact/button';
 import { Dropdown } from 'primereact/dropdown';
@@ -10,9 +11,8 @@ import { selectTargets, useCreateTargetMutation, useGetTargetsQuery } from 'serv
 import { useGetTopicsQuery } from 'services/model/topics';
 import { setHomeTab, setShowMenu } from 'state/slices/tabSlice';
 import { fillCreationTarget, resetCreationTarget } from 'state/slices/targetSlice';
-import Back from '../Back';
-import Loader from '../Loader';
-import { tabsEnum } from '../Tabs';
+import { tabsEnum } from '..';
+import Loader from '../../Loader';
 import './styles.scss';
 
 const TargetCreationTab = () => {
@@ -25,7 +25,7 @@ const TargetCreationTab = () => {
 
   const onBack = useCallback(() => {
     dispatch(resetCreationTarget());
-    dispatch(setHomeTab(tabsEnum.intro));
+    dispatch(setHomeTab(tabsEnum.profile));
     dispatch(setShowMenu(true));
   }, [dispatch]);
 
@@ -71,7 +71,7 @@ const TargetCreationTab = () => {
 
   return (
     <>
-      <div className="header">
+      <div className="header blue">
         <Back onBack={onBack} />
         <div className="create-title">{t('creationTab.title')}</div>
       </div>
