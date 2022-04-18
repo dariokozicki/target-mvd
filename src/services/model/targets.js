@@ -23,6 +23,7 @@ const targetsApi = api.injectEndpoints({
         url: endpoints.TARGETS + '/' + targetId,
         method: 'DELETE',
       }),
+      invalidatesTags: [tagTypes.TARGETS],
     }),
   }),
   overrideExisting: true,

@@ -1,0 +1,6 @@
+@import 'styles/mixins';
+
+.savedelete-container {
+  @include flex();
+  gap: 1rem;
+}

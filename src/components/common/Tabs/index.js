@@ -1,6 +1,7 @@
 import Intro from 'components/common/Tabs/IntroTab';
 import AboutTab from './AboutTab';
 import TargetCreationTab from './TargetCreationTab';
+import TargetEditTab from './TargetEditTab';
 import TargetProfileTab from './TargetProfileTab';
 
 export const tabs = {
@@ -8,6 +9,7 @@ export const tabs = {
   create: <TargetCreationTab />,
   profile: <TargetProfileTab />,
   about: <AboutTab />,
+  editTarget: <TargetEditTab />,
 };
 
 export const tabsEnum = {
@@ -15,4 +17,5 @@ export const tabsEnum = {
   create: 'create',
   profile: 'profile',
   about: 'about',
+  editTarget: 'editTarget',
 };
