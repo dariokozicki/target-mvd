@@ -1,19 +1,20 @@
 import Hamburger from 'components/navigation/Hamburger';
 import useTranslation from 'hooks/useTranslation';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectAuth, useLogoutMutation } from 'services/auth/auth';
+import { setHomeTab } from 'state/slices/tabSlice';
+import { tabsEnum } from '..';
 import './styles.scss';
 
 const TargetProfileTab = () => {
   const t = useTranslation();
   const { user } = useSelector(selectAuth);
   const [logout] = useLogoutMutation();
+  const dispatch = useDispatch();
 
   const handleLogout = () => logout().then(() => localStorage.removeItem('user'));
 
-  const onEdit = () => {
-    //TODO
-  };
+  const onEdit = () => dispatch(setHomeTab(tabsEnum.editProfile));
 
   const onKeyDown = callback => event => {
     if (event.charCode === 13) callback();

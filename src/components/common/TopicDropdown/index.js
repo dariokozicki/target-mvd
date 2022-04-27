@@ -2,7 +2,7 @@ import useTranslation from 'hooks/useTranslation';
 import { Dropdown } from 'primereact/dropdown';
 import { useGetTopicsQuery } from 'services/model/topics';
 
-const TopicDropdown = ({ onChange, topicId }) => {
+const TopicDropdown = ({ onChange, topicId, disabled = false }) => {
   const t = useTranslation();
   const { data: topics } = useGetTopicsQuery();
 
@@ -35,6 +35,7 @@ const TopicDropdown = ({ onChange, topicId }) => {
       onChange={onChange}
       valueTemplate={topicValueTemplate}
       className="w-100"
+      disabled={disabled}
     />
   );
 };

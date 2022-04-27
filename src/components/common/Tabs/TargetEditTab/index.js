@@ -55,6 +55,7 @@ const TargetEditTab = () => {
                 max={5000}
                 suffix=" m"
                 className="w-100"
+                disabled
               />
             </div>
             <div className="field col-12">
@@ -66,6 +67,7 @@ const TargetEditTab = () => {
                 onChange={e => setField('title', e.target.value)}
                 placeholder={t('creationTab.targetTitleDescription')}
                 className="w-100"
+                disabled
               />
             </div>
             <div className="field col-12">
@@ -75,6 +77,7 @@ const TargetEditTab = () => {
               <TopicDropdown
                 onChange={e => setField('topic_id', e.target.value.topic.id)}
                 topicId={selected.topic_id}
+                disabled
               />
             </div>
             <div className="savedelete-container col-12">
@@ -84,7 +87,7 @@ const TargetEditTab = () => {
                 onClick={onDelete}
               />
               <Button
-                disabled={!selected?.title || !selected?.topic_id || !selected?.radius}
+                disabled
                 label={t('edit.save')}
                 className="p-button-secondary uppercase"
                 onClick={onSave}
