@@ -32,7 +32,7 @@ const EditProfileTab = () => {
   };
 
   const defaultValues = {
-    currentPassword: '',
+    current_password: '',
     password: '',
     password_confirmation: '',
     email: user.email,
@@ -40,12 +40,12 @@ const EditProfileTab = () => {
 
   const {
     control,
+    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm({ defaultValues });
 
   const onSaveChanges = data => {
-    console.log('aca');
     return Promise.all([
       changePassword({
         current_password: data.current_password,
@@ -54,7 +54,10 @@ const EditProfileTab = () => {
       }),
       updateUser({ id: user.id, user: { ...user, email: data.email } }),
     ])
-      .then(() => dispatch(success(t('profile.editSuccess'))))
+      .then(() => {
+        dispatch(success(t('profile.editSuccess')));
+        dispatch(setHomeTab(tabsEnum.profile));
+      })
       .catch(err => {
         console.log('he fallado');
         console.log(err);
@@ -121,6 +124,7 @@ const EditProfileTab = () => {
                 />
               )}
             />
+            {getFormErrorMessage('current_password')}
           </div>
           <div className="field col-12 centered">
             <label htmlFor="newPassword" className="uppercase edit-profile-label">
@@ -141,6 +145,7 @@ const EditProfileTab = () => {
                 />
               )}
             />
+            {getFormErrorMessage('password')}
           </div>
           <div className="field col-12 centered">
             <label htmlFor="confirmNewPassword" className="uppercase edit-profile-label">
@@ -149,7 +154,13 @@ const EditProfileTab = () => {
             <Controller
               name="password_confirmation"
               control={control}
-              rules={{ required: 'Password is required.' }}
+              rules={{
+                required: 'Password confirmation is required.',
+                validate: value => {
+                  const { password } = getValues();
+                  return password === value || 'Passwords should match!';
+                },
+              }}
               render={({ field, fieldState }) => (
                 <Password
                   id={field.name}
@@ -160,6 +171,7 @@ const EditProfileTab = () => {
                 />
               )}
             />
+            {getFormErrorMessage('password_confirmation')}
           </div>
           <div className="field col-12 centered">
             <Button className="w-6 edit-profile-label" type="submit">
