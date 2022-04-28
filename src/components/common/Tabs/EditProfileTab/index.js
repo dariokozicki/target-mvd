@@ -58,9 +58,7 @@ const EditProfileTab = () => {
         dispatch(success(t('profile.editSuccess')));
         dispatch(setHomeTab(tabsEnum.profile));
       })
-      .catch(err => {
-        console.log('he fallado');
-        console.log(err);
+      .catch(() => {
         dispatch(error(t('profile.editError')));
       });
   };
