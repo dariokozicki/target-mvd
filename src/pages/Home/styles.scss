@@ -9,6 +9,11 @@
     @include flex(column, flex-start, center);
     width: 23vw;
     height: 100vh;
+    position: relative;
     background: $color-white;
+  }
+  &__map {
+    width: 77vw;
+    height: 100vh;
   }
 }

@@ -10,7 +10,7 @@ import { tabsEnum } from '../Tabs';
 import './styles.scss';
 
 const mapStyles = {
-  width: '100%',
+  width: '77vw',
   height: '100%',
 };
 

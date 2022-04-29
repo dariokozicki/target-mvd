@@ -111,5 +111,15 @@
     "save": "Save Changes",
     "delete": "Delete my TARGET account",
     "min": "Min. 6 characters long"
+  },
+  "contact": {
+    "title": "Don't be shy, drop us a line!",
+    "email": "Email *",
+    "message": "Message *",
+    "send": "Send",
+    "errors": {
+      "message": "Message cannot be empty.",
+      "email": "Email cannot be empty"
+    }
   }
 }
