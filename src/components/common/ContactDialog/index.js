@@ -10,11 +10,15 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import './styles.scss';
 import { useForm, Controller } from 'react-hook-form';
+import classNames from 'classnames';
+import { useCreateQuestionMutation } from 'services/model/questions';
+import { error, success } from 'react-toastify-redux';
 
 const ContactDialog = () => {
   const { showContactDialog } = useSelector(selectTab);
   const t = useTranslation();
   const dispatch = useDispatch();
+  const [createQuestion] = useCreateQuestionMutation();
 
   const onClose = useCallback(() => {
     dispatch(setShowContactDialog(false));
@@ -23,8 +27,8 @@ const ContactDialog = () => {
   const onClickChild = e => e.stopPropagation();
 
   const schema = z.object({
-    email: z.string().email({ message: t('login.errors.emailMsg') }),
-    message: z.string().min(1, { message: t('login.errors.passwordMsg') }),
+    email: z.string().email({ message: t('contact.errors.email') }),
+    message: z.string().min(1, { message: t('contact.errors.message') }),
   });
 
   const {
@@ -33,7 +37,15 @@ const ContactDialog = () => {
     formState: { errors },
   } = useForm({ resolver: zodResolver(schema) });
 
-  const send = data => {};
+  const send = async ({ email, message }) => {
+    try {
+      await createQuestion({ email, body: message });
+      dispatch(setShowContactDialog(false));
+      dispatch(success(t('contact.success')));
+    } catch (err) {
+      dispatch(error(t('contact.errors.failed')));
+    }
+  };
 
   const getFormErrorMessage = name => {
     return errors[name] && <small className="p-error">{errors[name].message}</small>;
@@ -67,7 +79,13 @@ const ContactDialog = () => {
             <Controller
               control={control}
               name="email"
-              render={({ field }) => <InputText className="w-full" {...field} />}
+              render={({ field, fieldState }) => (
+                <InputText
+                  className={classNames('w-full', { 'p-invalid': fieldState.invalid })}
+                  id={field.name}
+                  {...field}
+                />
+              )}
             />
             {getFormErrorMessage('email')}
           </div>
@@ -76,13 +94,19 @@ const ContactDialog = () => {
             <Controller
               control={control}
               name="message"
-              render={({ field }) => (
-                <InputTextarea className="w-full" autoResize rows={5} {...field} />
+              render={({ field, fieldState }) => (
+                <InputTextarea
+                  className={classNames('w-full', { 'p-invalid': fieldState.invalid })}
+                  autoResize
+                  rows={5}
+                  id={field.name}
+                  {...field}
+                />
               )}
             />
             {getFormErrorMessage('message')}
           </div>
-          <Button className="contact-dialog__btn" onClick={handleSubmit(send)}>
+          <Button className="contact-dialog__btn" type="button" handleClick={handleSubmit(send)}>
             <div className="edit-profile-label">{t('contact.send').toUpperCase()}</div>
           </Button>
         </div>

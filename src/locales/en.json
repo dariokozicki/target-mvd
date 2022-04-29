@@ -119,7 +119,9 @@
     "send": "Send",
     "errors": {
       "message": "Message cannot be empty.",
-      "email": "Email cannot be empty"
-    }
+      "email": "Email must be valid.",
+      "failed": "Could not send message."
+    },
+    "success": "Message sent successfully."
   }
 }
