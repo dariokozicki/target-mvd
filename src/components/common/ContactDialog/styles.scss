@@ -17,6 +17,7 @@
     //margin-top: 2rem;
     width: 90%;
     height: fit-content;
+    max-width: 800px;
     padding: 1rem 0.5rem 2rem 0.5rem;
     z-index: 11;
   }
@@ -32,8 +33,9 @@
   }
   &__input {
     width: 95%;
+    max-width: 433px;
   }
   &__btn {
-    width: 70%;
+    max-width: 187px;
   }
 }

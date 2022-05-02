@@ -120,8 +120,12 @@
     "errors": {
       "message": "Message cannot be empty.",
       "email": "Email must be valid.",
-      "failed": "Could not send message."
+      "failed": "Could not send message.",
+      "title": "Opps!",
+      "subtitle": "An error has ocurred while sending your message."
     },
-    "success": "Message sent successfully."
+    "success": "Message sent successfully.",
+    "successTitle": "Thanks for getting in touch!",
+    "successSubtitle": "We'll get back to you as soon as we can."
   }
 }

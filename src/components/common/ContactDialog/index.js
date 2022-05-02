@@ -1,28 +1,26 @@
+import { zodResolver } from '@hookform/resolvers/zod';
+import classNames from 'classnames';
 import useTranslation from 'hooks/useTranslation';
 import { InputText } from 'primereact/inputtext';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectTab, setShowContactDialog } from 'state/slices/tabSlice';
-import Cross from '../Cross';
 import { InputTextarea } from 'primereact/inputtextarea';
-import Button from '../Button';
 import { useCallback } from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import './styles.scss';
-import { useForm, Controller } from 'react-hook-form';
-import classNames from 'classnames';
-import { useCreateQuestionMutation } from 'services/model/questions';
+import { Controller, useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 import { error, success } from 'react-toastify-redux';
+import { api } from 'services/api';
+import { useCreateQuestionMutation } from 'services/model/questions';
+import { selectTab, setShowContactDialog } from 'state/slices/tabSlice';
+import { z } from 'zod';
+import Button from '../Button';
+import Cross from '../Cross';
+import './styles.scss';
 
 const ContactDialog = () => {
   const { showContactDialog } = useSelector(selectTab);
   const t = useTranslation();
   const dispatch = useDispatch();
-  const [createQuestion] = useCreateQuestionMutation();
-
-  const onClose = useCallback(() => {
-    dispatch(setShowContactDialog(false));
-  }, [dispatch]);
+  const [createQuestion, { error: createQuestionError, isSuccess: createQuestionSuccess }] =
+    useCreateQuestionMutation();
 
   const onClickChild = e => e.stopPropagation();
 
@@ -33,23 +31,93 @@ const ContactDialog = () => {
 
   const {
     control,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: zodResolver(schema) });
 
+  const onClose = useCallback(() => {
+    dispatch(setShowContactDialog(false));
+    dispatch(api.util.resetApiState());
+  }, [dispatch]);
+
   const send = async ({ email, message }) => {
     try {
       await createQuestion({ email, body: message });
-      dispatch(setShowContactDialog(false));
       dispatch(success(t('contact.success')));
     } catch (err) {
       dispatch(error(t('contact.errors.failed')));
+    } finally {
+      reset({});
     }
   };
+
+  const errorContent = createQuestionError =>
+    createQuestionError ? (
+      <>
+        <img src="/smilies-sad.png" alt="smilies" />
+        <div className="m-8">
+          <div className="contact-dialog__title">{t('contact.errors.title')}</div>
+          <div className="description">{t('contact.errors.subtitle')}</div>
+        </div>
+      </>
+    ) : null;
 
   const getFormErrorMessage = name => {
     return errors[name] && <small className="p-error">{errors[name].message}</small>;
   };
+
+  const successContent = () => (
+    <>
+      <img src="/smilies.png" alt="smilies" />
+      <div className="m-8">
+        <div className="contact-dialog__title">{t('contact.successTitle')}</div>
+        <div className="description">{t('contact.successSubtitle')}</div>
+      </div>
+    </>
+  );
+
+  const formContent = () => (
+    <>
+      <img src="/smilies.png" alt="smilies" />
+      <div className="contact-dialog__title">{t('contact.title')}</div>
+      <div className="edit-profile-label">{t('contact.email').toUpperCase()}</div>
+      <div className="contact-dialog__input">
+        <Controller
+          control={control}
+          name="email"
+          render={({ field, fieldState }) => (
+            <InputText
+              className={classNames('w-full', { 'p-invalid': fieldState.invalid })}
+              id={field.name}
+              {...field}
+            />
+          )}
+        />
+        {getFormErrorMessage('email')}
+      </div>
+      <div className="edit-profile-label">{t('contact.message').toUpperCase()}</div>
+      <div className="contact-dialog__input">
+        <Controller
+          control={control}
+          name="message"
+          render={({ field, fieldState }) => (
+            <InputTextarea
+              className={classNames('w-full', { 'p-invalid': fieldState.invalid })}
+              autoResize
+              rows={5}
+              id={field.name}
+              {...field}
+            />
+          )}
+        />
+        {getFormErrorMessage('message')}
+      </div>
+      <Button className="contact-dialog__btn" type="button" handleClick={handleSubmit(send)}>
+        <div className="edit-profile-label">{t('contact.send').toUpperCase()}</div>
+      </Button>
+    </>
+  );
 
   if (!showContactDialog) return null;
 
@@ -72,43 +140,9 @@ const ContactDialog = () => {
           <div className="contact-dialog__close">
             <Cross onClick={onClose} />
           </div>
-          <img src="/smilies.png" alt="smilies" />
-          <div className="contact-dialog__title">{t('contact.title')}</div>
-          <div className="edit-profile-label">{t('contact.email').toUpperCase()}</div>
-          <div className="contact-dialog__input">
-            <Controller
-              control={control}
-              name="email"
-              render={({ field, fieldState }) => (
-                <InputText
-                  className={classNames('w-full', { 'p-invalid': fieldState.invalid })}
-                  id={field.name}
-                  {...field}
-                />
-              )}
-            />
-            {getFormErrorMessage('email')}
-          </div>
-          <div className="edit-profile-label">{t('contact.message').toUpperCase()}</div>
-          <div className="contact-dialog__input">
-            <Controller
-              control={control}
-              name="message"
-              render={({ field, fieldState }) => (
-                <InputTextarea
-                  className={classNames('w-full', { 'p-invalid': fieldState.invalid })}
-                  autoResize
-                  rows={5}
-                  id={field.name}
-                  {...field}
-                />
-              )}
-            />
-            {getFormErrorMessage('message')}
-          </div>
-          <Button className="contact-dialog__btn" type="button" handleClick={handleSubmit(send)}>
-            <div className="edit-profile-label">{t('contact.send').toUpperCase()}</div>
-          </Button>
+          {createQuestionError && errorContent()}
+          {createQuestionSuccess && successContent()}
+          {!createQuestionError && !createQuestionSuccess && formContent()}
         </div>
       </div>
     </>
