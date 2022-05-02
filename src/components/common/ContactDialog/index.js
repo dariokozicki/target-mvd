@@ -19,14 +19,20 @@ const ContactDialog = () => {
   const { showContactDialog } = useSelector(selectTab);
   const t = useTranslation();
   const dispatch = useDispatch();
-  const [createQuestion, { error: createQuestionError, isSuccess: createQuestionSuccess }] =
+  const [createQuestion, { isError: createQuestionError, isSuccess: createQuestionSuccess }] =
     useCreateQuestionMutation();
 
   const onClickChild = e => e.stopPropagation();
 
   const schema = z.object({
-    email: z.string().email({ message: t('contact.errors.email') }),
-    message: z.string().min(1, { message: t('contact.errors.message') }),
+    email: z
+      .string()
+      .email({ message: t('contact.errors.email') })
+      .default(''),
+    message: z
+      .string()
+      .min(1, { message: t('contact.errors.message') })
+      .default(''),
   });
 
   const {
@@ -43,8 +49,12 @@ const ContactDialog = () => {
 
   const send = async ({ email, message }) => {
     try {
-      await createQuestion({ email, body: message });
-      dispatch(success(t('contact.success')));
+      const res = await createQuestion({ email, body: message });
+      if (res.error) {
+        dispatch(error(t('contact.errors.failed')));
+      } else {
+        dispatch(success(t('contact.success')));
+      }
     } catch (err) {
       dispatch(error(t('contact.errors.failed')));
     } finally {
@@ -52,16 +62,15 @@ const ContactDialog = () => {
     }
   };
 
-  const errorContent = createQuestionError =>
-    createQuestionError ? (
-      <>
-        <img src="/smilies-sad.png" alt="smilies" />
-        <div className="m-8">
-          <div className="contact-dialog__title">{t('contact.errors.title')}</div>
-          <div className="description">{t('contact.errors.subtitle')}</div>
-        </div>
-      </>
-    ) : null;
+  const errorContent = () => (
+    <>
+      <img src="/smilies-sad.png" alt="smilies" />
+      <div className="m-8">
+        <div className="contact-dialog__title">{t('contact.errors.title')}</div>
+        <div className="description">{t('contact.errors.subtitle')}</div>
+      </div>
+    </>
+  );
 
   const getFormErrorMessage = name => {
     return errors[name] && <small className="p-error">{errors[name].message}</small>;
@@ -91,6 +100,7 @@ const ContactDialog = () => {
               className={classNames('w-full', { 'p-invalid': fieldState.invalid })}
               id={field.name}
               {...field}
+              defaultValue=""
             />
           )}
         />
