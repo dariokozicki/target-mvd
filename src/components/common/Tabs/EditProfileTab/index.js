@@ -1,16 +1,14 @@
 import Back from 'components/common/Back';
 import Button from 'components/common/Button';
 import useTranslation from 'hooks/useTranslation';
-import { InputText } from 'primereact/inputtext';
-import { Password } from 'primereact/password';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { error, success } from 'react-toastify-redux';
 import { selectAuth, useChangePasswordMutation, useUpdateUserMutation } from 'services/auth/auth';
 import { setHomeTab } from 'state/slices/tabSlice';
 import { tabsEnum } from '..';
-import { classNames } from 'primereact/utils';
 import './styles.scss';
+import EditProfileForm from 'components/common/EditProfileForm';
 
 const EditProfileTab = () => {
   const dispatch = useDispatch();
@@ -63,74 +61,6 @@ const EditProfileTab = () => {
       });
   };
 
-  const getFormErrorMessage = name => {
-    return errors[name] && <small className="p-error">{errors[name].message}</small>;
-  };
-
-  const profileForm = () => {
-    const form = [
-      {
-        label: 'email',
-        Component: InputText,
-        placeholder: t('editProfile.min').toLocaleUpperCase(),
-        rules: {
-          required: 'Email is required.',
-          pattern: {
-            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-            message: 'Invalid email address. E.g. example@email.com',
-          },
-        },
-      },
-      {
-        label: 'current_password',
-        Component: Password,
-        rules: { required: 'Current Password is required.' },
-        placeholder: t('editProfile.min').toLocaleUpperCase(),
-      },
-      {
-        label: 'password',
-        Component: Password,
-        rules: { required: 'Password is required.' },
-        placeholder: t('editProfile.min').toLocaleUpperCase(),
-      },
-      {
-        label: 'password_confirmation',
-        Component: Password,
-        placeholder: t('editProfile.min').toLocaleUpperCase(),
-        rules: {
-          required: 'Password Confirmation is required.',
-          validate: value => {
-            const { password } = getValues();
-            return password === value || 'Passwords should match!';
-          },
-        },
-      },
-    ];
-    return form.map(({ label, Component, rules, placeholder }) => (
-      <div className="field col-12 centered">
-        <label htmlFor={label} className="uppercase edit-profile-label">
-          {t('editProfile.' + label)}
-        </label>
-        <Controller
-          name={label}
-          control={control}
-          rules={rules || undefined}
-          render={({ field, fieldState }) => (
-            <Component
-              id={field.name}
-              {...field}
-              toggleMask
-              feedback={false}
-              placeholder={placeholder}
-              className={classNames('w-10 p-inputtext-sm', { 'p-invalid': fieldState.invalid })}
-            />
-          )}
-        />
-        {getFormErrorMessage(label)}
-      </div>
-    ));
-  };
-
   return (
     <>
       <div className="header blue">
@@ -143,7 +73,7 @@ const EditProfileTab = () => {
       <div className="profile-name">{user?.email}</div>
       <div className="create-target">
         <form className="p-fluid grid formgrid" onSubmit={handleSubmit(onSaveChanges)} noValidate>
-          {profileForm()}
+          <EditProfileForm errors={errors} getValues={getValues} control={control} />
           <div className="field col-12 centered">
             <Button className="w-6 edit-profile-label" type="submit">
               {t('editProfile.save').toLocaleUpperCase()}
