@@ -43,22 +43,21 @@ const EditProfileTab = () => {
     formState: { errors },
   } = useForm({ defaultValues });
 
-  const onSaveChanges = data => {
-    return Promise.all([
-      changePassword({
-        current_password: data.current_password,
-        password: data.password,
-        password_confirmation: data.password_confirmation,
-      }),
-      updateUser({ id: user.id, user: { ...user, email: data.email } }),
-    ])
-      .then(() => {
-        dispatch(success(t('profile.editSuccess')));
-        dispatch(setHomeTab(tabsEnum.profile));
-      })
-      .catch(() => {
-        dispatch(error(t('profile.editError')));
-      });
+  const onSaveChanges = async data => {
+    try {
+      await Promise.all([
+        changePassword({
+          current_password: data.current_password,
+          password: data.password,
+          password_confirmation: data.password_confirmation,
+        }),
+        updateUser({ id: user.id, user: { ...user, email: data.email } }),
+      ]);
+      dispatch(success(t('profile.editSuccess')));
+      dispatch(setHomeTab(tabsEnum.profile));
+    } catch {
+      dispatch(error(t('profile.editError')));
+    }
   };
 
   return (
