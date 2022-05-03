@@ -6,8 +6,10 @@ import Hamburger from 'components/navigation/Hamburger';
 import useTranslation from 'hooks/useTranslation';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { error } from 'react-toastify-redux';
 import routesPaths from 'routes/routesPaths';
 import { useSendResetPasswordMutation } from 'services/auth/auth';
 import { z } from 'zod';
@@ -15,7 +17,7 @@ import './styles.scss';
 
 const ResetPassword = () => {
   const t = useTranslation();
-  const [sendResetPassword, { isLoading, error, isSuccess, data }] = useSendResetPasswordMutation();
+  const dispatch = useDispatch();
   const { push } = useHistory();
 
   const schema = z.object({
@@ -29,14 +31,10 @@ const ResetPassword = () => {
     formState: { errors },
   } = useForm({ resolver: zodResolver(schema) });
 
-  useEffect(() => {
-    if (isSuccess) {
-      push({
-        pathname: '/success',
-        state: { message: data?.message },
-      });
-    }
-  }, [isSuccess, push, data]);
+  const onSubmit = e => {
+    e.preventDefault();
+    dispatch(error(t('global.notImplemented')));
+  };
 
   return (
     <>
@@ -44,7 +42,7 @@ const ResetPassword = () => {
       <LandingScreen>
         <img src="/smilies.png" alt="smilies" className="smilies" />
         <div className="title">{t('resetPassword.title')}</div>
-        <form onSubmit={handleSubmit(sendResetPassword)} noValidate>
+        <form onSubmit={onSubmit} noValidate>
           <div className="form-label uppercase">
             <label htmlFor="email">{t('login.labels.email')}</label>
           </div>
@@ -52,7 +50,7 @@ const ResetPassword = () => {
           {error && error.data && <p className="error-message">{error.data.errors}</p>}
 
           <div className="button-container">
-            <Button type="submit" disabled={isLoading}>
+            <Button type="submit" disabled={false}>
               {t('resetPassword.send').toUpperCase()}
             </Button>
           </div>
