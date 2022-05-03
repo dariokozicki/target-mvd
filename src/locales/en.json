@@ -127,5 +127,10 @@
     "success": "Message sent successfully.",
     "successTitle": "Thanks for getting in touch!",
     "successSubtitle": "We'll get back to you as soon as we can."
+  },
+  "resetPassword": {
+    "title": "Reset your password",
+    "email": "Email",
+    "send": "Send"
   }
 }

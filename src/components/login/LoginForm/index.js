@@ -11,6 +11,7 @@ import { api } from 'services/api';
 import { selectAuth, useLoginMutation } from 'services/auth/auth';
 import { setLoggedInUser } from 'utils/auth';
 import { z } from 'zod';
+import { Link } from 'react-router-dom';
 import './styles.scss';
 
 const LoginForm = () => {
@@ -81,9 +82,11 @@ const LoginForm = () => {
             {t('login.title').toUpperCase()}
           </Button>
         </div>
-        <div className="clickable form-label">{t('login.forgot')}</div>
-        <div className="clickable form-label uppercase">
-          <h4 className="facebook">{t('login.facebook')}</h4>
+        <Link to={routesPaths.forgot} className="link-to clickable form-label">
+          {t('login.forgot')}
+        </Link>
+        <div className="form-label uppercase">
+          <h4 className="clickable facebook">{t('login.facebook')}</h4>
         </div>
         <div className="form-label uppercase">
           <div className="separator" />
