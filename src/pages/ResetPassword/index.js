@@ -4,21 +4,17 @@ import Input from 'components/form/Input';
 import LandingScreen from 'components/landing/LandingScreen';
 import Hamburger from 'components/navigation/Hamburger';
 import useTranslation from 'hooks/useTranslation';
-import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { error } from 'react-toastify-redux';
 import routesPaths from 'routes/routesPaths';
-import { useSendResetPasswordMutation } from 'services/auth/auth';
 import { z } from 'zod';
 import './styles.scss';
 
 const ResetPassword = () => {
   const t = useTranslation();
   const dispatch = useDispatch();
-  const { push } = useHistory();
 
   const schema = z.object({
     email: z.string().email({ message: t('login.errors.emailMsg') }),
@@ -27,7 +23,6 @@ const ResetPassword = () => {
 
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm({ resolver: zodResolver(schema) });
 
