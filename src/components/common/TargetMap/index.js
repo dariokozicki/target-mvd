@@ -47,7 +47,7 @@ const TargetMap = ({ google }) => {
     <Map
       zoom={14}
       google={google}
-      style={mapStyles}
+      containerStyle={mapStyles}
       centerAroundCurrentLocation
       onClick={onMapClicked}
     >

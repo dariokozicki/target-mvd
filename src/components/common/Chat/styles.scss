@@ -1,0 +1,45 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+
+.chat {
+  @include flex(column);
+  width: 100%;
+  &__title {
+    font-weight: bold;
+  }
+  &__item {
+    @include flex(row, space-between);
+    height: 2rem;
+    padding: 0 1rem 0 1rem;
+    margin: 1rem 0 1rem 0;
+    cursor: pointer;
+  }
+  &__text {
+    @include flex(column, center, flex-start);
+  }
+  &__image {
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+  }
+  &__separator {
+    width: 95%;
+    border-bottom: 1px solid #1f1f1f;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+  .p-datascroller {
+    width: 100%;
+    .p-datascroller-header {
+      background: none;
+      border: none;
+    }
+    &.p-datascroller-inline .p-datascroller-list > li {
+      border: solid $color-black;
+      border-width: 0 0 1px 0;
+      &:first-child {
+        border-width: 1px 0 1px 0;
+      }
+    }
+  }
+}

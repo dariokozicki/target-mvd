@@ -3,13 +3,14 @@ import { baseQueryWithReauth } from 'utils/customQueries';
 
 export const tagTypes = {
   TARGETS: 'TARGETS',
+  CONVERSATIONS: 'CONVERSATIONS',
 };
 
 // initialize an empty api service that we'll inject endpoints into later as needed
 
 export const api = createApi({
   reducerPath: 'api',
-  tagTypes: Object.keys(tagTypes).map(tag => tagTypes[tag]),
+  tagTypes: Object.values(tagTypes),
   baseQuery: baseQueryWithReauth,
   endpoints: () => ({}),
 });

@@ -1,7 +1,11 @@
+import Chat from 'components/common/Chat';
+import EmptyTargets from 'components/common/EmptyTargets';
 import Hamburger from 'components/navigation/Hamburger';
 import useTranslation from 'hooks/useTranslation';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAuth, useLogoutMutation } from 'services/auth/auth';
+import { useGetConversationsQuery } from 'services/model/conversations';
+import { useGetTargetsQuery } from 'services/model/targets';
 import { setHomeTab } from 'state/slices/tabSlice';
 import { tabsEnum } from '..';
 import './styles.scss';
@@ -11,7 +15,10 @@ const TargetProfileTab = () => {
   const { user } = useSelector(selectAuth);
   const [logout] = useLogoutMutation();
   const dispatch = useDispatch();
-
+  const { data: targetsData } = useGetTargetsQuery();
+  const targets = targetsData?.targets;
+  const { data: conversations } = useGetConversationsQuery(user.id);
+  const matches = conversations?.matches;
   const handleLogout = () => logout().then(() => localStorage.removeItem('user'));
 
   const onEdit = () => dispatch(setHomeTab(tabsEnum.editProfile));
@@ -20,6 +27,13 @@ const TargetProfileTab = () => {
     if (event.charCode === 13) callback();
   };
 
+  const EmptyConversations = () => (
+    <div className="centered w-full h-full">
+      <div className="w-8 text-center">{t('profile.noMatches')}</div>
+    </div>
+  );
+
+  console.log(matches);
   return (
     <>
       <Hamburger tab />
@@ -52,6 +66,7 @@ const TargetProfileTab = () => {
         </div>
       </div>
       <div className="separator" />
+      {!targets?.length ? <EmptyTargets /> : !matches?.length ? <EmptyConversations /> : <Chat />}
     </>
   );
 };

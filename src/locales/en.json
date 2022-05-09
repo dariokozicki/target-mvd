@@ -86,7 +86,16 @@
     "edit": "Edit",
     "logout": "Logout",
     "editSuccess": "Profile saved successfully.",
-    "editError": "Profile couldn't be saved"
+    "editError": "Profile couldn't be saved",
+    "create": "Create your first target by clicking wherever on the map.",
+    "popular": "Psss!, these are the most popular targets:",
+    "football": "Football",
+    "music": "Music",
+    "travel": "Travel",
+    "noMatches": "There are no matches for your targets yet.",
+    "chat": "Chat",
+    "noMessages": "Send your first message.",
+    "anonymous": "Anonymous"
   },
   "about": {
     "title": "What's TARGET?",

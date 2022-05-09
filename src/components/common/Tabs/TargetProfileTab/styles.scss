@@ -1,4 +1,5 @@
 @import 'styles/variables';
+@import 'styles/mixins';
 
 .dot {
   height: 25px;
@@ -32,5 +33,14 @@
     &-edit {
       color: $color-main-secondary;
     }
+  }
+  &-activity {
+    @include flex(row, flex-start, flex-start);
+    margin-left: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 14px;
+    line-height: 26px;
+    width: 90%;
+    gap: 1rem;
   }
 }
