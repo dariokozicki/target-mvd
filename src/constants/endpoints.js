@@ -7,6 +7,8 @@ const endpoints = {
   CONVERSATIONS: '/match_conversations',
   MESSAGES: '/messages',
   QUESTIONS: '/questions',
+  CHANGE_PASSWORD: '/users/password',
+  USERS: '/users',
 };
 
 export default endpoints;

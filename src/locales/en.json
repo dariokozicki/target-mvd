@@ -1,7 +1,8 @@
 {
   "global": {
     "pageTitle": "Target-Web",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "notImplemented": "Not implemented yet."
   },
   "home": {
     "welcomeMsg": "Welcome to ",
@@ -83,7 +84,9 @@
   "profile": {
     "title": "Target",
     "edit": "Edit",
-    "logout": "Logout"
+    "logout": "Logout",
+    "editSuccess": "Profile saved successfully.",
+    "editError": "Profile couldn't be saved"
   },
   "about": {
     "title": "What's TARGET?",
@@ -98,5 +101,15 @@
     "delete": "Delete",
     "save": "Save",
     "deleteSuccess": "Target was deleted successfully."
+  },
+  "editProfile": {
+    "title": "Edit profile",
+    "email": "Email",
+    "current_password": "Current Password",
+    "password": "New Password",
+    "password_confirmation": "Confirm New Password",
+    "save": "Save Changes",
+    "delete": "Delete my TARGET account",
+    "min": "Min. 6 characters long"
   }
 }
