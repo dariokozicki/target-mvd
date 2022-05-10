@@ -111,5 +111,21 @@
     "save": "Save Changes",
     "delete": "Delete my TARGET account",
     "min": "Min. 6 characters long"
+  },
+  "contact": {
+    "title": "Don't be shy, drop us a line!",
+    "email": "Email *",
+    "message": "Message *",
+    "send": "Send",
+    "errors": {
+      "message": "Message cannot be empty.",
+      "email": "Email must be valid.",
+      "failed": "Could not send message.",
+      "title": "Opps!",
+      "subtitle": "An error has ocurred while sending your message."
+    },
+    "success": "Message sent successfully.",
+    "successTitle": "Thanks for getting in touch!",
+    "successSubtitle": "We'll get back to you as soon as we can."
   }
 }

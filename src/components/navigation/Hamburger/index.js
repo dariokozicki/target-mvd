@@ -1,13 +1,14 @@
 import { tabsEnum } from 'components/common/Tabs';
 import useTranslation from 'hooks/useTranslation';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import routesPaths from 'routes/routesPaths';
-import { setHomeTab } from 'state/slices/tabSlice';
+import { setHomeTab, setShowContactDialog } from 'state/slices/tabSlice';
 import './styles.scss';
 
 const Hamburger = ({ tab = false }) => {
+  const [checked, setChecked] = useState(false);
   const t = useTranslation();
   const dispatch = useDispatch();
 
@@ -15,9 +16,14 @@ const Hamburger = ({ tab = false }) => {
     dispatch(setHomeTab(tabsEnum.about));
   }, [dispatch]);
 
+  const handleContact = useCallback(() => {
+    setChecked(false);
+    dispatch(setShowContactDialog(true));
+  }, [dispatch]);
+
   return (
     <div className="hamburger-container">
-      <input type="checkbox" />
+      <input type="checkbox" checked={checked} onChange={() => setChecked(!checked)} />
       <div className="hamburger-line" />
       <div className="hamburger-line" />
       <div className="hamburger-line" />
@@ -37,9 +43,15 @@ const Hamburger = ({ tab = false }) => {
             <li className="menu-item">{t('menu.about')}</li>
           </Link>
         )}
-        <Link to={routesPaths.contact} className="hamburger-item">
+        <div
+          className="hamburger-item clickable"
+          onClick={handleContact}
+          onKeyDown={handleContact}
+          role="button"
+          tabIndex={-1}
+        >
           <li className="menu-item">{t('menu.contact')}</li>
-        </Link>
+        </div>
       </ul>
     </div>
   );
