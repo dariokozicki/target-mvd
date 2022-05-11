@@ -9,6 +9,7 @@ import { useGetConversationsQuery } from 'services/model/conversations';
 import { useGetTargetsQuery } from 'services/model/targets';
 import { setHomeTab } from 'state/slices/tabSlice';
 import { tabsEnum } from '..';
+import Loader from 'components/common/Loader';
 import './styles.scss';
 
 const TargetProfileTab = () => {
@@ -16,9 +17,11 @@ const TargetProfileTab = () => {
   const { user } = useSelector(selectAuth);
   const [logout] = useLogoutMutation();
   const dispatch = useDispatch();
-  const { data: targetsData } = useGetTargetsQuery();
+  const { data: targetsData, isLoading: areTargetsLoading } = useGetTargetsQuery();
   const targets = targetsData?.targets;
-  const { data: conversations } = useGetConversationsQuery(user.id);
+  const { data: conversations, isLoading: areConversationsLoading } = useGetConversationsQuery(
+    user.id
+  );
   const matches = conversations?.matches;
   const handleLogout = () => logout().then(() => localStorage.removeItem('user'));
 
@@ -34,7 +37,13 @@ const TargetProfileTab = () => {
     </div>
   );
 
-  console.log(matches);
+  const getContent = () => {
+    if (areTargetsLoading || areConversationsLoading) return <Loader />;
+    if (!targets?.length) return <EmptyTargets />;
+    if (!matches?.length) return <EmptyConversations />;
+    return <Chat />;
+  };
+
   return (
     <>
       <Hamburger tab />
@@ -67,7 +76,7 @@ const TargetProfileTab = () => {
         </div>
       </div>
       <div className="separator" />
-      {!targets?.length ? <EmptyTargets /> : !matches?.length ? <EmptyConversations /> : <Chat />}
+      {getContent()}
     </>
   );
 };
