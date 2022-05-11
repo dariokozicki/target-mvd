@@ -114,9 +114,9 @@
   "editProfile": {
     "title": "Edit profile",
     "email": "Email",
-    "password": "Current Password",
-    "newPassword": "New Password",
-    "confirmNewPassword": "Confirm New Password",
+    "current_password": "Current Password",
+    "password": "New Password",
+    "password_confirmation": "Confirm New Password",
     "save": "Save Changes",
     "delete": "Delete my TARGET account",
     "min": "Min. 6 characters long"

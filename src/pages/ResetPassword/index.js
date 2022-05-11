@@ -43,7 +43,7 @@ const ResetPassword = () => {
             <label htmlFor="email">{t('login.labels.email')}</label>
           </div>
           <Input register={register} type="email" name="email" error={errors.email} />
-          {error && error.data && <p className="error-message">{error.data.errors}</p>}
+          {error?.data && <p className="error-message">{error.data.errors}</p>}
 
           <div className="button-container">
             <Button type="submit" disabled={false}>

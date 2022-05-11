@@ -12,6 +12,7 @@ import { selectAuth, useChangePasswordMutation, useUpdateUserMutation } from 'se
 import { setHomeTab } from 'state/slices/tabSlice';
 import { tabsEnum } from '..';
 import './styles.scss';
+import EditProfileForm from 'components/common/EditProfileForm';
 
 const EditProfileTab = () => {
   const dispatch = useDispatch();
@@ -46,26 +47,21 @@ const EditProfileTab = () => {
     formState: { errors },
   } = useForm({ defaultValues });
 
-  const onSaveChanges = data => {
-    return Promise.all([
-      changePassword({
-        current_password: data.current_password,
-        password: data.password,
-        password_confirmation: data.password_confirmation,
-      }),
-      updateUser({ id: user.id, user: { ...user, email: data.email } }),
-    ])
-      .then(() => {
-        dispatch(success(t('profile.editSuccess')));
-        dispatch(setHomeTab(tabsEnum.profile));
-      })
-      .catch(() => {
-        dispatch(error(t('profile.editError')));
-      });
-  };
-
-  const getFormErrorMessage = name => {
-    return errors[name] && <small className="p-error">{errors[name].message}</small>;
+  const onSaveChanges = async data => {
+    try {
+      await Promise.all([
+        changePassword({
+          current_password: data.current_password,
+          password: data.password,
+          password_confirmation: data.password_confirmation,
+        }),
+        updateUser({ id: user.id, user: { ...user, email: data.email } }),
+      ]);
+      dispatch(success(t('profile.editSuccess')));
+      dispatch(setHomeTab(tabsEnum.profile));
+    } catch {
+      dispatch(error(t('profile.editError')));
+    }
   };
 
   return (
@@ -80,98 +76,7 @@ const EditProfileTab = () => {
       <div className="profile-name">{user?.email}</div>
       <div className="create-target">
         <form className="p-fluid grid formgrid" onSubmit={handleSubmit(onSaveChanges)} noValidate>
-          <div className="field col-12 centered">
-            <label htmlFor="email" className="uppercase edit-profile-label">
-              {t('editProfile.email')}
-            </label>
-            <Controller
-              name="email"
-              control={control}
-              rules={{
-                required: 'Email is required.',
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                  message: 'Invalid email address. E.g. example@email.com',
-                },
-              }}
-              render={({ field, fieldState }) => (
-                <InputText
-                  id={field.name}
-                  {...field}
-                  className={classNames('w-10 p-inputtext-sm', { 'p-invalid': fieldState.invalid })}
-                />
-              )}
-            />
-            {getFormErrorMessage('email')}
-          </div>
-          <div className="field col-12 centered">
-            <label htmlFor="password" className="uppercase edit-profile-label">
-              {t('editProfile.password')}
-            </label>
-            <Controller
-              name="current_password"
-              control={control}
-              rules={{ required: 'Password is required.' }}
-              render={({ field, fieldState }) => (
-                <Password
-                  id={field.name}
-                  {...field}
-                  toggleMask
-                  feedback={false}
-                  className={classNames('w-10 p-inputtext-sm', { 'p-invalid': fieldState.invalid })}
-                  placeholder={t('editProfile.min').toLocaleUpperCase()}
-                />
-              )}
-            />
-            {getFormErrorMessage('current_password')}
-          </div>
-          <div className="field col-12 centered">
-            <label htmlFor="newPassword" className="uppercase edit-profile-label">
-              {t('editProfile.newPassword')}
-            </label>
-            <Controller
-              name="password"
-              control={control}
-              rules={{ required: 'Password is required.' }}
-              render={({ field, fieldState }) => (
-                <Password
-                  id={field.name}
-                  {...field}
-                  toggleMask
-                  feedback={false}
-                  className={classNames('w-10 p-inputtext-sm', { 'p-invalid': fieldState.invalid })}
-                  placeholder={t('editProfile.min').toLocaleUpperCase()}
-                />
-              )}
-            />
-            {getFormErrorMessage('password')}
-          </div>
-          <div className="field col-12 centered">
-            <label htmlFor="confirmNewPassword" className="uppercase edit-profile-label">
-              {t('editProfile.confirmNewPassword')}
-            </label>
-            <Controller
-              name="password_confirmation"
-              control={control}
-              rules={{
-                required: 'Password confirmation is required.',
-                validate: value => {
-                  const { password } = getValues();
-                  return password === value || 'Passwords should match!';
-                },
-              }}
-              render={({ field, fieldState }) => (
-                <Password
-                  id={field.name}
-                  {...field}
-                  toggleMask
-                  feedback={false}
-                  className={classNames('w-10 p-inputtext-sm', { 'p-invalid': fieldState.invalid })}
-                />
-              )}
-            />
-            {getFormErrorMessage('password_confirmation')}
-          </div>
+          <EditProfileForm errors={errors} getValues={getValues} control={control} />
           <div className="field col-12 centered">
             <Button className="w-6 edit-profile-label" type="submit">
               {t('editProfile.save').toLocaleUpperCase()}
