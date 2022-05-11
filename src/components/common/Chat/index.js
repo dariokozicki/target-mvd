@@ -1,11 +1,13 @@
+import defaultProfile from 'assets/default-profile.png';
 import useTranslation from 'hooks/useTranslation';
+import { DataScroller } from 'primereact/datascroller';
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { error } from 'react-toastify-redux';
 import { selectAuth } from 'services/auth/auth';
 import { useGetConversationsQuery } from 'services/model/conversations';
-import { DataScroller } from 'primereact/datascroller';
+import smilies from 'assets/smilies.png';
 import './styles.scss';
-import { error } from 'react-toastify-redux';
-import { useCallback } from 'react';
 
 const Chat = () => {
   const t = useTranslation();
@@ -30,7 +32,7 @@ const Chat = () => {
         >
           <img
             className="chat__image"
-            src={match.user.avatar.small_thumb_url || './default-profile.png'}
+            src={match.user.avatar.small_thumb_url || defaultProfile}
             alt={match.user.full_name + "'s Picture"}
           />
           <div className="chat__text">
@@ -57,7 +59,7 @@ const Chat = () => {
             buffer={0.4}
           />
         </div>
-        <img src="/smilies.png" alt="smilies" className="smilies-small mb-5 mt-auto" />
+        <img src={smilies} alt="smilies" className="smilies-small mb-5 mt-auto" />
       </div>
     </>
   );

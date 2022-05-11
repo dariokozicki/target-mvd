@@ -10,6 +10,8 @@ import { selectTargets, useDestroyTargetMutation } from 'services/model/targets'
 import { setHomeTab } from 'state/slices/tabSlice';
 import { setSelected } from 'state/slices/targetSlice';
 import { tabsEnum } from '..';
+import targetCreateIcon from 'assets/target-create-icon.png';
+import smilies from 'assets/smilies.png';
 import './styles.scss';
 
 const TargetEditTab = () => {
@@ -41,7 +43,7 @@ const TargetEditTab = () => {
         <div className="create-target">
           <div className="p-fluid grid formgrid">
             <div className="centered w-100 pb-4">
-              <img src="./target-create-icon.png" alt="target-create-icon" />
+              <img src={targetCreateIcon} alt="target-create-icon" />
               <div className="create-subtitle">{t('creationTab.subtitle')}</div>
             </div>
             <div className="field col-12">
@@ -94,7 +96,7 @@ const TargetEditTab = () => {
               />
             </div>
           </div>
-          <img src="/smilies.png" alt="smilies" className="smilies-small mb-3" />
+          <img src={smilies} alt="smilies" className="smilies-small mb-3" />
         </div>
       )}
     </>

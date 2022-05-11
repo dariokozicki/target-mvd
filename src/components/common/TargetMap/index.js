@@ -7,6 +7,8 @@ import { useGetTopicsQuery } from 'services/model/topics';
 import { setHomeTab } from 'state/slices/tabSlice';
 import { fillCreationTarget, resetCreationTarget, setSelected } from 'state/slices/targetSlice';
 import { tabsEnum } from '../Tabs';
+import currentPositionImg from 'assets/current-position-marker.png';
+import emptyTargetImg from 'assets/empty-target.png';
 import './styles.scss';
 
 const mapStyles = {
@@ -35,7 +37,7 @@ const TargetMap = ({ google }) => {
 
   const getTopicById = id => topics.topics.map(topic => topic.topic).find(topic => topic.id === id);
 
-  const getTopicUrl = topic => topic?.icon || '/empty-target.png';
+  const getTopicUrl = topic => topic?.icon || emptyTargetImg;
 
   const onTargetClicked = target => {
     dispatch(setSelected(target));
@@ -55,7 +57,7 @@ const TargetMap = ({ google }) => {
         onClick={() => {}}
         name={t('target.position')}
         icon={{
-          url: '/current-position-marker.png',
+          url: currentPositionImg,
           anchor: new google.maps.Point(16, 16),
           scaledSize: new google.maps.Size(32, 42),
         }}

@@ -11,6 +11,8 @@ import { api } from 'services/api';
 import { useCreateQuestionMutation } from 'services/model/questions';
 import { selectTab, setShowContactDialog } from 'state/slices/tabSlice';
 import { z } from 'zod';
+import smiliesSad from 'assets/smilies-sad.png';
+import smilies from 'assets/smilies.png';
 import Button from '../Button';
 import Cross from '../Cross';
 import './styles.scss';
@@ -64,7 +66,7 @@ const ContactDialog = () => {
 
   const errorContent = () => (
     <>
-      <img src="/smilies-sad.png" alt="smilies" />
+      <img src={smiliesSad} alt="smilies" />
       <div className="m-8">
         <div className="contact-dialog__title">{t('contact.errors.title')}</div>
         <div className="description">{t('contact.errors.subtitle')}</div>
@@ -78,7 +80,7 @@ const ContactDialog = () => {
 
   const successContent = () => (
     <>
-      <img src="/smilies.png" alt="smilies" />
+      <img src={smilies} alt="smilies" />
       <div className="m-8">
         <div className="contact-dialog__title">{t('contact.successTitle')}</div>
         <div className="description">{t('contact.successSubtitle')}</div>
@@ -88,7 +90,7 @@ const ContactDialog = () => {
 
   const formContent = () => (
     <>
-      <img src="/smilies.png" alt="smilies" />
+      <img src={smilies} alt="smilies" />
       <div className="contact-dialog__title">{t('contact.title')}</div>
       <div className="edit-profile-label">{t('contact.email').toUpperCase()}</div>
       <div className="contact-dialog__input">

@@ -1,3 +1,4 @@
+import defaultProfile from 'assets/default-profile.png';
 import Chat from 'components/common/Chat';
 import EmptyTargets from 'components/common/EmptyTargets';
 import Hamburger from 'components/navigation/Hamburger';
@@ -41,7 +42,7 @@ const TargetProfileTab = () => {
         <div className="create-title">{t('profile.title')}</div>
       </div>
       <div className="profile-picture">
-        <img src={user?.avatar.url || './default-profile.png'} alt="profile" />
+        <img src={user?.avatar.url || defaultProfile} alt="profile" />
       </div>
       <div className="profile-name">{user?.email}</div>
       <div className="profile-options">
