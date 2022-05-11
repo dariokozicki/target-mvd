@@ -1,15 +1,16 @@
 import endpoints from 'constants/endpoints';
-import { api } from 'services/api';
+import { api, tagTypes } from 'services/api';
 
 const conversationsApi = api.injectEndpoints({
   endpoints: builder => ({
-    getConversations: builder.mutation({
-      query: () => ({
+    getConversations: builder.query({
+      query: userId => ({
         url: endpoints.CONVERSATIONS,
         method: 'GET',
       }),
+      providesTags: [tagTypes.CONVERSATIONS],
     }),
-    getMessages: builder.mutation({
+    getMessages: builder.query({
       query: (conversationId, page = 1) => ({
         url: [
           endpoints.CONVERSATIONS,
@@ -27,10 +28,12 @@ const conversationsApi = api.injectEndpoints({
 });
 
 export const {
-  useGetConversationsMutation,
-  useGetMessagesMutation,
-  getConversations: { matchFulfilled: getConversationsFulfilled },
-  getMessages: { matchFulfilled: getMessagesFulfilled },
+  useGetConversationsQuery,
+  useGetMessagesQuery,
+  endpoints: {
+    getConversations: { matchFulfilled: getConversationsFulfilled },
+    getMessages: { matchFulfilled: getMessagesFulfilled },
+  },
 } = conversationsApi;
 
 export const selectConversations = state => state.conversations;

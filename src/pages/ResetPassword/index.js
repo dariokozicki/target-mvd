@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { error } from 'react-toastify-redux';
 import routesPaths from 'routes/routesPaths';
 import { z } from 'zod';
+import smilies from 'assets/smilies.png';
 import './styles.scss';
 
 const ResetPassword = () => {
@@ -35,7 +36,7 @@ const ResetPassword = () => {
     <>
       <Hamburger />
       <LandingScreen>
-        <img src="/smilies.png" alt="smilies" className="smilies" />
+        <img src={smilies} alt="smilies" className="smilies" />
         <div className="title">{t('resetPassword.title')}</div>
         <form onSubmit={onSubmit} noValidate>
           <div className="form-label uppercase">

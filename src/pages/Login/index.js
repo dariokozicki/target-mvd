@@ -5,6 +5,7 @@ import routesPaths from 'routes/routesPaths';
 import LoginForm from 'components/login/LoginForm';
 import LandingScreen from 'components/landing/LandingScreen';
 import Hamburger from 'components/navigation/Hamburger';
+import smilies from 'assets/smilies.png';
 
 const Login = () => {
   const t = useTranslation();
@@ -13,7 +14,7 @@ const Login = () => {
     <>
       <Hamburger />
       <LandingScreen>
-        <img src="/smilies.png" alt="smilies" className="smilies" />
+        <img src={smilies} alt="smilies" className="smilies" />
         <div className="title">{t('login.page-title')}</div>
         <div className="subtitle">{t('login.subtitle')}</div>
         <p className="description">{t('login.description')}</p>

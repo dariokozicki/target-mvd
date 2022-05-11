@@ -11,6 +11,8 @@ import { selectTargets, useCreateTargetMutation, useGetTargetsQuery } from 'serv
 import { setHomeTab } from 'state/slices/tabSlice';
 import { fillCreationTarget, resetCreationTarget } from 'state/slices/targetSlice';
 import { tabsEnum } from '..';
+import targetCreateIcon from 'assets/target-create-icon.png';
+import smilies from 'assets/smilies.png';
 import Loader from '../../Loader';
 import './styles.scss';
 
@@ -59,7 +61,7 @@ const TargetCreationTab = () => {
         <div className="create-target">
           <div className="p-fluid grid formgrid">
             <div className="centered w-100 pb-4">
-              <img src="./target-create-icon.png" alt="target-create-icon" />
+              <img src={targetCreateIcon} alt="target-create-icon" />
               <div className="create-subtitle">{t('creationTab.subtitle')}</div>
             </div>
             <div className="field col-12">
@@ -105,7 +107,7 @@ const TargetCreationTab = () => {
               className="p-button-secondary uppercase"
               onClick={onCreate}
             />
-            <img src="/smilies.png" alt="smilies" className="smilies-small" />
+            <img src={smilies} alt="smilies" className="smilies-small" />
           </div>
         </div>
       )}

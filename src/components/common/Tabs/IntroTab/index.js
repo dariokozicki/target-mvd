@@ -5,6 +5,7 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { setHomeTab } from 'state/slices/tabSlice';
 import { tabsEnum } from '..';
+import smilies from 'assets/smilies.png';
 import './styles.scss';
 
 const IntroTab = () => {
@@ -19,7 +20,7 @@ const IntroTab = () => {
     <>
       <Hamburger tab />
       <div className="intro pt-6 w-100 h-100">
-        <img src="/smilies.png" alt="smilies" className="smilies" />
+        <img src={smilies} alt="smilies" className="smilies" />
         <div className="pt-3">
           <div className="welcome">{t('home.welcomeMsg')}</div>
           <div className="welcome target">{t('home.target')}</div>

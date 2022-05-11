@@ -4,6 +4,7 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { setHomeTab } from 'state/slices/tabSlice';
 import { tabsEnum } from '..';
+import smilies from 'assets/smilies.png';
 import './styles.scss';
 
 const AboutTab = () => {
@@ -22,7 +23,7 @@ const AboutTab = () => {
       </div>
       <div className="create-target">
         <p className="about-tab-desc">{t('about.description')}</p>
-        <img src="/smilies.png" alt="smilies" className="smilies-small mb-5 mt-auto" />
+        <img src={smilies} alt="smilies" className="smilies-small mb-5 mt-auto" />
       </div>
     </>
   );
