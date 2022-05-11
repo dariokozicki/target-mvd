@@ -3,6 +3,7 @@ import Home from 'pages/Home';
 import Signup from 'pages/Signup';
 import Login from 'pages/Login';
 import About from 'pages/About';
+import ResetPassword from 'pages/ResetPassword';
 
 const routes = [
   {
@@ -22,6 +23,10 @@ const routes = [
   {
     path: routesPaths.about,
     component: <About />,
+  },
+  {
+    path: routesPaths.forgot,
+    component: <ResetPassword />,
   },
 ];
 
