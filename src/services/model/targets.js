@@ -16,14 +16,14 @@ const targetsApi = api.injectEndpoints({
         method: 'POST',
         body: creation,
       }),
-      invalidatesTags: [tagTypes.TARGETS],
+      invalidatesTags: [tagTypes.TARGETS, tagTypes.CONVERSATIONS],
     }),
     destroyTarget: builder.mutation({
       query: targetId => ({
         url: endpoints.TARGETS + '/' + targetId,
         method: 'DELETE',
       }),
-      invalidatesTags: [tagTypes.TARGETS],
+      invalidatesTags: [tagTypes.TARGETS, tagTypes.CONVERSATIONS],
     }),
   }),
   overrideExisting: true,

@@ -21,6 +21,7 @@ const Chat = () => {
   }, [dispatch, t]);
 
   const itemTemplate = match => {
+    console.log(match);
     return (
       <>
         <div
@@ -39,7 +40,12 @@ const Chat = () => {
             <div className="chat__title">{match.user.full_name || t('profile.anonymous')}</div>
             <div>{match.last_message || t('profile.noMessages')}</div>
           </div>
-          <img className="chat__image" src={match.topic_icon} alt="topic" />
+          <div className="chat__img-container">
+            <img className="chat__image" src={match.topic_icon} alt="topic" />
+            {match.unread_messages ? (
+              <div className="chat__notifications">{match.unread_messages}</div>
+            ) : null}
+          </div>
         </div>
       </>
     );

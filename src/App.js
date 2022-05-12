@@ -11,6 +11,7 @@ import { getLoggedInUser } from 'utils/auth';
 import { selectTargets } from 'services/model/targets';
 import { setPosition } from 'state/slices/targetSlice';
 import { ToastContainer } from 'react-toastify-redux';
+import OneSignal from 'react-onesignal';
 
 import 'App.scss';
 
@@ -19,6 +20,12 @@ function App() {
   const { authenticated } = useSelector(selectAuth);
   const { position } = useSelector(selectTargets);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    OneSignal.init({
+      appId: process.env.REACT_APP_ONESIGNAL_APP_ID || '',
+    });
+  }, []);
 
   useEffect(() => {
     const loggedInUser = getLoggedInUser();
