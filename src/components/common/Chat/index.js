@@ -21,33 +21,32 @@ const Chat = () => {
   }, [dispatch, t]);
 
   const itemTemplate = match => (
-      <>
-        <div
-          className="chat__item w-full"
-          onClick={onClickItem}
-          onKeyDown={onClickItem}
-          role="button"
-          tabIndex={0}
-        >
-          <img
-            className="chat__image"
-            src={match.user.avatar.small_thumb_url || defaultProfile}
-            alt={match.user.full_name + "'s Picture"}
-          />
-          <div className="chat__text">
-            <div className="chat__title">{match.user.full_name || t('profile.anonymous')}</div>
-            <div>{match.last_message || t('profile.noMessages')}</div>
-          </div>
-          <div className="chat__img-container">
-            <img className="chat__image" src={match.topic_icon} alt="topic" />
-            {match.unread_messages ? (
-              <div className="chat__notifications">{match.unread_messages}</div>
-            ) : null}
-          </div>
+    <>
+      <div
+        className="chat__item w-full"
+        onClick={onClickItem}
+        onKeyDown={onClickItem}
+        role="button"
+        tabIndex={0}
+      >
+        <img
+          className="chat__image"
+          src={match.user.avatar.small_thumb_url || defaultProfile}
+          alt={match.user.full_name + "'s Picture"}
+        />
+        <div className="chat__text">
+          <div className="chat__title">{match.user.full_name || t('profile.anonymous')}</div>
+          <div>{match.last_message || t('profile.noMessages')}</div>
         </div>
-      </>
-    );
-  };
+        <div className="chat__img-container">
+          <img className="chat__image" src={match.topic_icon} alt="topic" />
+          {!!match.unread_messages && (
+            <div className="chat__notifications">{match.unread_messages}</div>
+          )}
+        </div>
+      </div>
+    </>
+  );
 
   return (
     <>
