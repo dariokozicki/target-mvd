@@ -20,9 +20,7 @@ const Chat = () => {
     dispatch(error(t('global.notImplemented')));
   }, [dispatch, t]);
 
-  const itemTemplate = match => {
-    console.log(match);
-    return (
+  const itemTemplate = match => (
       <>
         <div
           className="chat__item w-full"
