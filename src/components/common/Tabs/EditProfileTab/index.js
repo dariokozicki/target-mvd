@@ -1,18 +1,15 @@
 import defaultProfile from 'assets/default-profile.png';
 import Back from 'components/common/Back';
 import Button from 'components/common/Button';
+import EditProfileForm from 'components/common/EditProfileForm';
 import useTranslation from 'hooks/useTranslation';
-import { InputText } from 'primereact/inputtext';
-import { Password } from 'primereact/password';
-import { classNames } from 'primereact/utils';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { error, success } from 'react-toastify-redux';
 import { selectAuth, useChangePasswordMutation, useUpdateUserMutation } from 'services/auth/auth';
 import { setHomeTab } from 'state/slices/tabSlice';
 import { tabsEnum } from '..';
 import './styles.scss';
-import EditProfileForm from 'components/common/EditProfileForm';
 
 const EditProfileTab = () => {
   const dispatch = useDispatch();
