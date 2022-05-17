@@ -16,7 +16,8 @@ const ChatTab = () => {
   const dispatch = useDispatch();
   const cableRef = useRef(null);
   const { conversationSelected: conversationId } = useSelector(selectTargets);
-  const { data: messages } = useGetMessagesQuery({ conversationId });
+  const { data: dataMessages } = useGetMessagesQuery({ conversationId });
+  const messages = dataMessages?.messages || [];
   const [message, setMessage] = useState('');
 
   const onBack = () => {
@@ -52,7 +53,7 @@ const ChatTab = () => {
         onConnect={() => console.log('llegue a conectarme!')}
         onRejected={() => console.log('fui rechazado')}
       />
-      {messages?.map(msg => (
+      {messages.map(msg => (
         <label>{msg.content}</label>
       ))}
       <InputText value={message} onChange={e => setMessage(e.target.value)} />
