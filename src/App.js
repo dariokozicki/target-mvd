@@ -51,7 +51,6 @@ function App() {
         uid: user.uid,
         client: user.client,
       });
-      console.log('update actioncableurl', url.toString());
     }
     return url;
   }, [user, authenticated]);

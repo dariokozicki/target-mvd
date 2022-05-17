@@ -45,7 +45,6 @@ const TargetCreationTab = () => {
       return;
     }
     createTarget(creation).then(({ data }) => {
-      console.log(data);
       if (data.match_conversation) {
         const { match_conversation, matched_user } = data;
         dispatch(setNewMatch({ match_conversation, matched_user }));
