@@ -5,6 +5,7 @@ import { setConversationSelected } from './targetSlice';
 const initialState = {
   homeTab: tabsEnum.intro,
   showContactDialog: false,
+  newMatch: null,
 };
 
 const tabSlice = createSlice({
@@ -17,6 +18,9 @@ const tabSlice = createSlice({
     setShowContactDialog(state, { payload }) {
       state.showContactDialog = payload;
     },
+    setNewMatch(state, { payload }) {
+      state.newMatch = payload;
+    },
   },
   extraReducers: builder => {
     builder.addMatcher(isAnyOf(setConversationSelected), state => {
@@ -25,7 +29,7 @@ const tabSlice = createSlice({
   },
 });
 
-export const { setHomeTab, setShowContactDialog } = tabSlice.actions;
+export const { setHomeTab, setShowContactDialog, setNewMatch } = tabSlice.actions;
 
 export const selectTab = state => state.tab;
 
