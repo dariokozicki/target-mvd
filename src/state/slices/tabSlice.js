@@ -1,5 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { tabsEnum } from 'components/common/Tabs';
+import { setConversationSelected } from './targetSlice';
 
 const initialState = {
   homeTab: tabsEnum.intro,
@@ -16,6 +17,11 @@ const tabSlice = createSlice({
     setShowContactDialog(state, { payload }) {
       state.showContactDialog = payload;
     },
+  },
+  extraReducers: builder => {
+    builder.addMatcher(isAnyOf(setConversationSelected), state => {
+      state.homeTab = tabsEnum.chat;
+    });
   },
 });
 

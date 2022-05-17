@@ -11,7 +11,7 @@ const conversationsApi = api.injectEndpoints({
       providesTags: [tagTypes.CONVERSATIONS],
     }),
     getMessages: builder.query({
-      query: (conversationId, page = 1) => ({
+      query: ({ conversationId, page = 1 }) => ({
         url: [
           endpoints.CONVERSATIONS,
           '/',

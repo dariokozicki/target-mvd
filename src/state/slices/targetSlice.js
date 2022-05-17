@@ -4,6 +4,7 @@ const initialState = {
   creation: {},
   position: null,
   selected: null,
+  conversationSelected: null,
 };
 
 const targetSlice = createSlice({
@@ -22,10 +23,18 @@ const targetSlice = createSlice({
     setSelected(state, { payload }) {
       state.selected = payload;
     },
+    setConversationSelected(state, { payload }) {
+      state.conversationSelected = payload;
+    },
   },
 });
 
-export const { setPosition, fillCreationTarget, resetCreationTarget, setSelected } =
-  targetSlice.actions;
+export const {
+  setPosition,
+  fillCreationTarget,
+  resetCreationTarget,
+  setSelected,
+  setConversationSelected,
+} = targetSlice.actions;
 
 export default targetSlice.reducer;
