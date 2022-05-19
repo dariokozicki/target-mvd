@@ -147,5 +147,8 @@
     "subtitle": "You have a new match!",
     "startChatting": "Cool! Start chatting",
     "skip": "Skip"
+  },
+  "chat": {
+    "placeholder": "Type a message"
   }
 }
