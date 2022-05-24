@@ -15,11 +15,11 @@ const Login = () => {
       <Hamburger />
       <LandingScreen>
         <img src={smilies} alt="smilies" className="smilies" />
-        <div className="title">{t('login.page-title')}</div>
+        <div className="title my-auto">{t('login.page-title')}</div>
         <div className="subtitle">{t('login.subtitle')}</div>
         <p className="description">{t('login.description')}</p>
         <LoginForm />
-        <Link to={routesPaths.signup} className="link-to clickable uppercase">
+        <Link to={routesPaths.signup} className="link-to clickable uppercase mb-auto">
           {t('login.dontHaveAccountMsg')}
         </Link>
       </LandingScreen>

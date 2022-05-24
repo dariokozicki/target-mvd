@@ -44,20 +44,17 @@ function App() {
   }, [dispatch, position]);
 
   const actionCableUrl = useMemo(() => {
-    const url = new URL(process.env.REACT_APP_ACTIONCABLE_URL);
+    let url = process.env.REACT_APP_ACTIONCABLE_URL;
     if (authenticated) {
-      url.search = new URLSearchParams({
-        'access-token': user.token,
-        uid: user.uid,
-        client: user.client,
-      });
+      url = `${url}?access-token=${user.token}&client=${user.client}&uid=${user.uid}`;
     }
+    console.log(url);
     return url;
   }, [user, authenticated]);
 
   return (
     <>
-      <ActionCableProvider url={actionCableUrl.toString()}>
+      <ActionCableProvider url={actionCableUrl}>
         <Helmet>
           <title>{t('global.pageTitle')}</title>
         </Helmet>
