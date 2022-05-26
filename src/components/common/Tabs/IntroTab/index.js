@@ -25,7 +25,7 @@ const IntroTab = () => {
           <div className="welcome">{t('home.welcomeMsg')}</div>
           <div className="welcome target">{t('home.target')}</div>
         </div>
-        <div className="subtitle pt-3 pb-6">{t('home.subtitle')}</div>
+        <div className="subtitle pt-3 mb-auto">{t('home.subtitle')}</div>
         <div className="pgraph">
           <div className="dot" />
           <div>{t('intro.howToCreate')}</div>

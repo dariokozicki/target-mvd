@@ -22,7 +22,9 @@ const Home = () => {
         {getDialogs()}
         {tabs[homeTab]}
       </div>
-      <TargetMap />
+      <div className="home__map">
+        <TargetMap />
+      </div>
     </div>
   );
 };

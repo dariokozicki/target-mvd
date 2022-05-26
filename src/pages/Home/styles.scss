@@ -5,15 +5,31 @@
   @include flex(row, inherit, inherit);
   width: 100vw;
   height: 100vh;
+
+  @media screen and (max-width: $md) {
+    flex-direction: column;
+    height: 200vh;
+  }
+
   .menu {
     @include flex(column, flex-start, center);
-    width: 23vw;
-    height: 100vh;
+    width: 26%;
+    height: 100%;
     position: relative;
     background: $color-white;
+
+    @media screen and (max-width: $md) {
+      width: 100%;
+      height: 100vh;
+    }
   }
   &__map {
-    width: 77vw;
+    width: 74vw;
     height: 100vh;
+    position: relative;
+
+    @media screen and (max-width: $md) {
+      width: 100vw;
+    }
   }
 }

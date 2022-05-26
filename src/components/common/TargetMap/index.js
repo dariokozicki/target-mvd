@@ -12,7 +12,7 @@ import emptyTargetImg from 'assets/empty-target.png';
 import './styles.scss';
 
 const mapStyles = {
-  width: '77vw',
+  width: '100%',
   height: '100%',
 };
 
@@ -50,6 +50,7 @@ const TargetMap = ({ google }) => {
       zoom={14}
       google={google}
       containerStyle={mapStyles}
+      style={mapStyles}
       centerAroundCurrentLocation
       onClick={onMapClicked}
     >
