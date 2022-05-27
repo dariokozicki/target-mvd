@@ -48,7 +48,6 @@ function App() {
     if (authenticated) {
       url = `${url}?access-token=${user.token}&client=${user.client}&uid=${user.uid}`;
     }
-    console.log(url);
     return url;
   }, [user, authenticated]);
 

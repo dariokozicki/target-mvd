@@ -32,9 +32,7 @@ const ChatTab = () => {
     dispatch(setHomeTab(tabsEnum.profile));
   };
 
-  const handleReceivedChat = data => {
-    console.log('recibi un mensaje', data);
-  };
+  const handleReceivedChat = data => {};
 
   const sendMessage = ({ key }) => {
     if (key === 'Enter') {
@@ -61,8 +59,8 @@ const ChatTab = () => {
         }}
         key={conversationId}
         onReceived={handleReceivedChat}
-        onConnect={() => console.log('llegue a conectarme!')}
-        onRejected={() => console.log('fui rechazado')}
+        onConnect={() => {}}
+        onRejected={() => {}}
       />
       <div className="chat-tab">
         <div className="chat-tab__header">
