@@ -59,8 +59,8 @@ const ChatTab = () => {
         }}
         key={conversationId}
         onReceived={handleReceivedChat}
-        onConnect={() => {}}
-        onRejected={() => {}}
+        onConnected={() => console.log('conectado')}
+        onRejected={() => console.log('rechazado')}
       />
       <div className="chat-tab">
         <div className="chat-tab__header">

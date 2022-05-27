@@ -1,20 +1,19 @@
+import 'App.scss';
+import OptionalHOC from 'components/common/OptionalHOC';
 import RouteFromPath from 'components/routes/RouteFromPath';
 import useTranslation from 'hooks/useTranslation';
 import { useEffect, useMemo } from 'react';
+import { ActionCableProvider } from 'react-actioncable-provider';
 import { Helmet } from 'react-helmet-async';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Switch } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify-redux';
 import routes from 'routes';
 import { selectAuth } from 'services/auth/auth';
-import { setUser } from 'state/slices/authSlice';
-import { getLoggedInUser } from 'utils/auth';
 import { selectTargets } from 'services/model/targets';
+import { setUser } from 'state/slices/authSlice';
 import { setPosition } from 'state/slices/targetSlice';
-import { ToastContainer } from 'react-toastify-redux';
-import OneSignal from 'react-onesignal';
-
-import 'App.scss';
-import { ActionCableProvider } from 'react-actioncable-provider';
+import { getLoggedInUser } from 'utils/auth';
 
 function App() {
   const t = useTranslation();
@@ -23,9 +22,9 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    OneSignal.init({
-      appId: process.env.REACT_APP_ONESIGNAL_APP_ID || '',
-    });
+    // OneSignal.init({
+    //   appId: process.env.REACT_APP_ONESIGNAL_APP_ID || '',
+    // });
   }, []);
 
   useEffect(() => {
@@ -44,20 +43,23 @@ function App() {
   }, [dispatch, position]);
 
   const actionCableUrl = useMemo(() => {
-    let url = process.env.REACT_APP_ACTIONCABLE_URL;
     if (authenticated) {
+      let url = process.env.REACT_APP_ACTIONCABLE_URL;
       url = `${url}?access-token=${user.token}&client=${user.client}&uid=${user.uid}`;
+      return url;
     }
-    return url;
+    return undefined;
   }, [user, authenticated]);
+
+  console.log(actionCableUrl);
 
   return (
     <>
-      <ActionCableProvider url={actionCableUrl}>
-        <Helmet>
-          <title>{t('global.pageTitle')}</title>
-        </Helmet>
-        <ToastContainer />
+      <Helmet>
+        <title>{t('global.pageTitle')}</title>
+      </Helmet>
+      <ToastContainer />
+      <OptionalHOC Component={ActionCableProvider} url={actionCableUrl}>
         <BrowserRouter>
           <Switch>
             {routes.map(route => (
@@ -65,7 +67,7 @@ function App() {
             ))}
           </Switch>
         </BrowserRouter>
-      </ActionCableProvider>
+      </OptionalHOC>
     </>
   );
 }
