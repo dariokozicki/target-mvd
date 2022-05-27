@@ -1,10 +1,10 @@
+import smilies from 'assets/smilies.png';
 import Back from 'components/common/Back';
 import useTranslation from 'hooks/useTranslation';
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { setHomeTab } from 'state/slices/tabSlice';
 import { tabsEnum } from '..';
-import smilies from 'assets/smilies.png';
 import './styles.scss';
 
 const AboutTab = () => {

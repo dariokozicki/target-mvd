@@ -11,6 +11,7 @@ import { setHomeTab } from 'state/slices/tabSlice';
 import { tabsEnum } from '..';
 import Loader from 'components/common/Loader';
 import './styles.scss';
+import MapInputSwitch from 'components/common/MapInputSwitch';
 
 const TargetProfileTab = () => {
   const t = useTranslation();
@@ -47,6 +48,7 @@ const TargetProfileTab = () => {
   return (
     <>
       <Hamburger tab />
+      <MapInputSwitch black />
       <div className="header">
         <div className="create-title">{t('profile.title')}</div>
       </div>

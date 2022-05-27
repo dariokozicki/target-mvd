@@ -4,7 +4,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTargets, useGetTargetsQuery } from 'services/model/targets';
 import { useGetTopicsQuery } from 'services/model/topics';
-import { setHomeTab } from 'state/slices/tabSlice';
+import { setHomeTab, setShowMapMobile } from 'state/slices/tabSlice';
 import { fillCreationTarget, resetCreationTarget, setSelected } from 'state/slices/targetSlice';
 import { tabsEnum } from '../Tabs';
 import currentPositionImg from 'assets/current-position-marker.png';
@@ -12,7 +12,7 @@ import emptyTargetImg from 'assets/empty-target.png';
 import './styles.scss';
 
 const mapStyles = {
-  width: '77vw',
+  width: '100%',
   height: '100%',
 };
 
@@ -32,6 +32,7 @@ const TargetMap = ({ google }) => {
     } else {
       dispatch(fillCreationTarget({ lat: latLng.lat(), lng: latLng.lng(), radius: 200 }));
       dispatch(setHomeTab(tabsEnum.create));
+      dispatch(setShowMapMobile(false));
     }
   };
 
@@ -42,6 +43,7 @@ const TargetMap = ({ google }) => {
   const onTargetClicked = target => {
     dispatch(setSelected(target));
     dispatch(setHomeTab(tabsEnum.editTarget));
+    dispatch(setShowMapMobile(false));
     dispatch(resetCreationTarget());
   };
 
@@ -50,6 +52,7 @@ const TargetMap = ({ google }) => {
       zoom={14}
       google={google}
       containerStyle={mapStyles}
+      style={mapStyles}
       centerAroundCurrentLocation
       onClick={onMapClicked}
     >
