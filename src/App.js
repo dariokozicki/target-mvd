@@ -1,6 +1,6 @@
 import RouteFromPath from 'components/routes/RouteFromPath';
 import useTranslation from 'hooks/useTranslation';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Switch } from 'react-router-dom';
@@ -14,10 +14,11 @@ import { ToastContainer } from 'react-toastify-redux';
 import OneSignal from 'react-onesignal';
 
 import 'App.scss';
+import { ActionCableProvider } from 'react-actioncable-provider';
 
 function App() {
   const t = useTranslation();
-  const { authenticated } = useSelector(selectAuth);
+  const { authenticated, user } = useSelector(selectAuth);
   const { position } = useSelector(selectTargets);
   const dispatch = useDispatch();
 
@@ -42,19 +43,33 @@ function App() {
     }
   }, [dispatch, position]);
 
+  const actionCableUrl = useMemo(() => {
+    const url = new URL(process.env.REACT_APP_ACTIONCABLE_URL);
+    if (authenticated) {
+      url.search = new URLSearchParams({
+        'access-token': user.token,
+        uid: user.uid,
+        client: user.client,
+      });
+    }
+    return url;
+  }, [user, authenticated]);
+
   return (
     <>
-      <Helmet>
-        <title>{t('global.pageTitle')}</title>
-      </Helmet>
-      <ToastContainer />
-      <BrowserRouter>
-        <Switch>
-          {routes.map(route => (
-            <RouteFromPath key={`route-${route.path}`} {...route} authenticated={authenticated} />
-          ))}
-        </Switch>
-      </BrowserRouter>
+      <ActionCableProvider url={actionCableUrl.toString()}>
+        <Helmet>
+          <title>{t('global.pageTitle')}</title>
+        </Helmet>
+        <ToastContainer />
+        <BrowserRouter>
+          <Switch>
+            {routes.map(route => (
+              <RouteFromPath key={`route-${route.path}`} {...route} authenticated={authenticated} />
+            ))}
+          </Switch>
+        </BrowserRouter>
+      </ActionCableProvider>
     </>
   );
 }

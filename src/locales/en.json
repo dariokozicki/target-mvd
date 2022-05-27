@@ -141,5 +141,14 @@
     "title": "Reset your password",
     "email": "Email",
     "send": "Send"
+  },
+  "newMatch": {
+    "title": "Yey!",
+    "subtitle": "You have a new match!",
+    "startChatting": "Cool! Start chatting",
+    "skip": "Skip"
+  },
+  "chat": {
+    "placeholder": "Type a message"
   }
 }

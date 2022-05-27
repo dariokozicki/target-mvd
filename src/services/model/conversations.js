@@ -4,14 +4,14 @@ import { api, tagTypes } from 'services/api';
 const conversationsApi = api.injectEndpoints({
   endpoints: builder => ({
     getConversations: builder.query({
-      query: userId => ({
+      query: () => ({
         url: endpoints.CONVERSATIONS,
         method: 'GET',
       }),
       providesTags: [tagTypes.CONVERSATIONS],
     }),
     getMessages: builder.query({
-      query: (conversationId, page = 1) => ({
+      query: ({ conversationId, page = 1 }) => ({
         url: [
           endpoints.CONVERSATIONS,
           '/',

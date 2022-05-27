@@ -8,7 +8,7 @@ import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { error, success } from 'react-toastify-redux';
 import { selectTargets, useCreateTargetMutation, useGetTargetsQuery } from 'services/model/targets';
-import { setHomeTab } from 'state/slices/tabSlice';
+import { setHomeTab, setNewMatch } from 'state/slices/tabSlice';
 import { fillCreationTarget, resetCreationTarget } from 'state/slices/targetSlice';
 import { tabsEnum } from '..';
 import targetCreateIcon from 'assets/target-create-icon.png';
@@ -44,7 +44,12 @@ const TargetCreationTab = () => {
       dispatch(error(t('creationTab.errors.maxTargets')));
       return;
     }
-    createTarget(creation);
+    createTarget(creation).then(({ data }) => {
+      if (data.match_conversation) {
+        const { match_conversation, matched_user } = data;
+        dispatch(setNewMatch({ match_conversation, matched_user }));
+      }
+    });
   }, [creation, createTarget, dispatch, t, targets]);
 
   const setField = (field, value) => dispatch(fillCreationTarget({ [field]: value }));

@@ -1,12 +1,12 @@
 import defaultProfile from 'assets/default-profile.png';
+import smilies from 'assets/smilies.png';
 import useTranslation from 'hooks/useTranslation';
 import { DataScroller } from 'primereact/datascroller';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { error } from 'react-toastify-redux';
 import { selectAuth } from 'services/auth/auth';
 import { useGetConversationsQuery } from 'services/model/conversations';
-import smilies from 'assets/smilies.png';
+import { setConversationSelected } from 'state/slices/targetSlice';
 import './styles.scss';
 
 const Chat = () => {
@@ -16,16 +16,17 @@ const Chat = () => {
   const matches = conversations?.matches || [];
   const dispatch = useDispatch();
 
-  const onClickItem = useCallback(() => {
-    dispatch(error(t('global.notImplemented')));
-  }, [dispatch, t]);
+  const onClickItem = useCallback(
+    match_id => dispatch(setConversationSelected(match_id)),
+    [dispatch]
+  );
 
   const itemTemplate = match => (
     <>
       <div
         className="chat__item w-full"
-        onClick={onClickItem}
-        onKeyDown={onClickItem}
+        onClick={() => onClickItem(match.match_id)}
+        onKeyDown={() => onClickItem(match.match_id)}
         role="button"
         tabIndex={0}
       >
