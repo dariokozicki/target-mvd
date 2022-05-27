@@ -1,4 +1,5 @@
 import Back from 'components/common/Back';
+import MapInputSwitch from 'components/common/MapInputSwitch';
 import useTranslation from 'hooks/useTranslation';
 import { InputText } from 'primereact/inputtext';
 import { useEffect, useRef, useState } from 'react';
@@ -47,6 +48,7 @@ const ChatTab = () => {
 
   return (
     <>
+      <MapInputSwitch />
       <div className="header blue">
         <Back onBack={onBack} />
         <div className="create-title">{t('profile.chat')}</div>
@@ -65,8 +67,10 @@ const ChatTab = () => {
       <div className="chat-tab">
         <div className="chat-tab__header">
           {match.topic_icon && <img className="chat-tab__img" src={match.topic_icon} alt="topic" />}
-          {match.user?.full_name && (
-            <div className="chat-tab__username">{match.user.full_name}</div>
+          {match.user && (
+            <div className="chat-tab__username">
+              {match.user.full_name || t('profile.anonymous')}
+            </div>
           )}
         </div>
         <div className="chat__separator m-0" />

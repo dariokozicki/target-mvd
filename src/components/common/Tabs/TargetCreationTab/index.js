@@ -15,6 +15,7 @@ import targetCreateIcon from 'assets/target-create-icon.png';
 import smilies from 'assets/smilies.png';
 import Loader from '../../Loader';
 import './styles.scss';
+import MapInputSwitch from 'components/common/MapInputSwitch';
 
 const TargetCreationTab = () => {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ const TargetCreationTab = () => {
 
   return (
     <>
+      <MapInputSwitch />
       <div className="header blue">
         <Back onBack={onBack} />
         <div className="create-title">{t('creationTab.title')}</div>

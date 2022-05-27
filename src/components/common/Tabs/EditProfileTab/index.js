@@ -2,6 +2,7 @@ import defaultProfile from 'assets/default-profile.png';
 import Back from 'components/common/Back';
 import Button from 'components/common/Button';
 import EditProfileForm from 'components/common/EditProfileForm';
+import MapInputSwitch from 'components/common/MapInputSwitch';
 import useTranslation from 'hooks/useTranslation';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -63,6 +64,7 @@ const EditProfileTab = () => {
 
   return (
     <>
+      <MapInputSwitch />
       <div className="header blue">
         <Back onBack={onBack} />
         <div className="create-title">{t('editProfile.title')}</div>

@@ -95,10 +95,11 @@
 }
 
 .header {
+  @include flex(row, flex-start);
   width: 100%;
   height: $header-spacing;
-  @include flex(row, flex-start);
   font-family: $font-family;
+  flex-shrink: 0;
   font-size: 20px;
   line-height: 23px;
   letter-spacing: 3px;
@@ -109,4 +110,17 @@
 .blue {
   background-color: $color-main-secondary;
   color: $color-white;
+}
+
+.noSelect {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.noSelect:focus {
+  outline: none !important;
 }
