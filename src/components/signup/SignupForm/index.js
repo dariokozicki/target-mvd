@@ -22,12 +22,12 @@ const SignupForm = () => {
     <div className="signup">
       <form onSubmit={onSubmit} noValidate>
         <div className="form-label uppercase">
-          <label htmlFor="name">{t('signup.labels.name')}</label>
+          <label htmlFor="username">{t('signup.labels.name')}</label>
         </div>
         <Input
           register={register}
-          type="name"
-          name="name"
+          type="username"
+          name="username"
           error={errors.name}
           handleFocus={handleFocus}
         />

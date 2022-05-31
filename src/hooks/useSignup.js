@@ -20,7 +20,7 @@ export const useSignup = ({ genders }) => {
 
   const schema = z
     .object({
-      name: z.string(),
+      username: z.string(),
       gender: z.string(),
       email: z.string().email({ message: t('signup.errors.emailMsg') }),
       password: z.string().regex(PASSWORD_REGEX, { message: t('signup.errors.passwordMsg') }),

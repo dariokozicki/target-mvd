@@ -3,7 +3,7 @@ import MapInputSwitch from 'components/common/MapInputSwitch';
 import useTranslation from 'hooks/useTranslation';
 import { InputText } from 'primereact/inputtext';
 import { useEffect, useRef, useState } from 'react';
-import { ActionCableConsumer } from 'react-actioncable-provider';
+import { ActionCableConsumer } from '@thrash-industries/react-actioncable-provider';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetConversationsQuery, useGetMessagesQuery } from 'services/model/conversations';
 import { selectTargets } from 'services/model/targets';

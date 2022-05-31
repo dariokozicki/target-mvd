@@ -3,7 +3,7 @@ import OptionalHOC from 'components/common/OptionalHOC';
 import RouteFromPath from 'components/routes/RouteFromPath';
 import useTranslation from 'hooks/useTranslation';
 import { useEffect, useMemo } from 'react';
-import { ActionCableProvider } from 'react-actioncable-provider';
+import { ActionCableProvider } from '@thrash-industries/react-actioncable-provider';
 import { Helmet } from 'react-helmet-async';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Switch } from 'react-router-dom';
