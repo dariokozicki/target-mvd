@@ -2,17 +2,19 @@ import defaultProfile from 'assets/default-profile.png';
 import smilies from 'assets/smilies.png';
 import useTranslation from 'hooks/useTranslation';
 import { DataScroller } from 'primereact/datascroller';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAuth } from 'services/auth/auth';
 import { useGetConversationsQuery } from 'services/model/conversations';
+import { selectTab } from 'state/slices/tabSlice';
 import { setConversationSelected } from 'state/slices/targetSlice';
 import './styles.scss';
 
 const Chat = () => {
   const t = useTranslation();
   const { user } = useSelector(selectAuth);
-  const { data: conversations } = useGetConversationsQuery(user.id);
+  const { data: conversations, refetch } = useGetConversationsQuery(user.id);
+  const { homeTab } = useSelector(selectTab);
   const matches = conversations?.matches || [];
   const dispatch = useDispatch();
 
@@ -20,6 +22,10 @@ const Chat = () => {
     match_id => dispatch(setConversationSelected(match_id)),
     [dispatch]
   );
+
+  useEffect(() => {
+    refetch();
+  }, [homeTab]);
 
   const itemTemplate = match => (
     <>

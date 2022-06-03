@@ -1,5 +1,6 @@
 import { ActionCableConsumer } from '@thrash-industries/react-actioncable-provider';
 import Back from 'components/common/Back';
+import Loader from 'components/common/Loader';
 import MapInputSwitch from 'components/common/MapInputSwitch';
 import Message from 'components/common/Message';
 import useTranslation from 'hooks/useTranslation';
@@ -19,7 +20,7 @@ const ChatTab = () => {
   const { conversationSelected: conversationId } = useSelector(selectTargets);
   const { data: conversations } = useGetConversationsQuery();
   const [match, setMatch] = useState({});
-  const { data: dataMessages } = useGetMessagesQuery({ conversationId });
+  const { data: dataMessages, isLoading, refetch } = useGetMessagesQuery({ conversationId });
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   const bottomRef = useRef(null);
@@ -27,6 +28,7 @@ const ChatTab = () => {
   useEffect(() => {
     if (conversations?.matches) {
       setMatch(conversations.matches.find(m => m.match_id === conversationId) || {});
+      refetch();
     }
   }, [conversationId, conversations]);
 
@@ -44,7 +46,9 @@ const ChatTab = () => {
     setMessages(oldMessages => [...oldMessages, messageData]);
   };
 
-  useEffect(() => bottomRef.current.scrollIntoView(), [messages]);
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView();
+  }, [messages]);
 
   const sendMessage = ({ key }) => {
     if (key === 'Enter') {
@@ -56,6 +60,8 @@ const ChatTab = () => {
       setMessage('');
     }
   };
+
+  if (isLoading) return <Loader />;
 
   return (
     <>
