@@ -1,0 +1,33 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+.message {
+  width: 100%;
+  gap: 1rem;
+  .time {
+    font-size: 9px;
+    line-height: 11px;
+  }
+  .content {
+    padding: 0.4rem 1rem;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+
+.current-user {
+  @include flex(row-reverse, flex-start);
+  .content {
+    background-color: $current-user-msg-color;
+    justify-content: right;
+  }
+}
+
+.other-user {
+  @include flex(row, flex-start);
+  .content {
+    background-color: $other-user-msg-color;
+    justify-content: left;
+  }
+}

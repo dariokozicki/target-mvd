@@ -1,9 +1,10 @@
+import { ActionCableConsumer } from '@thrash-industries/react-actioncable-provider';
 import Back from 'components/common/Back';
 import MapInputSwitch from 'components/common/MapInputSwitch';
+import Message from 'components/common/Message';
 import useTranslation from 'hooks/useTranslation';
 import { InputText } from 'primereact/inputtext';
 import { useEffect, useRef, useState } from 'react';
-import { ActionCableConsumer } from '@thrash-industries/react-actioncable-provider';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetConversationsQuery, useGetMessagesQuery } from 'services/model/conversations';
 import { selectTargets } from 'services/model/targets';
@@ -19,7 +20,7 @@ const ChatTab = () => {
   const { data: conversations } = useGetConversationsQuery();
   const [match, setMatch] = useState({});
   const { data: dataMessages } = useGetMessagesQuery({ conversationId });
-  const messages = dataMessages?.messages || [];
+  const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
 
   useEffect(() => {
@@ -28,22 +29,31 @@ const ChatTab = () => {
     }
   }, [conversationId, conversations]);
 
+  useEffect(() => {
+    if (dataMessages) {
+      setMessages([...dataMessages.messages]);
+    }
+  }, [dataMessages]);
+
   const onBack = () => {
     dispatch(setHomeTab(tabsEnum.profile));
   };
 
-  const handleReceivedChat = data => {};
+  const handleReceivedChat = messageData => {
+    setMessages(oldMessages => [...oldMessages, messageData]);
+  };
 
   const sendMessage = ({ key }) => {
     if (key === 'Enter') {
       if (message === '') return;
       cableRef.current.perform('send_message', {
-        message,
+        content: message,
+        match_conversation_id: conversationId,
       });
       setMessage('');
     }
   };
-
+  console.log(messages); //TODO CHAT CONTENT
   return (
     <>
       <MapInputSwitch />
@@ -59,23 +69,27 @@ const ChatTab = () => {
         }}
         key={conversationId}
         onReceived={handleReceivedChat}
-        onConnected={() => console.log('conectado')}
-        onRejected={() => console.log('rechazado')}
       />
       <div className="chat-tab">
-        <div className="chat-tab__header">
-          {match.topic_icon && <img className="chat-tab__img" src={match.topic_icon} alt="topic" />}
-          {match.user && (
-            <div className="chat-tab__username">
-              {match.user.full_name || t('profile.anonymous')}
-            </div>
-          )}
-        </div>
-        <div className="chat__separator m-0" />
-        <div className="chat-tab__texts">
-          {messages.map(msg => (
-            <label>{msg.content}</label>
-          ))}
+        <div className="chat-tab__content">
+          <div className="chat-tab__header">
+            {match.topic_icon && (
+              <img className="chat-tab__img" src={match.topic_icon} alt="topic" />
+            )}
+            {match.user && (
+              <div className="chat-tab__username">
+                {match.user.full_name || t('profile.anonymous')}
+              </div>
+            )}
+          </div>
+          <div className="chat__separator m-0" />
+          <div className="chat-tab__texts-container">
+            <ul className="chat-tab__texts">
+              {messages.map(msg => (
+                <Message message={msg} key={msg.id} />
+              ))}
+            </ul>
+          </div>
         </div>
         <div className="chat-tab__input">
           <InputText
