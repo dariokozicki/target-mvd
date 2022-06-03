@@ -37,7 +37,7 @@ const Chat = () => {
         />
         <div className="chat__text">
           <div className="chat__title">{match.user.full_name || t('profile.anonymous')}</div>
-          <div>{match.last_message || t('profile.noMessages')}</div>
+          <div className="chat__last-msg">{match.last_message || t('profile.noMessages')}</div>
         </div>
         <div className="chat__img-container">
           <img className="chat__image" src={match.topic_icon} alt="topic" />
