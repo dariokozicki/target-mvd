@@ -22,6 +22,7 @@ const ChatTab = () => {
   const { data: dataMessages } = useGetMessagesQuery({ conversationId });
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
+  const bottomRef = useRef(null);
 
   useEffect(() => {
     if (conversations?.matches) {
@@ -43,6 +44,8 @@ const ChatTab = () => {
     setMessages(oldMessages => [...oldMessages, messageData]);
   };
 
+  useEffect(() => bottomRef.current.scrollIntoView(), [messages]);
+
   const sendMessage = ({ key }) => {
     if (key === 'Enter') {
       if (message === '') return;
@@ -53,7 +56,7 @@ const ChatTab = () => {
       setMessage('');
     }
   };
-  console.log(messages); //TODO CHAT CONTENT
+
   return (
     <>
       <MapInputSwitch />
@@ -71,34 +74,31 @@ const ChatTab = () => {
         onReceived={handleReceivedChat}
       />
       <div className="chat-tab">
-        <div className="chat-tab__content">
-          <div className="chat-tab__header">
-            {match.topic_icon && (
-              <img className="chat-tab__img" src={match.topic_icon} alt="topic" />
-            )}
-            {match.user && (
-              <div className="chat-tab__username">
-                {match.user.full_name || t('profile.anonymous')}
-              </div>
-            )}
-          </div>
-          <div className="chat__separator m-0" />
-          <div className="chat-tab__texts-container">
-            <ul className="chat-tab__texts">
-              {messages.map(msg => (
-                <Message message={msg} key={msg.id} />
-              ))}
-            </ul>
-          </div>
+        <div className="chat-tab__header">
+          {match.topic_icon && <img className="chat-tab__img" src={match.topic_icon} alt="topic" />}
+          {match.user && (
+            <div className="chat-tab__username">
+              {match.user.full_name || t('profile.anonymous')}
+            </div>
+          )}
         </div>
-        <div className="chat-tab__input">
-          <InputText
-            placeholder={t('chat.placeholder')}
-            value={message}
-            onKeyPress={sendMessage}
-            onChange={e => setMessage(e.target.value)}
-          />
+        <div className="chat-tab__separator" />
+        <div className="chat-tab__texts-container">
+          <ul className="chat-tab__texts">
+            {messages.map(msg => (
+              <Message message={msg} key={msg.id} />
+            ))}
+          </ul>
+          <div className="chat-tab__bottom" ref={bottomRef}></div>
         </div>
+      </div>
+      <div className="chat-tab__input">
+        <InputText
+          placeholder={t('chat.placeholder')}
+          value={message}
+          onKeyPress={sendMessage}
+          onChange={e => setMessage(e.target.value)}
+        />
       </div>
     </>
   );
