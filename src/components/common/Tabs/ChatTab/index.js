@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useGetConversationsQuery, useGetMessagesQuery } from 'services/model/conversations';
 import { selectTargets } from 'services/model/targets';
 import { setHomeTab } from 'state/slices/tabSlice';
+import { useStateWithCallbackLazy } from 'use-state-with-callback';
 import { tabsEnum } from '..';
 import './styles.scss';
 
@@ -20,8 +21,13 @@ const ChatTab = () => {
   const { conversationSelected: conversationId } = useSelector(selectTargets);
   const { data: conversations } = useGetConversationsQuery();
   const [match, setMatch] = useState({});
-  const { data: dataMessages, isLoading, refetch } = useGetMessagesQuery({ conversationId });
-  const [messages, setMessages] = useState([]);
+  const [nextPage, setNextPage] = useState(1);
+  const {
+    data: dataMessages,
+    isLoading,
+    refetch,
+  } = useGetMessagesQuery({ conversationId, page: nextPage });
+  const [messages, setMessages] = useStateWithCallbackLazy([]);
   const [message, setMessage] = useState('');
   const bottomRef = useRef(null);
 
@@ -30,13 +36,18 @@ const ChatTab = () => {
       setMatch(conversations.matches.find(m => m.match_id === conversationId) || {});
       refetch();
     }
-  }, [conversationId, conversations]);
+  }, [conversationId, conversations, refetch]);
+
+  useEffect(() => refetch(), [nextPage, refetch]);
 
   useEffect(() => {
     if (dataMessages) {
-      setMessages([...dataMessages.messages]);
+      setMessages(
+        messages => [...dataMessages.messages, ...messages],
+        () => bottomRef.current.scrollIntoView()
+      );
     }
-  }, [dataMessages]);
+  }, [dataMessages, setMessages]);
 
   const onBack = () => {
     dispatch(setHomeTab(tabsEnum.profile));
@@ -44,11 +55,8 @@ const ChatTab = () => {
 
   const handleReceivedChat = messageData => {
     setMessages(oldMessages => [...oldMessages, messageData]);
-  };
-
-  useEffect(() => {
     bottomRef.current?.scrollIntoView();
-  }, [messages]);
+  };
 
   const sendMessage = ({ key }) => {
     if (key === 'Enter') {
@@ -89,7 +97,13 @@ const ChatTab = () => {
           )}
         </div>
         <div className="chat-tab__separator" />
-        <div className="chat-tab__texts-container">
+        <div
+          className="chat-tab__texts-container"
+          onScroll={event => {
+            if (event.currentTarget.scrollTop === 0 && dataMessages.messages.length)
+              setNextPage(prevPage => prevPage + 1);
+          }}
+        >
           <ul className="chat-tab__texts">
             {messages.map(msg => (
               <Message message={msg} key={msg.id} />

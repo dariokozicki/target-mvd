@@ -25,7 +25,7 @@ const Chat = () => {
 
   useEffect(() => {
     refetch();
-  }, [homeTab]);
+  }, [homeTab, refetch]);
 
   const itemTemplate = match => (
     <>

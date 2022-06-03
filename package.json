@@ -29,6 +29,7 @@
     "react-toastify-redux": "^1.0.0-rc.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.1",
+    "use-state-with-callback": "^3.0.2",
     "zod": "^3.13.4"
   },
   "scripts": {
