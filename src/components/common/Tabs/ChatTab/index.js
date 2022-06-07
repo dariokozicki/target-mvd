@@ -1,13 +1,16 @@
+import { ActionCableConsumer } from '@thrash-industries/react-actioncable-provider';
 import Back from 'components/common/Back';
+import Loader from 'components/common/Loader';
 import MapInputSwitch from 'components/common/MapInputSwitch';
+import Message from 'components/common/Message';
 import useTranslation from 'hooks/useTranslation';
 import { InputText } from 'primereact/inputtext';
 import { useEffect, useRef, useState } from 'react';
-import { ActionCableConsumer } from 'react-actioncable-provider';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetConversationsQuery, useGetMessagesQuery } from 'services/model/conversations';
 import { selectTargets } from 'services/model/targets';
 import { setHomeTab } from 'state/slices/tabSlice';
+import { useStateWithCallbackLazy } from 'use-state-with-callback';
 import { tabsEnum } from '..';
 import './styles.scss';
 
@@ -18,31 +21,55 @@ const ChatTab = () => {
   const { conversationSelected: conversationId } = useSelector(selectTargets);
   const { data: conversations } = useGetConversationsQuery();
   const [match, setMatch] = useState({});
-  const { data: dataMessages } = useGetMessagesQuery({ conversationId });
-  const messages = dataMessages?.messages || [];
+  const [nextPage, setNextPage] = useState(1);
+  const {
+    data: dataMessages,
+    isLoading,
+    refetch,
+  } = useGetMessagesQuery({ conversationId, page: nextPage });
+  const [messages, setMessages] = useStateWithCallbackLazy([]);
   const [message, setMessage] = useState('');
+  const bottomRef = useRef(null);
 
   useEffect(() => {
     if (conversations?.matches) {
       setMatch(conversations.matches.find(m => m.match_id === conversationId) || {});
+      refetch();
     }
-  }, [conversationId, conversations]);
+  }, [conversationId, conversations, refetch]);
+
+  useEffect(() => refetch(), [nextPage, refetch]);
+
+  useEffect(() => {
+    if (dataMessages) {
+      setMessages(
+        messages => [...dataMessages.messages, ...messages],
+        () => bottomRef.current.scrollIntoView()
+      );
+    }
+  }, [dataMessages, setMessages]);
 
   const onBack = () => {
     dispatch(setHomeTab(tabsEnum.profile));
   };
 
-  const handleReceivedChat = data => {};
+  const handleReceivedChat = messageData => {
+    setMessages(oldMessages => [...oldMessages, messageData]);
+    bottomRef.current?.scrollIntoView();
+  };
 
   const sendMessage = ({ key }) => {
     if (key === 'Enter') {
       if (message === '') return;
       cableRef.current.perform('send_message', {
-        message,
+        content: message,
+        match_conversation_id: conversationId,
       });
       setMessage('');
     }
   };
+
+  if (isLoading) return <Loader />;
 
   return (
     <>
@@ -59,8 +86,6 @@ const ChatTab = () => {
         }}
         key={conversationId}
         onReceived={handleReceivedChat}
-        onConnect={() => {}}
-        onRejected={() => {}}
       />
       <div className="chat-tab">
         <div className="chat-tab__header">
@@ -71,20 +96,29 @@ const ChatTab = () => {
             </div>
           )}
         </div>
-        <div className="chat__separator m-0" />
-        <div className="chat-tab__texts">
-          {messages.map(msg => (
-            <label>{msg.content}</label>
-          ))}
+        <div className="chat-tab__separator" />
+        <div
+          className="chat-tab__texts-container"
+          onScroll={event => {
+            if (event.currentTarget.scrollTop === 0 && dataMessages.messages.length)
+              setNextPage(prevPage => prevPage + 1);
+          }}
+        >
+          <ul className="chat-tab__texts">
+            {messages.map(msg => (
+              <Message message={msg} key={msg.id} />
+            ))}
+          </ul>
+          <div className="chat-tab__bottom" ref={bottomRef}></div>
         </div>
-        <div className="chat-tab__input">
-          <InputText
-            placeholder={t('chat.placeholder')}
-            value={message}
-            onKeyPress={sendMessage}
-            onChange={e => setMessage(e.target.value)}
-          />
-        </div>
+      </div>
+      <div className="chat-tab__input">
+        <InputText
+          placeholder={t('chat.placeholder')}
+          value={message}
+          onKeyPress={sendMessage}
+          onChange={e => setMessage(e.target.value)}
+        />
       </div>
     </>
   );

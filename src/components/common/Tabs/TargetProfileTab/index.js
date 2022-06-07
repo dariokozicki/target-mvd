@@ -55,7 +55,7 @@ const TargetProfileTab = () => {
       <div className="profile-picture">
         <img src={user?.avatar.url || defaultProfile} alt="profile" />
       </div>
-      <div className="profile-name">{user?.email}</div>
+      <div className="profile-name">{user?.username || user?.email}</div>
       <div className="profile-options">
         <div
           className="profile-options-edit inline clickable"

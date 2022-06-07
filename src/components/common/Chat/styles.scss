@@ -16,6 +16,7 @@
   }
   &__text {
     @include flex(column, center, flex-start);
+    width: 60%;
   }
   &__image {
     border-radius: 50%;
@@ -28,6 +29,12 @@
     border-bottom: 1px solid #1f1f1f;
     margin-bottom: 1rem;
     margin-top: 1rem;
+  }
+  &__last-msg {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 100%;
   }
   .p-datascroller {
     width: 100%;
