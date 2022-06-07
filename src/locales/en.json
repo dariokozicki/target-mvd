@@ -1,29 +1,42 @@
 {
   "global": {
-    "pageTitle": "RS React Redux Base"
+    "pageTitle": "Target-Web",
+    "loading": "Loading...",
+    "notImplemented": "Not implemented yet."
   },
   "home": {
-    "welcomeMsg": "Welcome to React Redux Base",
-    "logoAltMsg": "React logo",
-    "logoutBtn": "Logout"
+    "welcomeMsg": "Welcome to ",
+    "logoutBtn": "Logout",
+    "target": "Target",
+    "subtitle": "Find people near you & Connect"
   },
   "signup": {
     "title": "Sign up",
     "alreadyHaveAccount": "Already have an account? Log in",
     "labels": {
+      "name": "Name",
       "email": "Email",
       "password": "Password",
-      "passwordConfirmation": "Confirm password"
+      "passwordConfirmation": "Confirm Password",
+      "passwordPlaceholder": "Min. 6 characters long",
+      "gender": "Gender",
+      "genderSelect": "Select your gender"
     },
     "errors": {
       "emailMsg": "Must provide an email",
       "passwordMsg": "Password must have at least 8 characters, a letter and a number",
-      "passwordConfirmationMsg": "Passwords must match"
+      "passwordConfirmationMsg": "Passwords must match",
+      "genderMsg": "Must specify gender"
     }
   },
   "login": {
-    "title": "Log in",
-    "dontHaveAccountMsg": "Don't have an account? Sign up",
+    "page-title": "Target MVD",
+    "title": "Sign in",
+    "subtitle": "Find people near you & Connect",
+    "description": "Create a target wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.",
+    "dontHaveAccountMsg": "Sign up",
+    "facebook": "Connect with facebook",
+    "forgot": "Forgot your password?",
     "labels": {
       "email": "Email",
       "password": "Password"
@@ -32,5 +45,110 @@
       "emailMsg": "Must provide an email",
       "passwordMsg": "Must provide a password"
     }
+  },
+  "menu": {
+    "contact": "Contact",
+    "about": "About"
+  },
+  "target": {
+    "position": "Your position",
+    "creation": "New target"
+  },
+  "intro": {
+    "howToCreate": "Create a  target  by clicking wherever on the map, specify  the ratio and and a topic: Travel, Dating, Music, etc.",
+    "chat": " will start a chat whenever you've a match. You can always dismiss a conversation if you're not interested.",
+    "target": "Target",
+    "ok": "Ok: Got it!"
+  },
+  "creationTab": {
+    "title": "Create Target",
+    "subtitle": "Create new Target",
+    "length": "Specify area length",
+    "targetTitle": "Target Title",
+    "topic": "Select a topic",
+    "targetTitleDescription": "Choose a title for your target",
+    "topicDescription": "What do you want to talk about?",
+    "save": "Save target",
+    "errors": {
+      "targetTitle": "The target title must contain at least 3 characters",
+      "radius": "The radius must be greater than 0m",
+      "label": "An error ocurred",
+      "created": "Could not create the target.",
+      "maxTargets": "Max amount of targets reached."
+    },
+    "success": {
+      "label": "Success!",
+      "created": "The target was created."
+    }
+  },
+  "profile": {
+    "title": "Target",
+    "edit": "Edit",
+    "logout": "Logout",
+    "editSuccess": "Profile saved successfully.",
+    "editError": "Profile couldn't be saved",
+    "create": "Create your first target by clicking wherever on the map.",
+    "popular": "Psss!, these are the most popular targets:",
+    "football": "Football",
+    "music": "Music",
+    "travel": "Travel",
+    "noMatches": "There are no matches for your targets yet.",
+    "chat": "Chat",
+    "noMessages": "Send your first message.",
+    "anonymous": "Anonymous"
+  },
+  "about": {
+    "title": "What's TARGET?",
+    "description": "Cat ipsum dolor sit amet, scratch the furniture. Spit up on light gray carpet instead of adjacent linoleum cough furball yet lounge in doorway but gnaw the corn cob and sit by the fire rub face on everything. Flop over under the bed, or immediately regret falling into bathtub but swat turds around the house. All of a sudden cat goes crazy bleghbleghvomit my furball really tie the room together for destroy couch. Need to chase tail inspect anything brought into the house, yet sleep on dog bed, force dog to sleep on floor. Cat snacks. Eat owner's food nap all day, for chase imaginary bugs, yet throwup on your pillow. Bleghbleghvomit my furball really tie the room together sun bathe attack the dog then pretend like nothing happened Gate keepers of hell and destroy couch, so find empty spot in cupboard and sleep all day groom yourself 4 hours - checked, have your beauty sleep 18 hours - checked, be fabulous for the rest of the day - checked!. ",
+    "back": "Get Started!"
+  },
+  "edit": {
+    "title": "Target Points",
+    "length": "Area Length",
+    "targetTitle": "Target Title",
+    "topic": "Topic",
+    "delete": "Delete",
+    "save": "Save",
+    "deleteSuccess": "Target was deleted successfully."
+  },
+  "editProfile": {
+    "title": "Edit profile",
+    "email": "Email",
+    "current_password": "Current Password",
+    "password": "New Password",
+    "password_confirmation": "Confirm New Password",
+    "save": "Save Changes",
+    "delete": "Delete my TARGET account",
+    "min": "Min. 6 characters long"
+  },
+  "contact": {
+    "title": "Don't be shy, drop us a line!",
+    "email": "Email *",
+    "message": "Message *",
+    "send": "Send",
+    "errors": {
+      "message": "Message cannot be empty.",
+      "email": "Email must be valid.",
+      "failed": "Could not send message.",
+      "title": "Opps!",
+      "subtitle": "An error has ocurred while sending your message."
+    },
+    "success": "Message sent successfully.",
+    "successTitle": "Thanks for getting in touch!",
+    "successSubtitle": "We'll get back to you as soon as we can."
+  },
+  "resetPassword": {
+    "title": "Reset your password",
+    "email": "Email",
+    "send": "Send"
+  },
+  "newMatch": {
+    "title": "Yey!",
+    "subtitle": "You have a new match!",
+    "startChatting": "Cool! Start chatting",
+    "skip": "Skip"
+  },
+  "chat": {
+    "placeholder": "Type a message"
   }
 }

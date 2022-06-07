@@ -1,0 +1,21 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+.map-switch {
+  position: absolute;
+  right: 4rem;
+  top: 0.7rem;
+  &__container {
+    position: relative;
+    z-index: 3;
+  }
+  &__img {
+    width: auto;
+    z-index: 3;
+    height: 2.5rem;
+  }
+}
+
+.right-1 {
+  right: 1rem;
+}

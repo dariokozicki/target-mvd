@@ -1,25 +1,47 @@
-import Button from 'components/common/Button';
-import useTranslation from 'hooks/useTranslation';
-import { useLogoutMutation } from 'services/auth/auth';
-
-import logo from 'assets/logo.svg';
-
-import './styles.css';
+import { ActionCableProvider } from '@thrash-industries/react-actioncable-provider';
+import classNames from 'classnames';
+import ContactDialog from 'components/common/ContactDialog';
+import MapInputSwitch from 'components/common/MapInputSwitch';
+import NewMatch from 'components/common/NewMatch';
+import { tabs } from 'components/common/Tabs';
+import TargetMap from 'components/common/TargetMap';
+import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
+import { selectAuth } from 'services/auth/auth';
+import { selectTab } from 'state/slices/tabSlice';
+import './styles.scss';
 
 const Home = () => {
-  const t = useTranslation();
-  const [logout, { isLoading }] = useLogoutMutation();
+  const { homeTab, showMapMobile } = useSelector(selectTab);
+  const { authenticated, user } = useSelector(selectAuth);
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 992px)' });
 
-  const handleLogout = () => logout().then(() => localStorage.removeItem('user'));
+  const actionCableUrl = useMemo(() => {
+    if (authenticated) {
+      let url = process.env.REACT_APP_ACTIONCABLE_URL;
+      url = `${url}?access-token=${user.token}&client=${user.client}&uid=${user.uid}`;
+      return url;
+    }
+    return undefined;
+  }, [user, authenticated]);
+
+  const getDialogs = () => (
+    <>
+      <ContactDialog />
+      <NewMatch />
+    </>
+  );
 
   return (
     <div className="home">
-      <img src={logo} className="home__logo" alt={t('home.logoAltMsg')} />
-      <h1>{t('home.welcomeMsg')}</h1>
-      <div className="home__logout">
-        <Button handleClick={handleLogout} disabled={isLoading}>
-          {t('home.logoutBtn')}
-        </Button>
+      <div className="menu">
+        {getDialogs()}
+        <ActionCableProvider url={actionCableUrl}>{tabs[homeTab]}</ActionCableProvider>
+      </div>
+      <div className={classNames('home__map', isTabletOrMobile && showMapMobile ? 'block' : '')}>
+        <TargetMap />
+        {showMapMobile && <MapInputSwitch />}
       </div>
     </div>
   );

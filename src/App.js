@@ -1,20 +1,22 @@
-import { useEffect } from 'react';
-import { Switch, BrowserRouter } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
-import { useDispatch } from 'react-redux';
-
+import 'App.scss';
 import RouteFromPath from 'components/routes/RouteFromPath';
 import useTranslation from 'hooks/useTranslation';
-import useAuth from 'hooks/useAuth';
+import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useDispatch, useSelector } from 'react-redux';
+import { BrowserRouter, Switch } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify-redux';
 import routes from 'routes';
+import { selectAuth } from 'services/auth/auth';
+import { selectTargets } from 'services/model/targets';
 import { setUser } from 'state/slices/authSlice';
+import { setPosition } from 'state/slices/targetSlice';
 import { getLoggedInUser } from 'utils/auth';
-
-import 'styles/variables.css';
 
 function App() {
   const t = useTranslation();
-  const { authenticated } = useAuth();
+  const { authenticated } = useSelector(selectAuth);
+  const { position } = useSelector(selectTargets);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,13 +26,20 @@ function App() {
       const user = JSON.parse(loggedInUser);
       dispatch(setUser(user));
     }
-  }, [dispatch]);
+
+    if (!position) {
+      navigator.geolocation.getCurrentPosition(({ coords, timestamp }) =>
+        dispatch(setPosition({ lat: coords.latitude, lng: coords.longitude, timestamp }))
+      );
+    }
+  }, [dispatch, position]);
 
   return (
     <>
       <Helmet>
         <title>{t('global.pageTitle')}</title>
       </Helmet>
+      <ToastContainer />
       <BrowserRouter>
         <Switch>
           {routes.map(route => (

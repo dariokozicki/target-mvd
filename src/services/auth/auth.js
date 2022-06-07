@@ -23,6 +23,27 @@ const authApi = api.injectEndpoints({
         method: 'DELETE',
       }),
     }),
+    changePassword: builder.mutation({
+      query: body => ({
+        url: endpoints.CHANGE_PASSWORD,
+        method: 'PUT',
+        body,
+      }),
+    }),
+    sendResetPassword: builder.mutation({
+      query: body => ({
+        url: endpoints.CHANGE_PASSWORD,
+        method: 'POST',
+        body,
+      }),
+    }),
+    updateUser: builder.mutation({
+      query: ({ id, user }) => ({
+        url: endpoints.USERS + '/' + id,
+        method: 'PUT',
+        body: { user },
+      }),
+    }),
   }),
   overrideExisting: true,
 });
@@ -31,10 +52,16 @@ export const {
   useSignupMutation,
   useLoginMutation,
   useLogoutMutation,
+  useUpdateUserMutation,
+  useChangePasswordMutation,
+  useSendResetPasswordMutation,
   endpoints: {
     signup: { matchFulfilled: signupFulfilled },
     login: { matchFulfilled: loginFulfilled },
     logout: { matchFulfilled: logoutFulfilled },
+    updateUser: { matchFulfilled: updateUserFulfilled },
+    changePassword: { matchFulfilled: changePasswordFulfilled },
+    sendResetPassword: { matchFulfilled: sendResetPasswordFulfilled },
   },
 } = authApi;
 
