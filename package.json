@@ -2,6 +2,7 @@
   "name": "target-mvd",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://target-mvd.ml",
   "dependencies": {
     "@hookform/resolvers": "^2.8.8",
     "@reduxjs/toolkit": "^1.8.0",
@@ -33,6 +34,8 @@
     "zod": "^3.13.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -71,8 +74,9 @@
     "@testing-library/react": "^12.1.3",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
-    "react-test-renderer": "^17.0.2",
     "eslint-plugin-prettier": "^3.4.1",
-    "prettier": "^2.5.1"
+    "gh-pages": "^4.0.0",
+    "prettier": "^2.5.1",
+    "react-test-renderer": "^17.0.2"
   }
 }
