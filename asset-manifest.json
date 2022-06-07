@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/target-mvd/static/css/main.be651f45.chunk.css",
-    "main.js": "/target-mvd/static/js/main.cc131823.chunk.js",
-    "main.js.map": "/target-mvd/static/js/main.cc131823.chunk.js.map",
-    "runtime-main.js": "/target-mvd/static/js/runtime-main.7e8de68e.js",
-    "runtime-main.js.map": "/target-mvd/static/js/runtime-main.7e8de68e.js.map",
-    "static/css/2.5d9393ad.chunk.css": "/target-mvd/static/css/2.5d9393ad.chunk.css",
-    "static/js/2.83fe7762.chunk.js": "/target-mvd/static/js/2.83fe7762.chunk.js",
-    "static/js/2.83fe7762.chunk.js.map": "/target-mvd/static/js/2.83fe7762.chunk.js.map",
-    "index.html": "/target-mvd/index.html",
-    "static/css/2.5d9393ad.chunk.css.map": "/target-mvd/static/css/2.5d9393ad.chunk.css.map",
-    "static/css/main.be651f45.chunk.css.map": "/target-mvd/static/css/main.be651f45.chunk.css.map",
-    "static/js/2.83fe7762.chunk.js.LICENSE.txt": "/target-mvd/static/js/2.83fe7762.chunk.js.LICENSE.txt",
-    "static/media/i6.6c7980fb.png": "/target-mvd/static/media/i6.6c7980fb.png",
-    "static/media/App.scss": "/target-mvd/static/media/primeicons.c6e20533.svg"
+    "main.css": "/static/css/main.be651f45.chunk.css",
+    "main.js": "/static/js/main.cc131823.chunk.js",
+    "main.js.map": "/static/js/main.cc131823.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.0833d8b0.js",
+    "runtime-main.js.map": "/static/js/runtime-main.0833d8b0.js.map",
+    "static/css/2.e8257531.chunk.css": "/static/css/2.e8257531.chunk.css",
+    "static/js/2.d043a5ed.chunk.js": "/static/js/2.d043a5ed.chunk.js",
+    "static/js/2.d043a5ed.chunk.js.map": "/static/js/2.d043a5ed.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.e8257531.chunk.css.map": "/static/css/2.e8257531.chunk.css.map",
+    "static/css/main.be651f45.chunk.css.map": "/static/css/main.be651f45.chunk.css.map",
+    "static/js/2.d043a5ed.chunk.js.LICENSE.txt": "/static/js/2.d043a5ed.chunk.js.LICENSE.txt",
+    "static/media/i6.6c7980fb.png": "/static/media/i6.6c7980fb.png",
+    "static/media/App.scss": "/static/media/primeicons.c6e20533.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.7e8de68e.js",
-    "static/css/2.5d9393ad.chunk.css",
-    "static/js/2.83fe7762.chunk.js",
+    "static/js/runtime-main.0833d8b0.js",
+    "static/css/2.e8257531.chunk.css",
+    "static/js/2.d043a5ed.chunk.js",
     "static/css/main.be651f45.chunk.css",
     "static/js/main.cc131823.chunk.js"
   ]
