@@ -4,7 +4,7 @@ import useTranslation from 'hooks/useTranslation';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useDispatch, useSelector } from 'react-redux';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import { HashRouter as Router, Switch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify-redux';
 import routes from 'routes';
 import { selectAuth } from 'services/auth/auth';
@@ -40,13 +40,13 @@ function App() {
         <title>{t('global.pageTitle')}</title>
       </Helmet>
       <ToastContainer />
-      <BrowserRouter>
+      <Router>
         <Switch>
           {routes.map(route => (
             <RouteFromPath key={`route-${route.path}`} {...route} authenticated={authenticated} />
           ))}
         </Switch>
-      </BrowserRouter>
+      </Router>
     </>
   );
 }
