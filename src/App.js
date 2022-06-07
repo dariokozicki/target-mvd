@@ -20,12 +20,6 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // OneSignal.init({
-    //   appId: process.env.REACT_APP_ONESIGNAL_APP_ID || '',
-    // });
-  }, []);
-
-  useEffect(() => {
     const loggedInUser = getLoggedInUser();
 
     if (loggedInUser) {
