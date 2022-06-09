@@ -40,7 +40,7 @@ function App() {
         <title>{t('global.pageTitle')}</title>
       </Helmet>
       <ToastContainer />
-      <Router basename="/target-mvd">
+      <Router>
         <Switch>
           {routes.map(route => (
             <RouteFromPath key={`route-${route.path}`} {...route} authenticated={authenticated} />

@@ -2,7 +2,7 @@
   "name": "target-mvd",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://dariokozicki.github.io/target-mvd",
+  "homepage": "https://target-mvd.ml",
   "dependencies": {
     "@hookform/resolvers": "^2.8.8",
     "@reduxjs/toolkit": "^1.8.0",
