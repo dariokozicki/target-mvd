@@ -5,7 +5,7 @@ import MapInputSwitch from 'components/common/MapInputSwitch';
 import NewMatch from 'components/common/NewMatch';
 import { tabs } from 'components/common/Tabs';
 import TargetMap from 'components/common/TargetMap';
-import { useMemo } from 'react';
+import { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { selectAuth } from 'services/auth/auth';
@@ -16,14 +16,15 @@ const Home = () => {
   const { homeTab, showMapMobile } = useSelector(selectTab);
   const { authenticated, user } = useSelector(selectAuth);
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 992px)' });
+  const [actionCableUrl, setActionCableUrl] = useState(undefined);
 
-  const actionCableUrl = useMemo(() => {
+  useCallback(() => {
     if (authenticated) {
       let url = process.env.REACT_APP_ACTIONCABLE_URL;
       url = `${url}?access-token=${user.token}&client=${user.client}&uid=${user.uid}`;
-      return url;
+      setActionCableUrl(url);
     }
-    return undefined;
+    setActionCableUrl(undefined);
   }, [user, authenticated]);
 
   const getDialogs = () => (
