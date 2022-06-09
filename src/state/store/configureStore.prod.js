@@ -1,13 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import reducer from 'state/reducer';
 
-const store = initialState => {
-  const store = configureStore({
-    reducer,
-    preloadedState: initialState,
-  });
+const middleware = getDefaultMiddleware => getDefaultMiddleware().concat(api.middleware, thunk);
 
-  return store;
-};
+const store = configureStore({
+  reducer,
+  middleware,
+  devTools: false,
+});
 
 export default store;
