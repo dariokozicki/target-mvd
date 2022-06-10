@@ -16,6 +16,10 @@ Target MVD is Responsive, so you can visit it on any devices!
 
 <img width="1440" alt="image" src="https://user-images.githubusercontent.com/38699660/173091963-78a28271-d875-4e62-bb8e-9c3de2af83e1.png">
 
+<img width="1439" alt="image" src="https://user-images.githubusercontent.com/38699660/173093035-64edf012-c2d8-42e2-80c1-b12e64649d9b.png">
+
+<img width="1439" alt="image" src="https://user-images.githubusercontent.com/38699660/173093072-29d7d7e4-2e9b-48b0-82a5-4dc6732279a9.png">
+
 ## Mobile
 
 <img width="357" alt="image" src="https://user-images.githubusercontent.com/38699660/173092321-3ddd86be-a834-48be-9342-bd2a5dd090de.png">
